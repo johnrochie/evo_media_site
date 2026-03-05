@@ -4,65 +4,9 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { ScrollSection, ScrollItem } from "./ScrollSection";
+import Link from "next/link";
 import { evomediaContent } from "@/lib/evomedia-content";
-
-const projects = [
-  {
-    id: "nexus",
-    title: "Nexus Fintech",
-    clientType: "Fintech startup",
-    description: "Modern dashboard and marketing site that built trust and sign-ups.",
-    gradient: "from-cyan-500/20 to-blue-600/20",
-    accent: "#00d4ff",
-    brief: "A new fintech needed a professional web presence and a simple dashboard for early users.",
-    solution: "We built a bold marketing site with clear value props and a clean, secure dashboard UI.",
-    outcome: "40% increase in sign-up conversion and a product that scaled to Series A.",
-  },
-  {
-    id: "luna",
-    title: "Luna Cosmetics",
-    clientType: "E-commerce / beauty",
-    description: "Online store that reflects the brand and converts browsers into buyers.",
-    gradient: "from-pink-500/20 to-rose-600/20",
-    accent: "#ff00aa",
-    brief: "Luna wanted to move from marketplace-only to their own store without losing their look.",
-    solution: "Custom e-commerce with their visual identity, fast checkout, and inventory sync.",
-    outcome: "Launch in 2 weeks; first-month sales beat their previous channel.",
-  },
-  {
-    id: "apex",
-    title: "Apex Fitness",
-    clientType: "Local business / gym",
-    description: "Local gym site that ranks and converts—book classes, see schedules, join online.",
-    gradient: "from-amber-500/20 to-orange-600/20",
-    accent: "#ffb800",
-    brief: "Apex needed a site that showed class times, allowed bookings, and brought in local members.",
-    solution: "Mobile-first site with booking, SEO for local terms, and simple member area.",
-    outcome: "Higher local search visibility and 25% more class bookings in 3 months.",
-  },
-  {
-    id: "verdant",
-    title: "Verdant Eco",
-    clientType: "Sustainability brand",
-    description: "Landing and motion that communicates mission and drives newsletter sign-ups.",
-    gradient: "from-emerald-500/20 to-teal-600/20",
-    accent: "#00d4ff",
-    brief: "Verdant needed a single strong page to explain their mission and grow their list.",
-    solution: "Scroll-driven storytelling with subtle motion and a clear CTA to subscribe.",
-    outcome: "Doubled newsletter sign-ups and stronger brand recognition.",
-  },
-  {
-    id: "frame",
-    title: "Frame Studio",
-    clientType: "Creative / portfolio",
-    description: "Portfolio and CMS so the team can update work without touching code.",
-    gradient: "from-violet-500/20 to-purple-600/20",
-    accent: "#ff00aa",
-    brief: "A design studio wanted a portfolio that they could update themselves.",
-    solution: "Custom design with a simple CMS: add projects, images, and case studies in minutes.",
-    outcome: "Team updates the site weekly; no developer needed for content.",
-  },
-];
+import { portfolioProjects as projects } from "@/lib/portfolio-projects";
 
 export default function PortfolioSection() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -184,13 +128,22 @@ export default function PortfolioSection() {
                     <p className="text-gray-400">{selected.outcome}</p>
                   </div>
                 </div>
-                <a
-                  href="#contact"
-                  onClick={() => setSelectedId(null)}
-                  className="mt-6 inline-block px-6 py-3 rounded-lg font-semibold bg-[#00d4ff]/20 text-[#00d4ff] hover:bg-[#00d4ff]/30 transition-colors"
-                >
-                  Start a similar project
-                </a>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Link
+                    href={`/portfolio/${selected.id}`}
+                    onClick={() => setSelectedId(null)}
+                    className="inline-block px-6 py-3 rounded-lg font-semibold bg-[#00d4ff]/20 text-[#00d4ff] hover:bg-[#00d4ff]/30 transition-colors"
+                  >
+                    View demo
+                  </Link>
+                  <a
+                    href="#contact"
+                    onClick={() => setSelectedId(null)}
+                    className="inline-block px-6 py-3 rounded-lg font-semibold border border-white/20 text-gray-300 hover:border-[#00d4ff]/50 hover:text-[#00d4ff] transition-colors"
+                  >
+                    Start a similar project
+                  </a>
+                </div>
               </div>
             </motion.div>
           </motion.div>
