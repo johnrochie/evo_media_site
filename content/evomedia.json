@@ -1,0 +1,230 @@
+{
+  "hero": {
+    "headline1": "AI-powered web design. ",
+    "headline2": "Built fast. Built right.",
+    "subheadline": "We build websites that evolve with your business—custom design, modern tech, and a process that gets you live in days.",
+    "ctaWork": "See Our Work",
+    "ctaQuote": "Get a Quote"
+  },
+  "whatWeDo": {
+    "label": "What we do",
+    "title": "Services that answer",
+    "titleHighlight": "\"is this for me?\"",
+    "subtitle": "Three core offerings—scannable, clear, and priced so you know where you stand.",
+    "services": [
+      {
+        "icon": "briefcase",
+        "title": "Local Business Sites",
+        "description": "Professional, mobile-friendly sites that bring in local customers and work on any device.",
+        "price": "from €800",
+        "color": "#00d4ff"
+      },
+      {
+        "icon": "store",
+        "title": "E-commerce",
+        "description": "Online stores that sell. Secure checkout, inventory, and a smooth shopping experience.",
+        "price": "from €1,500",
+        "color": "#ff00aa"
+      },
+      {
+        "icon": "user",
+        "title": "Portfolio & Personal Brand",
+        "description": "Stand-out portfolios and personal sites that get you noticed and land the right opportunities.",
+        "price": "from €500",
+        "color": "#ffb800"
+      }
+    ]
+  },
+  "whyUs": {
+    "label": "Why choose us",
+    "title": "Why",
+    "titleHighlight": "Evolution Media",
+    "subtitle": "The \"why you over anyone else\"—speed, tech, design, and scale.",
+    "items": [
+      {
+        "icon": "zap",
+        "title": "Fast turnaround",
+        "description": "Sites delivered in days, not weeks. We use smart workflows so you get live sooner."
+      },
+      {
+        "icon": "bot",
+        "title": "AI-powered workflow",
+        "description": "Cutting-edge tools and automation—efficiency we pass on as savings and speed."
+      },
+      {
+        "icon": "palette",
+        "title": "Custom design",
+        "description": "Never a generic template. Your site is designed for your brand and your goals."
+      },
+      {
+        "icon": "trendingup",
+        "title": "Built to grow",
+        "description": "Scalable from day one. Add pages, features, and traffic without starting over."
+      }
+    ]
+  },
+  "howItWorks": {
+    "label": "Our process",
+    "title": "How it",
+    "titleHighlight": "works",
+    "subtitle": "Simple 3-step process—keeps it non-intimidating for non-technical clients.",
+    "steps": [
+      {
+        "step": "1",
+        "icon": "messagecircle",
+        "title": "Brief",
+        "description": "You tell us about your business and goals. We ask a few questions and agree the scope—no jargon, no overwhelm."
+      },
+      {
+        "step": "2",
+        "icon": "hammer",
+        "title": "Build",
+        "description": "We design and develop your site, fast. You see progress and give feedback so the result is exactly what you need."
+      },
+      {
+        "step": "3",
+        "icon": "rocket",
+        "title": "Launch",
+        "description": "Go live with a full handover and support. You own everything—we make sure you're confident using it."
+      }
+    ]
+  },
+  "portfolio": {
+    "label": "Our work",
+    "title": "Selected",
+    "titleHighlight": "projects",
+    "subtitle": "Dummy sites to start—replace with real projects and case studies as you get clients."
+  },
+  "pricing": {
+    "label": "Pricing",
+    "title": "Three clean",
+    "titleHighlight": "tiers",
+    "subtitle": "Choose the tier that fits. Each includes 4–5 clear inclusions—no surprises.",
+    "customCta": "Custom project? Let's talk.",
+    "customCtaButton": "Get in touch",
+    "tiers": [
+      {
+        "name": "Starter",
+        "subtitle": "Portfolio / Personal Brand",
+        "price": "€500",
+        "period": "from",
+        "features": [
+          "Custom design (no templates)",
+          "Up to 5 pages",
+          "Mobile responsive",
+          "Basic SEO setup",
+          "1 round of revisions"
+        ],
+        "cta": "Get started",
+        "highlighted": false,
+        "accent": "#00d4ff"
+      },
+      {
+        "name": "Business",
+        "subtitle": "Local Business Site",
+        "price": "€800",
+        "period": "from",
+        "features": [
+          "Everything in Starter",
+          "Up to 10 pages",
+          "Contact forms & CTAs",
+          "Google Business integration",
+          "2 rounds of revisions"
+        ],
+        "cta": "Get started",
+        "highlighted": true,
+        "accent": "#ff00aa"
+      },
+      {
+        "name": "Store",
+        "subtitle": "E-commerce",
+        "price": "€1,500",
+        "period": "from",
+        "features": [
+          "Everything in Business",
+          "Product catalog & cart",
+          "Secure checkout",
+          "Inventory basics",
+          "3 rounds of revisions"
+        ],
+        "cta": "Get started",
+        "highlighted": false,
+        "accent": "#ffb800"
+      }
+    ]
+  },
+  "testimonials": {
+    "label": "Testimonials",
+    "title": "What clients",
+    "titleHighlight": "say",
+    "subtitle": "Add real testimonials as you get clients—strong placeholder design ready for launch.",
+    "items": [
+      {
+        "quote": "Evolution Media got our site live in under two weeks. Professional, clear communication, and the result looks exactly how we wanted.",
+        "author": "Placeholder Client",
+        "role": "Small business owner",
+        "avatar": "PC"
+      },
+      {
+        "quote": "We needed a store that felt like our brand—not a generic template. They delivered. Sales are up and we're already planning phase two.",
+        "author": "Placeholder Client",
+        "role": "E-commerce / retail",
+        "avatar": "PC"
+      },
+      {
+        "quote": "Fast turnaround, fair price, and a site that actually converts. Would recommend to anyone looking for a no-fuss, quality build.",
+        "author": "Placeholder Client",
+        "role": "Freelancer / portfolio",
+        "avatar": "PC"
+      }
+    ]
+  },
+  "contact": {
+    "label": "Get a quote",
+    "title": "Contact /",
+    "titleHighlight": "Get a Quote",
+    "subtitle": "Tell us what you need and we'll get back to you with a clear quote.",
+    "promise": "We'll get back to you within 24 hours.",
+    "submitSuccess": "Message sent",
+    "submitMessage": "We'll be in touch within 24 hours. Check your inbox.",
+    "websiteTypes": [
+      "Portfolio / Personal brand",
+      "Local business site",
+      "E-commerce / Online store",
+      "Landing page",
+      "Other"
+    ],
+    "budgetRanges": [
+      "Under €500",
+      "€500 – €1,000",
+      "€1,000 – €2,500",
+      "€2,500 – €5,000",
+      "€5,000+"
+    ]
+  },
+  "footer": {
+    "logoHighlight": "Evolution",
+    "logoRest": " Media",
+    "tagline": "AI-powered web design. Built fast. Built right. evomedia.site",
+    "location": "London, UK",
+    "quickLinksTitle": "Quick links",
+    "followTitle": "Follow us",
+    "copyright": "Evolution Media",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
+  "nav": {
+    "logoHighlight": "Evolution",
+    "logoRest": " Media",
+    "links": [
+      { "href": "#hero", "label": "Home" },
+      { "href": "#what-we-do", "label": "What We Do" },
+      { "href": "#why-evolution-media", "label": "Why Evolution Media" },
+      { "href": "#how-it-works", "label": "How It Works" },
+      { "href": "#portfolio", "label": "Portfolio" },
+      { "href": "#pricing", "label": "Pricing" },
+      { "href": "#testimonials", "label": "Testimonials" },
+      { "href": "#contact", "label": "Contact" }
+    ]
+  }
+}

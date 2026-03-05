@@ -1,0 +1,36 @@
+/* Evolution Media - bold dark theme with vibrant accents */
+
+:root {
+  --evomedia-bg: #0a0a0f;
+  --evomedia-accent-cyan: #00d4ff;
+  --evomedia-accent-magenta: #ff00aa;
+  --evomedia-accent-amber: #ffb800;
+  --evomedia-surface: #12121a;
+  --font-heading: var(--font-syne), system-ui, sans-serif;
+  --font-body: var(--font-dm-sans), system-ui, sans-serif;
+}
+
+.evomedia-page {
+  font-family: var(--font-body);
+}
+
+.evomedia-page h1,
+.evomedia-page h2,
+.evomedia-page h3 {
+  font-family: var(--font-heading);
+}
+
+.evomedia-gradient-text {
+  background: linear-gradient(135deg, #00d4ff 0%, #ff00aa 50%, #ffb800 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.evomedia-glow-cyan {
+  box-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
+}
+
+.evomedia-glow-magenta {
+  box-shadow: 0 0 40px rgba(255, 0, 170, 0.25);
+}
