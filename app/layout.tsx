@@ -2,15 +2,27 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://evomedia.site";
+
 export const metadata: Metadata = {
   title: "Evolution Media | AI-Powered Web Design",
   description:
     "AI-powered web design. Built fast. Built right. Custom sites, e-commerce, and portfolios. Get your site live in days.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://evomedia.site"),
+  metadataBase: new URL(siteUrl),
+  keywords: ["web design", "digital agency", "e-commerce", "portfolio", "evolution media", "AI web design"],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Evolution Media | AI-Powered Web Design",
     description: "Custom web design, e-commerce, and portfolios. Get live in days.",
     url: "/",
+    siteName: "Evolution Media",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Evolution Media | AI-Powered Web Design",
+    description: "Custom web design, e-commerce, and portfolios. Get live in days.",
   },
 };
 

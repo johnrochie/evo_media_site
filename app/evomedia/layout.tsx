@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Syne, DM_Sans } from "next/font/google";
+import Script from "next/script";
 import "./evomedia.css";
 
 const syne = Syne({
@@ -14,15 +15,47 @@ const dmSans = DM_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://evomedia.site";
+
 export const metadata: Metadata = {
-  title: "Evolution Media | Bold Web Design & Digital Agency",
+  title: "Evolution Media | AI-Powered Web Design & Digital Agency",
   description:
-    "We craft bold, creative digital experiences. Web design, branding, and development that evolves your brand. evomedia.site",
-  keywords: ["web design", "digital agency", "branding", "evolution media", "creative agency"],
-  openGraph: {
-    title: "Evolution Media | Bold Web Design & Digital Agency",
-    description: "We craft bold, creative digital experiences. evomedia.site",
+    "AI-powered web design. Built fast. Built right. Custom sites, e-commerce, and portfolios. Get your site live in days.",
+  keywords: ["web design", "digital agency", "branding", "e-commerce", "evolution media", "creative agency"],
+  alternates: {
+    canonical: "/evomedia",
   },
+  openGraph: {
+    title: "Evolution Media | AI-Powered Web Design & Digital Agency",
+    description: "AI-powered web design. Custom sites, e-commerce, portfolios. Get live in days.",
+    url: "/evomedia",
+    siteName: "Evolution Media",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Evolution Media | AI-Powered Web Design & Digital Agency",
+    description: "AI-powered web design. Custom sites, e-commerce, portfolios. Get live in days.",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Evolution Media",
+  description:
+    "AI-powered web design. Custom websites, e-commerce, and portfolios. Get your site live in days.",
+  url: siteUrl,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "London",
+    addressCountry: "GB",
+  },
+  sameAs: [
+    "https://x.com/evomediax",
+    "https://instagram.com/evomedia_gram",
+  ],
+  areaServed: "GB",
+  priceRange: "€€",
 };
 
 export default function EvolutionMediaLayout({
@@ -32,6 +65,12 @@ export default function EvolutionMediaLayout({
     <div
       className={`${syne.variable} ${dmSans.variable} evomedia-page min-h-screen bg-[#0a0a0f] text-gray-100`}
     >
+      <Script
+        id="json-ld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        strategy="afterInteractive"
+      />
       {children}
     </div>
   );
