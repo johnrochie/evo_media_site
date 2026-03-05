@@ -13,7 +13,7 @@ import NewsletterSection from "@/components/evomedia/NewsletterSection";
 import ContactSection from "@/components/evomedia/ContactSection";
 import FooterSection from "@/components/evomedia/FooterSection";
 
-export default function EvolutionMediaPage() {
+export default function HomePage() {
   return (
     <>
       <EvomediaNav />

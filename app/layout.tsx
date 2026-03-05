@@ -3,7 +3,7 @@ import CookieConsent from "@/components/CookieConsent";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://evomedia.site";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.evomedia.site";
 
 export const metadata: Metadata = {
   title: "Evolution Media | AI-Powered Web Design",

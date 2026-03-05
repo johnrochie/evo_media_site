@@ -14,7 +14,7 @@ export default function NotFound() {
         Page not found. Let&apos;s get you back on track.
       </p>
       <Link
-        href="/evomedia"
+        href="/"
         className="px-6 py-3 rounded-lg font-semibold bg-[#00d4ff] text-[#0a0a0f] hover:opacity-90 transition-opacity"
       >
         Back to home

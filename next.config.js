@@ -4,7 +4,7 @@ const { withSentryConfig } = require("@sentry/nextjs");
 const nextConfig = {
   async redirects() {
     return [
-      { source: "/", destination: "/evomedia", permanent: true },
+      { source: "/evomedia", destination: "/", permanent: true },
     ];
   },
 };

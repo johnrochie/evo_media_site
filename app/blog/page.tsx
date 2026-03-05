@@ -12,7 +12,7 @@ export default function BlogPage() {
       <header className="border-b border-white/5">
         <div className="max-w-4xl mx-auto px-4 py-6 flex items-center justify-between">
           <Link
-            href="/evomedia"
+            href="/"
             className="font-bold text-xl"
           >
             <span className="bg-gradient-to-r from-[#00d4ff] via-[#ff00aa] to-[#ffb800] bg-clip-text text-transparent">
@@ -21,7 +21,7 @@ export default function BlogPage() {
             <span className="text-white"> Media</span>
           </Link>
           <Link
-            href="/evomedia"
+            href="/"
             className="text-sm text-[#00d4ff] hover:underline"
           >
             ← Back

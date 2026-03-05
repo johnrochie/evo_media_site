@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Syne, DM_Sans } from "next/font/google";
 import Script from "next/script";
-import "./evomedia.css";
+import "../evomedia/evomedia.css";
 
 const syne = Syne({
   variable: "--font-syne",
@@ -15,7 +15,7 @@ const dmSans = DM_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://evomedia.site";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.evomedia.site";
 
 export const metadata: Metadata = {
   title: "Evolution Media | AI-Powered Web Design & Digital Agency",
@@ -23,12 +23,12 @@ export const metadata: Metadata = {
     "AI-powered web design. Built fast. Built right. Custom sites, e-commerce, and portfolios. Get your site live in days.",
   keywords: ["web design", "digital agency", "branding", "e-commerce", "evolution media", "creative agency"],
   alternates: {
-    canonical: "/evomedia",
+    canonical: "/",
   },
   openGraph: {
     title: "Evolution Media | AI-Powered Web Design & Digital Agency",
     description: "AI-powered web design. Custom sites, e-commerce, portfolios. Get live in days.",
-    url: "/evomedia",
+    url: "/",
     siteName: "Evolution Media",
   },
   twitter: {
@@ -58,7 +58,7 @@ const jsonLd = {
   priceRange: "€€",
 };
 
-export default function EvolutionMediaLayout({
+export default function HomeLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (

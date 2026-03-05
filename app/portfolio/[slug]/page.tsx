@@ -38,7 +38,7 @@ export default async function PortfolioDemoPage({
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <span className="text-sm text-gray-500">Evolution Media showcase</span>
           <Link
-            href="/evomedia#portfolio"
+            href="/#portfolio"
             className="text-sm text-[#00d4ff] hover:underline"
           >
             ← Back to Evolution Media

@@ -26,7 +26,7 @@ export default function LegalLayout({
       <header className="border-b border-white/5">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6">
           <Link
-            href="/evomedia"
+            href="/"
             className="text-xl font-bold hover:opacity-80 transition-opacity"
           >
             <span className="evomedia-gradient-text">Evolution</span>

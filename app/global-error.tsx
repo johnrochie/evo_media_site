@@ -21,7 +21,7 @@ export default function GlobalError({
           We&apos;ve been notified. Please try again or return home.
         </p>
         <Link
-          href="/evomedia"
+          href="/"
           className="px-6 py-3 rounded-lg font-semibold bg-[#00d4ff] text-[#0a0a0f] hover:opacity-90"
         >
           Back to home
