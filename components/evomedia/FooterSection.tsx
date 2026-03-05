@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { MapPin, Twitter, Instagram } from "lucide-react";
+import CookiePreferencesLink from "@/components/CookiePreferencesLink";
 import { evomediaContent } from "@/lib/evomedia-content";
 
 const c = evomediaContent.footer;
@@ -98,13 +99,14 @@ export default function FooterSection() {
           className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-500"
         >
           <p>© {new Date().getFullYear()} {c.copyright}. All rights reserved.</p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap justify-center sm:justify-end gap-4 sm:gap-6">
             <a href="/privacy" className="hover:text-gray-400 transition-colors">
               {c.privacy}
             </a>
             <a href="/terms" className="hover:text-gray-400 transition-colors">
               {c.terms}
             </a>
+            <CookiePreferencesLink />
           </div>
         </motion.div>
       </div>

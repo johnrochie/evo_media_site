@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/react";
+import CookieConsent from "@/components/CookieConsent";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://evomedia.site";
@@ -33,7 +33,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body>
         {children}
-        <Analytics />
+        <CookieConsent />
       </body>
     </html>
   );

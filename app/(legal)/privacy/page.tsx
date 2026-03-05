@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Evolution Media",
-  description: "Privacy policy for Evolution Media.",
+  description:
+    "How Evolution Media collects, uses, and protects your personal data. GDPR-compliant privacy policy.",
 };
 
 export default function PrivacyPage() {
@@ -16,13 +18,54 @@ export default function PrivacyPage() {
       <div className="space-y-6 text-gray-300">
         <section>
           <h2 className="text-xl font-semibold text-white mt-8 mb-4">
+            Data controller
+          </h2>
+          <p>
+            Evolution Media is the data controller for personal data collected
+            through this website. We are committed to protecting your privacy in
+            line with the EU General Data Protection Regulation (GDPR) and other
+            applicable laws.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-white mt-8 mb-4">
             Information we collect
           </h2>
           <p>
-            When you contact us via our form or email, we collect your name,
-            email address, and the message you send. We use this information only
-            to respond to your enquiry and to provide our services.
+            <strong>Contact form:</strong> When you contact us via our form, we
+            collect your name, email address, website type, budget range, and
+            message. We use this solely to respond to your enquiry and provide
+            our services.
           </p>
+          <p>
+            <strong>Analytics (with consent):</strong> If you accept analytics
+            cookies, we use Vercel Web Analytics to collect anonymised usage
+            data (e.g. page views). This does not include personal identifiers
+            or cookies. Data is aggregated and not sold to third parties.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-white mt-8 mb-4">
+            Legal basis
+          </h2>
+          <p>
+            We process your data on the following bases:
+          </p>
+          <ul className="list-disc pl-6 space-y-2 text-gray-300">
+            <li>
+              <strong>Contract / pre-contract:</strong> Contact form enquiries,
+              to respond and provide quotes.
+            </li>
+            <li>
+              <strong>Consent:</strong> Analytics, only when you accept cookies.
+            </li>
+            <li>
+              <strong>Legitimate interest:</strong> Improving our services,
+              security, and legal compliance.
+            </li>
+          </ul>
         </section>
 
         <section>
@@ -31,20 +74,87 @@ export default function PrivacyPage() {
           </h2>
           <p>
             We use the information you provide to communicate with you about
-            your project and to deliver our web design and development services.
-            We do not sell or share your personal data with third parties for
-            marketing purposes.
+            your project, deliver web design and development services, and
+            improve our website. We do not sell or share your personal data with
+            third parties for marketing purposes.
+          </p>
+        </section>
+
+        <section id="cookies">
+          <h2 className="text-xl font-semibold text-white mt-8 mb-4">
+            Cookies and similar technologies
+          </h2>
+          <p>
+            <strong>Strictly necessary:</strong> We use local storage to remember
+            your cookie consent choice. This is required for compliance and
+            cannot be disabled.
+          </p>
+          <p>
+            <strong>Analytics (optional):</strong> With your consent, we use
+            Vercel Web Analytics. It does not use cookies; it uses anonymised
+            data for aggregate insights. You can accept or reject this via our
+            cookie banner, and change your choice anytime via{" "}
+            <Link href="/privacy#cookies" className="text-[#00d4ff] hover:underline">
+              Cookie preferences
+            </Link>
+            .
           </p>
         </section>
 
         <section>
           <h2 className="text-xl font-semibold text-white mt-8 mb-4">
-            Cookies and analytics
+            Data retention
           </h2>
           <p>
-            Our website may use cookies or similar technologies for essential
-            functionality. If we add analytics in the future, we will update
-            this policy.
+            Contact form data is kept only as long as needed to fulfil your
+            enquiry and any resulting project. Analytics data is aggregated and
+            retained according to our provider&apos;s policy. You may request
+            deletion at any time.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-white mt-8 mb-4">
+            Your rights (GDPR)
+          </h2>
+          <p>You have the right to:</p>
+          <ul className="list-disc pl-6 space-y-2 text-gray-300">
+            <li><strong>Access</strong> – request a copy of your personal data</li>
+            <li><strong>Rectification</strong> – correct inaccurate data</li>
+            <li><strong>Erasure</strong> – request deletion of your data</li>
+            <li><strong>Restriction</strong> – limit how we process your data</li>
+            <li><strong>Portability</strong> – receive your data in a structured format</li>
+            <li><strong>Object</strong> – object to processing based on legitimate interest</li>
+            <li><strong>Withdraw consent</strong> – withdraw consent for analytics at any time</li>
+          </ul>
+          <p className="mt-4">
+            To exercise these rights,{" "}
+            <Link href="/#contact" className="text-[#00d4ff] hover:underline">
+              contact us via our form
+            </Link>
+            . You may also lodge a complaint with your local data protection
+            authority.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-white mt-8 mb-4">
+            International transfers
+          </h2>
+          <p>
+            Our hosting and tools (e.g. Vercel, Resend) may process data outside
+            the UK/EEA. We ensure appropriate safeguards (e.g. adequacy
+            decisions, standard contractual clauses) where required.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-white mt-8 mb-4">
+            Changes
+          </h2>
+          <p>
+            We may update this policy from time to time. The &quot;Last updated&quot; date
+            above indicates when changes were last made.
           </p>
         </section>
 
@@ -54,12 +164,9 @@ export default function PrivacyPage() {
           </h2>
           <p>
             For questions about this privacy policy or your data,{" "}
-            <a
-              href="/#contact"
-              className="text-[#00d4ff] hover:underline"
-            >
+            <Link href="/#contact" className="text-[#00d4ff] hover:underline">
               get in touch via our contact form
-            </a>
+            </Link>
             .
           </p>
         </section>
