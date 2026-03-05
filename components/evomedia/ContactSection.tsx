@@ -12,21 +12,28 @@ const c = evomediaContent.contact;
 export default function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
+    setLoading(true);
 
-    const form = e.currentTarget;
-    const formData = new FormData(form);
+    try {
+      const form = e.currentTarget;
+      const formData = new FormData(form);
+      const result = await sendContactEmail(formData);
 
-    const result = await sendContactEmail(formData);
-
-    if (result.ok) {
-      setSubmitted(true);
-      form.reset();
-    } else {
-      setError(result.error ?? "Something went wrong. Please try again.");
+      if (result.ok) {
+        setSubmitted(true);
+        form.reset();
+      } else {
+        setError(result.error ?? "Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      setError("Failed to send. Please try again or check your connection.");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -74,6 +81,17 @@ export default function ContactSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
+                {/* Honeypot - hidden from users, bots fill it */}
+                <div className="absolute -left-[9999px] w-1 h-1 overflow-hidden" aria-hidden="true">
+                  <label htmlFor="website_url">Website URL</label>
+                  <input
+                    id="website_url"
+                    name="website_url"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">
@@ -157,10 +175,11 @@ export default function ContactSection() {
 
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-8 py-4 rounded-lg font-semibold bg-gradient-to-r from-[#00d4ff] to-[#00a8cc] text-[#0a0a0f] hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                  disabled={loading}
+                  className="w-full sm:w-auto px-8 py-4 rounded-lg font-semibold bg-gradient-to-r from-[#00d4ff] to-[#00a8cc] text-[#0a0a0f] hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  Send message
-                  <Send className="w-4 h-4" />
+                  {loading ? "Sending…" : "Send message"}
+                  {!loading && <Send className="w-4 h-4" />}
                 </button>
               </motion.form>
             )}

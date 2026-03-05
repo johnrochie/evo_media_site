@@ -1,16 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Linkedin, Twitter, Instagram } from "lucide-react";
+import { MapPin, Twitter, Instagram } from "lucide-react";
 import { evomediaContent } from "@/lib/evomedia-content";
 
 const c = evomediaContent.footer;
 const footerLinks = evomediaContent.nav.links.slice(1);
 
 const social = [
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: Twitter, href: "https://x.com/evomediax", label: "X" },
+  { icon: Instagram, href: "https://instagram.com/evomedia_gram", label: "Instagram" },
 ];
 
 export default function FooterSection() {
@@ -80,6 +79,8 @@ export default function FooterSection() {
                 <a
                   key={s.label}
                   href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={s.label}
                   className="w-10 h-10 rounded-lg bg-[#12121a] border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00d4ff] hover:border-[#00d4ff]/30 transition-colors"
                 >

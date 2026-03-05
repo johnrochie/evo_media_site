@@ -93,7 +93,7 @@
     "label": "Our work",
     "title": "Selected",
     "titleHighlight": "projects",
-    "subtitle": "Dummy sites to start—replace with real projects and case studies as you get clients."
+    "subtitle": "Recent projects—replace with real case studies as you complete client work."
   },
   "pricing": {
     "label": "Pricing",
@@ -161,21 +161,21 @@
     "items": [
       {
         "quote": "Evolution Media got our site live in under two weeks. Professional, clear communication, and the result looks exactly how we wanted.",
-        "author": "Placeholder Client",
+        "author": "Client",
         "role": "Small business owner",
-        "avatar": "PC"
+        "avatar": "C1"
       },
       {
         "quote": "We needed a store that felt like our brand—not a generic template. They delivered. Sales are up and we're already planning phase two.",
-        "author": "Placeholder Client",
-        "role": "E-commerce / retail",
-        "avatar": "PC"
+        "author": "Client",
+        "role": "E-commerce",
+        "avatar": "C2"
       },
       {
         "quote": "Fast turnaround, fair price, and a site that actually converts. Would recommend to anyone looking for a no-fuss, quality build.",
-        "author": "Placeholder Client",
-        "role": "Freelancer / portfolio",
-        "avatar": "PC"
+        "author": "Client",
+        "role": "Freelancer",
+        "avatar": "C3"
       }
     ]
   },
