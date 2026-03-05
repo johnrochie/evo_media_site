@@ -7,6 +7,7 @@ import { ScrollSection, ScrollItem } from "./ScrollSection";
 import Link from "next/link";
 import { evomediaContent } from "@/lib/evomedia-content";
 import { portfolioProjects as projects } from "@/lib/portfolio-projects";
+import PortfolioCardPreview from "./PortfolioCardPreview";
 
 export default function PortfolioSection() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -53,10 +54,12 @@ export default function PortfolioSection() {
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-60 group-hover:opacity-80 transition-opacity`}
+                <PortfolioCardPreview
+                  projectId={project.id}
+                  accent={project.accent}
+                  gradient={project.gradient}
                 />
-                <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-[#0a0a0f]/95 to-transparent">
+                <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f]/60 to-transparent">
                   <span
                     className="text-xs font-semibold tracking-wider uppercase mb-1"
                     style={{ color: project.accent }}
@@ -93,9 +96,13 @@ export default function PortfolioSection() {
               onClick={(e) => e.stopPropagation()}
               className="relative w-full max-w-lg rounded-2xl bg-[#12121a] border border-white/10 shadow-xl overflow-hidden"
             >
-              <div
-                className={`h-32 bg-gradient-to-br ${selected.gradient} opacity-80`}
-              />
+              <div className="h-36 overflow-hidden relative">
+                <PortfolioCardPreview
+                  projectId={selected.id}
+                  accent={selected.accent}
+                  gradient={selected.gradient}
+                />
+              </div>
               <div className="p-6 md:p-8 -mt-4 relative">
                 <button
                   type="button"
