@@ -40,9 +40,18 @@ export default function PrivacyPage() {
           </p>
           <p>
             <strong>Analytics (with consent):</strong> If you accept analytics
-            cookies, we use Vercel Web Analytics to collect anonymised usage
-            data (e.g. page views). This does not include personal identifiers
-            or cookies. Data is aggregated and not sold to third parties.
+            cookies, we use Vercel Web Analytics and Google Analytics to collect
+            anonymised usage data (e.g. page views). IP anonymisation is enabled.
+            Data is aggregated and not sold to third parties. See{" "}
+            <a
+              href="https://policies.google.com/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#00d4ff] hover:underline"
+            >
+              Google&apos;s Privacy Policy
+            </a>{" "}
+            for how Google processes data.
           </p>
         </section>
 

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Analytics } from "@vercel/analytics/react";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const CONSENT_KEY = "evomedia-cookie-consent";
 
@@ -32,7 +33,12 @@ export default function CookieConsent() {
 
   return (
     <>
-      {consent === "accepted" && <Analytics />}
+      {consent === "accepted" && (
+        <>
+          <Analytics />
+          <GoogleAnalytics />
+        </>
+      )}
       {consent === "pending" && (
         <div
           role="dialog"
