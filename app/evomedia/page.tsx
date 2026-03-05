@@ -8,6 +8,8 @@ import HowItWorksSection from "@/components/evomedia/HowItWorksSection";
 import PortfolioSection from "@/components/evomedia/PortfolioSection";
 import PricingSection from "@/components/evomedia/PricingSection";
 import TestimonialsSection from "@/components/evomedia/TestimonialsSection";
+import FAQSection from "@/components/evomedia/FAQSection";
+import NewsletterSection from "@/components/evomedia/NewsletterSection";
 import ContactSection from "@/components/evomedia/ContactSection";
 import FooterSection from "@/components/evomedia/FooterSection";
 
@@ -22,6 +24,8 @@ export default function EvolutionMediaPage() {
       <PortfolioSection />
       <PricingSection />
       <TestimonialsSection />
+      <FAQSection />
+      <NewsletterSection />
       <ContactSection />
       <FooterSection />
     </>

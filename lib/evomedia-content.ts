@@ -75,6 +75,21 @@ export type EvomediaContent = {
       accent: string;
     }>;
   };
+  faq: {
+    label: string;
+    title: string;
+    titleHighlight: string;
+    items: Array<{ question: string; answer: string }>;
+  };
+  newsletter: {
+    label: string;
+    title: string;
+    subtitle: string;
+    placeholder: string;
+    button: string;
+    success: string;
+    error: string;
+  };
   testimonials: {
     label: string;
     title: string;

@@ -6,7 +6,7 @@ import CookiePreferencesLink from "@/components/CookiePreferencesLink";
 import { evomediaContent } from "@/lib/evomedia-content";
 
 const c = evomediaContent.footer;
-const footerLinks = evomediaContent.nav.links.slice(1);
+const footerLinks = evomediaContent.nav.links.filter((l) => !l.href.startsWith("/"));
 
 const social = [
   { icon: Twitter, href: "https://x.com/evomediax", label: "X" },

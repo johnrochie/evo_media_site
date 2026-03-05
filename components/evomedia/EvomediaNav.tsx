@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { evomediaContent } from "@/lib/evomedia-content";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const nav = evomediaContent.nav;
 
@@ -22,27 +23,33 @@ export default function EvomediaNav() {
             <span className="text-white">{nav.logoRest}</span>
           </a>
 
-          <ul className="hidden md:flex items-center gap-6 lg:gap-8">
-            {nav.links.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="text-gray-400 hover:text-[#00d4ff] transition-colors text-sm font-medium"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div className="hidden md:flex items-center gap-4">
+            <ThemeToggle />
+            <ul className="flex items-center gap-6 lg:gap-8">
+              {nav.links.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="text-gray-400 hover:text-[#00d4ff] transition-colors text-sm font-medium"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          <button
-            type="button"
-            onClick={() => setOpen(!open)}
-            className="md:hidden p-2 text-gray-400 hover:text-white"
-            aria-label="Toggle menu"
-          >
-            {open ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="flex md:hidden items-center gap-2">
+            <ThemeToggle />
+            <button
+              type="button"
+              onClick={() => setOpen(!open)}
+              className="p-2 text-gray-400 hover:text-white"
+              aria-label="Toggle menu"
+            >
+              {open ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 

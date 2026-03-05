@@ -179,6 +179,42 @@
       }
     ]
   },
+  "faq": {
+    "label": "FAQ",
+    "title": "Common",
+    "titleHighlight": "questions",
+    "items": [
+      {
+        "question": "How long does a typical project take?",
+        "answer": "Portfolio and local business sites: 1–2 weeks. E-commerce: 2–4 weeks. We work in sprints and keep you updated throughout."
+      },
+      {
+        "question": "What tech do you use?",
+        "answer": "We build with Next.js, React, and Tailwind—modern, fast, and easy to maintain. Hosting is typically Vercel or similar for speed and reliability."
+      },
+      {
+        "question": "Do you offer ongoing support?",
+        "answer": "Yes. Every project includes handover and basic support. We can arrange ongoing maintenance or retainer packages if you need them."
+      },
+      {
+        "question": "Can you work with my existing site?",
+        "answer": "Yes. We do redesigns, migrations, and add-ons. Share what you have and we'll propose the best approach."
+      },
+      {
+        "question": "What if I need changes after launch?",
+        "answer": "Each tier includes revision rounds. After that, we can do ad-hoc updates or set up a maintenance plan—we'll agree this before we start."
+      }
+    ]
+  },
+  "newsletter": {
+    "label": "Newsletter",
+    "title": "Stay in the loop",
+    "subtitle": "Tips on web design, launches, and occasional updates. No spam.",
+    "placeholder": "Your email",
+    "button": "Subscribe",
+    "success": "You're in. Thanks for subscribing.",
+    "error": "Something went wrong. Please try again."
+  },
   "contact": {
     "label": "Get a quote",
     "title": "Contact /",
@@ -224,7 +260,9 @@
       { "href": "#portfolio", "label": "Portfolio" },
       { "href": "#pricing", "label": "Pricing" },
       { "href": "#testimonials", "label": "Testimonials" },
-      { "href": "#contact", "label": "Contact" }
+      { "href": "#faq", "label": "FAQ" },
+      { "href": "#contact", "label": "Contact" },
+      { "href": "/blog", "label": "Blog" }
     ]
   }
 }

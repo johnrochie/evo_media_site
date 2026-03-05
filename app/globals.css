@@ -5,3 +5,81 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Light theme – overrides for data-theme="light" */
+[data-theme="light"] {
+  color-scheme: light;
+}
+
+[data-theme="light"] [data-theme-aware],
+[data-theme="light"] .evomedia-page,
+[data-theme="light"] nav[class*="fixed"],
+[data-theme="light"] footer {
+  --evomedia-bg: #f9fafb;
+  --evomedia-surface: #ffffff;
+  --evomedia-text: #111827;
+  --evomedia-text-muted: #6b7280;
+  --evomedia-border: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .evomedia-page {
+  background-color: #f9fafb !important;
+  color: #111827 !important;
+}
+
+[data-theme="light"] .evomedia-page .text-white {
+  color: #111827 !important;
+}
+
+[data-theme="light"] .evomedia-page .text-gray-100 {
+  color: #111827 !important;
+}
+
+[data-theme="light"] .evomedia-page .text-gray-300 {
+  color: #4b5563 !important;
+}
+
+[data-theme="light"] .evomedia-page .text-gray-400 {
+  color: #6b7280 !important;
+}
+
+[data-theme="light"] .evomedia-page .text-gray-500 {
+  color: #9ca3af !important;
+}
+
+[data-theme="light"] .evomedia-page .bg-\[\#0a0a0f\],
+[data-theme="light"] nav.bg-\[\#0a0a0f\/90\] {
+  background-color: rgba(249, 250, 251, 0.95) !important;
+}
+
+[data-theme="light"] .evomedia-page .bg-\[\#0d0d12\],
+[data-theme="light"] .evomedia-page .bg-\[\#12121a\] {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .evomedia-page .border-white\/5,
+[data-theme="light"] .evomedia-page .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] footer {
+  background-color: #f9fafb !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .evomedia-page .placeholder-gray-500::placeholder {
+  color: #9ca3af !important;
+}
+
+[data-theme="light"] .evomedia-page input,
+[data-theme="light"] .evomedia-page select,
+[data-theme="light"] .evomedia-page textarea {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+[data-theme="light"] .evomedia-page [class*="from-\[\#0a0a0f\]"] {
+  background: linear-gradient(to top, #f9fafb, transparent) !important;
+}

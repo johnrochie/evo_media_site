@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: baseUrl, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
     { url: `${baseUrl}/evomedia`, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
     { url: `${baseUrl}/privacy`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.3 },
+    { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.5 },
     ...["nexus", "luna", "apex", "verdant", "frame", "ember"].map((slug) => ({
       url: `${baseUrl}/portfolio/${slug}`,
       lastModified: new Date(),
