@@ -12,14 +12,14 @@
     "titleHighlight": "\"is this for me?\"",
     "subtitle": "Three core offerings—scannable, clear, and priced so you know where you stand.",
     "services": [
-{
+      {
         "icon": "user",
         "title": "Portfolio & Personal Brand",
         "description": "Stand-out portfolios and personal sites that get you noticed and land the right opportunities.",
         "price": "from €500",
         "color": "#ffb800"
-      }      
-{
+      },
+      {
         "icon": "briefcase",
         "title": "Local Business Sites",
         "description": "Professional, mobile-friendly sites that bring in local customers and work on any device.",
@@ -32,8 +32,7 @@
         "description": "Online stores that sell. Secure checkout, inventory, and a smooth shopping experience.",
         "price": "from €1,500",
         "color": "#ff00aa"
-      },
-      
+      }
     ]
   },
   "whyUs": {
