@@ -56,6 +56,8 @@ export type EvomediaContent = {
     title: string;
     titleHighlight: string;
     subtitle: string;
+    sampleSitesLabel?: string;
+    sampleSitesSubtitle?: string;
   };
   pricing: {
     label: string;

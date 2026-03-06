@@ -93,7 +93,9 @@
     "label": "Our work",
     "title": "Selected",
     "titleHighlight": "projects",
-    "subtitle": "Recent projects"
+    "subtitle": "Recent projects",
+    "sampleSitesLabel": "Sample sites",
+    "sampleSitesSubtitle": "Live demos you can visit"
   },
   "pricing": {
     "label": "Pricing",
