@@ -10,5 +10,7 @@ Add screenshot images here for the "Sample sites" cards on the homepage. If a fi
 - `travel-bug.webp` — Travel Bug
 - `evolution-it.webp` — Evolution IT
 - `golden-dragon.webp` — Golden Dragon (restaurant)
+- `oak-ember.webp` — The Oak & Ember (restaurant)
+- `luna-co.webp` — Luna & Co Hair Studio
 
 **Suggested size:** ~800×600px or 16:10 aspect ratio. Use WebP for smaller file size.
