@@ -93,7 +93,7 @@
     "label": "Our work",
     "title": "Selected",
     "titleHighlight": "projects",
-    "subtitle": "Recent projects—replace with real case studies as you complete client work."
+    "subtitle": "Recent projects"
   },
   "pricing": {
     "label": "Pricing",
@@ -186,7 +186,7 @@
     "items": [
       {
         "question": "How long does a typical project take?",
-        "answer": "Portfolio and local business sites: 1–2 weeks. E-commerce: 2–4 weeks. We work in sprints and keep you updated throughout."
+        "answer": "Portfolio and local business sites: 1–2 Days. E-commerce: 2–4 Days. We work in sprints and keep you updated throughout."
       },
       {
         "question": "What tech do you use?",
