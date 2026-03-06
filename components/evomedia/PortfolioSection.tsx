@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import Image from "next/image";
 import { ScrollSection, ScrollItem } from "./ScrollSection";
 import Link from "next/link";
 import { evomediaContent } from "@/lib/evomedia-content";
@@ -10,6 +11,59 @@ import { portfolioProjects as projects } from "@/lib/portfolio-projects";
 import { sampleSites } from "@/lib/sample-sites";
 import PortfolioCardPreview from "./PortfolioCardPreview";
 import { ExternalLink } from "lucide-react";
+
+function SampleSiteCard({
+  site,
+  delay,
+}: {
+  site: (typeof sampleSites)[number];
+  delay: number;
+}) {
+  const [imageError, setImageError] = useState(false);
+  return (
+    <ScrollItem delay={delay}>
+      <a
+        href={site.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-full text-left block group relative overflow-hidden rounded-2xl bg-[#12121a] border border-white/5 hover:border-[#00d4ff]/30 transition-colors aspect-[4/3]"
+      >
+        <div className="absolute inset-0">
+          {!imageError ? (
+            <Image
+              src={site.image}
+              alt=""
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover"
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            <div
+              className={`absolute inset-0 bg-gradient-to-br ${site.gradient} opacity-40`}
+              aria-hidden
+            />
+          )}
+        </div>
+        <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f]/60 to-transparent">
+          <span
+            className="text-xs font-semibold tracking-wider uppercase mb-1"
+            style={{ color: site.accent }}
+          >
+            {site.clientType}
+          </span>
+          <h3 className="text-xl font-bold text-white group-hover:text-[#00d4ff] transition-colors flex items-center gap-2">
+            {site.title}
+            <ExternalLink className="w-4 h-4 opacity-70 shrink-0" aria-hidden />
+          </h3>
+          <p className="text-gray-400 text-sm mt-1 line-clamp-2">
+            {site.description}
+          </p>
+        </div>
+      </a>
+    </ScrollItem>
+  );
+}
 
 export default function PortfolioSection() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -93,33 +147,7 @@ export default function PortfolioSection() {
             </ScrollItem>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {sampleSites.map((site, i) => (
-                <ScrollItem key={site.id} delay={i * 0.05}>
-                  <a
-                    href={site.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full text-left block group relative overflow-hidden rounded-2xl bg-[#12121a] border border-white/5 hover:border-[#00d4ff]/30 transition-colors aspect-[4/3]"
-                  >
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${site.gradient} opacity-40`}
-                    />
-                    <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f]/60 to-transparent">
-                      <span
-                        className="text-xs font-semibold tracking-wider uppercase mb-1"
-                        style={{ color: site.accent }}
-                      >
-                        {site.clientType}
-                      </span>
-                      <h3 className="text-xl font-bold text-white group-hover:text-[#00d4ff] transition-colors flex items-center gap-2">
-                        {site.title}
-                        <ExternalLink className="w-4 h-4 opacity-70 shrink-0" aria-hidden />
-                      </h3>
-                      <p className="text-gray-400 text-sm mt-1 line-clamp-2">
-                        {site.description}
-                      </p>
-                    </div>
-                  </a>
-                </ScrollItem>
+                <SampleSiteCard key={site.id} site={site} delay={i * 0.05} />
               ))}
             </div>
           </>
