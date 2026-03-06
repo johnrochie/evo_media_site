@@ -247,7 +247,9 @@
     "followTitle": "Follow us",
     "copyright": "Evolution Media",
     "privacy": "Privacy",
-    "terms": "Terms"
+    "terms": "Terms",
+    "trendpulseLabel": "TrendPulse",
+    "trendpulseUrl": "https://www.trendpulse.life"
   },
   "nav": {
     "logoHighlight": "Evolution",

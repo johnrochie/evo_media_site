@@ -123,6 +123,8 @@ export type EvomediaContent = {
     copyright: string;
     privacy: string;
     terms: string;
+    trendpulseLabel: string;
+    trendpulseUrl: string;
   };
   nav: {
     logoHighlight: string;

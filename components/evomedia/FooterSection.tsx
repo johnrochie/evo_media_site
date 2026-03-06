@@ -100,6 +100,14 @@ export default function FooterSection() {
         >
           <p>© {new Date().getFullYear()} {c.copyright}. All rights reserved.</p>
           <div className="flex flex-wrap justify-center sm:justify-end gap-4 sm:gap-6">
+            <a
+              href={c.trendpulseUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-gray-400 transition-colors"
+            >
+              {c.trendpulseLabel}
+            </a>
             <a href="/privacy" className="hover:text-gray-400 transition-colors">
               {c.privacy}
             </a>
