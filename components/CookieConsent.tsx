@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Analytics } from "@vercel/analytics/react";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import ChatWidget from "@/components/ChatWidget";
 
 const CONSENT_KEY = "evomedia-cookie-consent";
 
@@ -37,6 +38,7 @@ export default function CookieConsent() {
         <>
           <Analytics />
           <GoogleAnalytics />
+          <ChatWidget />
         </>
       )}
       {consent === "pending" && (

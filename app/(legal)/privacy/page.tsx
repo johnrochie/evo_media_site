@@ -39,6 +39,20 @@ export default function PrivacyPage() {
             our services.
           </p>
           <p>
+            <strong>Live chat (with consent):</strong> If you accept analytics
+            cookies, we load Crisp chat to provide support. Chat messages and
+            metadata are processed by Crisp; see{" "}
+            <a
+              href="https://crisp.chat/en/privacy/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#00d4ff] hover:underline"
+            >
+              Crisp&apos;s Privacy Policy
+            </a>
+            .
+          </p>
+          <p>
             <strong>Analytics (with consent):</strong> If you accept analytics
             cookies, we use Vercel Web Analytics and Google Analytics to collect
             anonymised usage data (e.g. page views). IP anonymisation is enabled.
@@ -99,10 +113,10 @@ export default function PrivacyPage() {
             cannot be disabled.
           </p>
           <p>
-            <strong>Analytics (optional):</strong> With your consent, we use
-            Vercel Web Analytics. It does not use cookies; it uses anonymised
-            data for aggregate insights. You can accept or reject this via our
-            cookie banner, and change your choice anytime via{" "}
+            <strong>Analytics and chat (optional):</strong> With your consent, we
+            use Vercel Web Analytics (anonymised data, no cookies) and Crisp
+            live chat. You can accept or reject these via our cookie banner and
+            change your choice anytime via{" "}
             <Link href="/privacy#cookies" className="text-[#00d4ff] hover:underline">
               Cookie preferences
             </Link>
