@@ -1,13 +1,28 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { Check, Loader2 } from "lucide-react";
 import { ScrollSection, ScrollItem } from "./ScrollSection";
 import { evomediaContent } from "@/lib/evomedia-content";
+import { createCheckoutSession } from "@/app/actions/create-checkout-session";
 
 const c = evomediaContent.pricing;
 
 export default function PricingSection() {
+  const [loadingTier, setLoadingTier] = useState<string | null>(null);
+
+  async function handleCheckout(tierName: string, amountCents: number) {
+    setLoadingTier(tierName);
+    const { ok, url, error } = await createCheckoutSession(tierName, amountCents);
+    setLoadingTier(null);
+    if (ok && url) {
+      window.location.href = url;
+    } else {
+      alert(error ?? "Something went wrong. Please try again or contact us.");
+    }
+  }
+
   return (
     <ScrollSection id="pricing" className="py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,16 +66,35 @@ export default function PricingSection() {
                     </li>
                   ))}
                 </ul>
-                <a
-                  href="#contact"
-                  className={`mt-6 block text-center py-3 rounded-lg font-semibold transition-colors ${
-                    tier.highlighted
-                      ? "bg-[#ff00aa] text-white hover:bg-[#ff00aa]/90"
-                      : "border border-white/20 text-white hover:border-[#00d4ff]/50 hover:text-[#00d4ff]"
-                  }`}
-                >
-                  {tier.cta}
-                </a>
+                {tier.amountCents != null ? (
+                  <button
+                    type="button"
+                    onClick={() => handleCheckout(tier.name, tier.amountCents!)}
+                    disabled={loadingTier !== null}
+                    className={`mt-6 w-full py-3 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 ${
+                      tier.highlighted
+                        ? "bg-[#ff00aa] text-white hover:bg-[#ff00aa]/90 disabled:opacity-70"
+                        : "border border-white/20 text-white hover:border-[#00d4ff]/50 hover:text-[#00d4ff] disabled:opacity-70"
+                    }`}
+                  >
+                    {loadingTier === tier.name ? (
+                      <Loader2 className="w-5 h-5 animate-spin" aria-hidden />
+                    ) : (
+                      tier.cta
+                    )}
+                  </button>
+                ) : (
+                  <a
+                    href="#contact"
+                    className={`mt-6 block text-center py-3 rounded-lg font-semibold transition-colors ${
+                      tier.highlighted
+                        ? "bg-[#ff00aa] text-white hover:bg-[#ff00aa]/90"
+                        : "border border-white/20 text-white hover:border-[#00d4ff]/50 hover:text-[#00d4ff]"
+                    }`}
+                  >
+                    {tier.cta}
+                  </a>
+                )}
               </motion.div>
             </ScrollItem>
           ))}

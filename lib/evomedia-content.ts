@@ -71,6 +71,7 @@ export type EvomediaContent = {
       subtitle: string;
       price: string;
       period: string;
+      amountCents?: number;
       features: string[];
       cta: string;
       highlighted: boolean;

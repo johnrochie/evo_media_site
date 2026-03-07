@@ -110,6 +110,7 @@
         "subtitle": "Portfolio / Personal Brand",
         "price": "€500",
         "period": "from",
+        "amountCents": 50000,
         "features": [
           "Custom design (no templates)",
           "Up to 5 pages",
@@ -126,6 +127,7 @@
         "subtitle": "Local Business Site",
         "price": "€800",
         "period": "from",
+        "amountCents": 80000,
         "features": [
           "Everything in Starter",
           "Up to 10 pages",
@@ -142,6 +144,7 @@
         "subtitle": "E-commerce",
         "price": "€1,500",
         "period": "from",
+        "amountCents": 150000,
         "features": [
           "Everything in Business",
           "Product catalog & cart",
