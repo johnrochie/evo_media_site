@@ -3,9 +3,9 @@
 import EvomediaNav from "@/components/evomedia/EvomediaNav";
 import HeroSection from "@/components/evomedia/HeroSection";
 import ServicesSection from "@/components/evomedia/ServicesSection";
+import PortfolioGridSection from "@/components/evomedia/PortfolioGridSection";
 import WhyUsSection from "@/components/evomedia/WhyUsSection";
 import HowItWorksSection from "@/components/evomedia/HowItWorksSection";
-import PortfolioSection from "@/components/evomedia/PortfolioSection";
 import PricingSection from "@/components/evomedia/PricingSection";
 import TestimonialsSection from "@/components/evomedia/TestimonialsSection";
 import FAQSection from "@/components/evomedia/FAQSection";
@@ -19,9 +19,9 @@ export default function HomePage() {
       <EvomediaNav />
       <HeroSection />
       <ServicesSection />
+      <PortfolioGridSection />
       <WhyUsSection />
       <HowItWorksSection />
-      <PortfolioSection />
       <PricingSection />
       <TestimonialsSection />
       <FAQSection />
