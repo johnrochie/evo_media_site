@@ -1,16 +1,22 @@
 # Portfolio sample screenshots
 
-Add screenshot images here for the "Sample sites" cards on the homepage. If a file is missing, the card falls back to a gradient.
+Add screenshot images here for the portfolio cards. If a file is missing, the card falls back to a gradient.
 
-**Expected filenames (WebP or JPG):**
+**Auto-generate with Playwright:**
+```bash
+npx playwright install chromium   # first time only
+npm run capture:screenshots
+```
 
-- `luxe-estates.webp` — Luxe Estates (real estate)
-- `premier-dental.webp` — Premier Dental Care
-- `bambinos.webp` — Bambinos (kids play)
-- `travel-bug.webp` — Travel Bug
-- `evolution-it.webp` — Evolution IT
-- `golden-dragon.webp` — Golden Dragon (restaurant)
-- `oak-ember.webp` — The Oak & Ember (restaurant)
-- `luna-co.webp` — Luna & Co Hair Studio
+**Expected filenames (JPEG):**
 
-**Suggested size:** ~800×600px or 16:10 aspect ratio. Use WebP for smaller file size.
+- `luxe-estates.jpg` — Luxe Estates (real estate)
+- `premier-dental.jpg` — Premier Dental Care
+- `bambinos.jpg` — Bambinos (kids play)
+- `travel-bug.jpg` — Travel Bug
+- `evolution-it.jpg` — Evolution IT
+- `golden-dragon.jpg` — Golden Dragon (restaurant)
+- `oak-ember.jpg` — The Oak & Ember (restaurant)
+- `luna-co.jpg` — Luna & Co Hair Studio
+
+**Suggested size:** 1200×900px (4:3). The script captures at this resolution.
