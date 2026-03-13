@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@sentry/nextjs": "^10.42.0",
+    "@supabase/supabase-js": "^2.99.1",
     "@vercel/analytics": "^1.6.1",
     "crisp-sdk-web": "^1.0.27",
     "framer-motion": "^11.0.0",
