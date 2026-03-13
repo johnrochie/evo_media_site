@@ -32,6 +32,7 @@ export default function InterestForm() {
     const fd = new FormData(form);
     const fullName = (fd.get("fullName") as string)?.trim();
     const businessName = (fd.get("businessName") as string)?.trim();
+    const email = (fd.get("email") as string)?.trim();
     const sitePurpose = fd.get("sitePurpose") as string;
     const hasLogo = fd.get("hasLogo") as string;
     const contentReadiness = fd.get("contentReadiness") as string;
@@ -39,6 +40,8 @@ export default function InterestForm() {
     const newErrors: Record<string, string> = {};
     if (!fullName) newErrors.fullName = "Required";
     if (!businessName) newErrors.businessName = "Required";
+    if (!email) newErrors.email = "Required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) newErrors.email = "Invalid email";
     if (!sitePurpose) newErrors.sitePurpose = "Please select an option";
     if (!hasLogo) newErrors.hasLogo = "Please select an option";
     if (!contentReadiness) newErrors.contentReadiness = "Please select an option";
@@ -53,6 +56,8 @@ export default function InterestForm() {
     const payload: Stage1Payload & { website_url?: string } = {
       fullName,
       businessName,
+      email,
+      phone: (fd.get("phone") as string)?.trim() ?? "",
       industry: (fd.get("industry") as string)?.trim() ?? "",
       currentWebsiteUrl: (fd.get("currentWebsiteUrl") as string)?.trim() ?? "",
       hasCurrentWebsite,
@@ -141,6 +146,37 @@ export default function InterestForm() {
             placeholder="Your business"
           />
           {errors.businessName && <p className="text-red-400 text-xs mt-1">{errors.businessName}</p>}
+        </motion.div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <motion.div variants={fadeIn}>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">
+            Email <span className="text-red-400">*</span>
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            className={`w-full px-4 py-3 rounded-lg bg-[#12121a] border text-white placeholder-gray-500 focus:ring-1 outline-none transition-colors ${
+              errors.email ? "border-red-500" : "border-white/10 focus:border-[#00d4ff]/50 focus:ring-[#00d4ff]/50"
+            }`}
+            placeholder="you@company.com"
+          />
+          {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
+        </motion.div>
+        <motion.div variants={fadeIn}>
+          <label htmlFor="phone" className="block text-sm font-medium text-gray-400 mb-2">
+            Phone
+          </label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            className="w-full px-4 py-3 rounded-lg bg-[#12121a] border border-white/10 text-white placeholder-gray-500 focus:border-[#00d4ff]/50 focus:ring-1 focus:ring-[#00d4ff]/50 outline-none transition-colors"
+            placeholder="Optional"
+          />
         </motion.div>
       </div>
 

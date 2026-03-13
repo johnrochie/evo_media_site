@@ -8,6 +8,8 @@
  *   created_at timestamptz default now(),
  *   full_name text not null,
  *   business_name text not null,
+ *   email text not null,
+ *   phone text,
  *   industry text,
  *   current_website_url text,
  *   has_current_website boolean default true,
@@ -27,6 +29,8 @@ import { supabase } from "@/lib/supabase";
 export type Stage1Payload = {
   fullName: string;
   businessName: string;
+  email: string;
+  phone: string;
   industry: string;
   currentWebsiteUrl: string;
   hasCurrentWebsite: boolean;
@@ -48,6 +52,8 @@ export async function submitIntakeStage1(
   const { error } = await supabase.from("intake_stage1").insert({
     full_name: payload.fullName.trim(),
     business_name: payload.businessName.trim(),
+    email: payload.email.trim(),
+    phone: payload.phone.trim() || null,
     industry: payload.industry.trim() || null,
     current_website_url: payload.hasCurrentWebsite ? payload.currentWebsiteUrl.trim() || null : null,
     has_current_website: payload.hasCurrentWebsite,

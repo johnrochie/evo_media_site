@@ -1,12 +1,19 @@
 -- Run this in Supabase SQL Editor to create the intake tables.
 -- https://supabase.com/dashboard/project/_/sql
 
+-- If intake_stage1 already exists (without email/phone), run this first:
+-- alter table intake_stage1 add column if not exists email text;
+-- alter table intake_stage1 add column if not exists phone text;
+-- alter table intake_stage1 alter column email set not null;  -- only after adding and backfilling, or drop and recreate
+
 -- Stage 1: Interest Form
 create table if not exists intake_stage1 (
   id uuid default gen_random_uuid() primary key,
   created_at timestamptz default now(),
   full_name text not null,
   business_name text not null,
+  email text not null,
+  phone text,
   industry text,
   current_website_url text,
   has_current_website boolean default true,
