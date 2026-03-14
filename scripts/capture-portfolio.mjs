@@ -18,9 +18,7 @@ const OUTPUT_DIR = join(__dirname, "..", "public", "portfolio-samples");
 const SITES = [
   { url: "https://real-estate-agency-lemon.vercel.app/", file: "luxe-estates.jpg" },
   { url: "https://dental-practice-xi.vercel.app/", file: "premier-dental.jpg" },
-  { url: "https://bambinos-ten.vercel.app/", file: "bambinos.jpg" },
   { url: "https://travelbug-v1.vercel.app/", file: "travel-bug.jpg" },
-  { url: "https://evolution-it-website.vercel.app/", file: "evolution-it.jpg" },
   { url: "https://golden-dragon-chinese-ukrt.vercel.app/", file: "golden-dragon.jpg" },
   { url: "https://restaurant-sigma-peach.vercel.app/", file: "oak-ember.jpg" },
   { url: "https://salon-opal-zeta.vercel.app/", file: "luna-co.jpg" },

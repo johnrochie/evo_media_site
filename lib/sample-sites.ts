@@ -25,16 +25,6 @@ export const sampleSites = [
     gradient: "from-slate-400/20 to-blue-500/20",
   },
   {
-    id: "bambinos",
-    title: "Bambinos",
-    clientType: "Family / play",
-    description: "Kids sensory and messy play zone—sessions, pricing, and booking.",
-    url: "https://bambinos-ten.vercel.app/",
-    image: "/portfolio-samples/bambinos.jpg",
-    accent: "#a855f7",
-    gradient: "from-purple-500/20 to-pink-600/20",
-  },
-  {
     id: "travel-bug",
     title: "Travel Bug",
     clientType: "Travel",
@@ -43,16 +33,6 @@ export const sampleSites = [
     image: "/portfolio-samples/travel-bug.jpg",
     accent: "#f59e0b",
     gradient: "from-amber-500/20 to-orange-600/20",
-  },
-  {
-    id: "evolution-it",
-    title: "Evolution IT",
-    clientType: "IT / B2B",
-    description: "Managed IT and cybersecurity—services, pricing, and assessments.",
-    url: "https://evolution-it-website.vercel.app/",
-    image: "/portfolio-samples/evolution-it.jpg",
-    accent: "#00d4ff",
-    gradient: "from-cyan-500/20 to-blue-600/20",
   },
   {
     id: "golden-dragon",

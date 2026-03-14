@@ -12,9 +12,7 @@ npm run capture:screenshots
 
 - `luxe-estates.jpg` — Luxe Estates (real estate)
 - `premier-dental.jpg` — Premier Dental Care
-- `bambinos.jpg` — Bambinos (kids play)
 - `travel-bug.jpg` — Travel Bug
-- `evolution-it.jpg` — Evolution IT
 - `golden-dragon.jpg` — Golden Dragon (restaurant)
 - `oak-ember.jpg` — The Oak & Ember (restaurant)
 - `luna-co.jpg` — Luna & Co Hair Studio

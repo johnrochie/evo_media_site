@@ -6,11 +6,9 @@
 export type PortfolioCategory =
   | "Travel"
   | "Bridal"
-  | "Kids"
   | "Real Estate"
   | "Healthcare"
   | "Restaurant"
-  | "IT"
   | "Beauty";
 
 export interface PortfolioProject {
@@ -28,11 +26,9 @@ export interface PortfolioProject {
 export const portfolioCategories: PortfolioCategory[] = [
   "Travel",
   "Bridal",
-  "Kids",
   "Real Estate",
   "Healthcare",
   "Restaurant",
-  "IT",
   "Beauty",
 ];
 
@@ -58,16 +54,6 @@ export const portfolioData: PortfolioProject[] = [
     accent: "#0ea5e9",
   },
   {
-    id: "bambinos",
-    name: "Bambinos",
-    category: "Kids",
-    url: "https://bambinos-ten.vercel.app/",
-    image: "/portfolio-samples/bambinos.webp",
-    features: ["Sensory zones", "Pricing tiers", "Booking", "Age groups"],
-    gradient: "from-purple-500/20 to-pink-600/20",
-    accent: "#a855f7",
-  },
-  {
     id: "travel-bug",
     name: "Travel Bug",
     category: "Travel",
@@ -76,16 +62,6 @@ export const portfolioData: PortfolioProject[] = [
     features: ["Services", "Offers", "Trip planning", "Contact form"],
     gradient: "from-amber-500/20 to-orange-600/20",
     accent: "#f59e0b",
-  },
-  {
-    id: "evolution-it",
-    name: "Evolution IT",
-    category: "IT",
-    url: "https://evolution-it-website.vercel.app/",
-    image: "/portfolio-samples/evolution-it.webp",
-    features: ["IT services", "Pricing", "Industries", "Assessment form"],
-    gradient: "from-cyan-500/20 to-blue-600/20",
-    accent: "#00d4ff",
   },
   {
     id: "golden-dragon",
