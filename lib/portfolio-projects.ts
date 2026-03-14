@@ -19,7 +19,7 @@ export const portfolioProjects = [
     accent: "#ff00aa",
     brief: "Luna wanted to move from marketplace-only to their own store without losing their look.",
     solution: "Custom e-commerce with their visual identity, fast checkout, and inventory sync.",
-    outcome: "Launch in 2 weeks; first-month sales beat their previous channel.",
+    outcome: "Live in days; first-month sales beat their previous channel.",
   },
   {
     id: "apex",

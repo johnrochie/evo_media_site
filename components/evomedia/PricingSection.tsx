@@ -38,7 +38,7 @@ export default function PricingSection() {
           </p>
         </ScrollItem>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 gap-6 lg:gap-8 max-w-xl mx-auto">
           {c.tiers.map((tier, i) => (
             <ScrollItem key={tier.name} delay={i * 0.1}>
               <motion.div

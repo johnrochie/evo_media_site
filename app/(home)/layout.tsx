@@ -20,21 +20,21 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.evomedia.site";
 export const metadata: Metadata = {
   title: "Evolution Media | AI-Powered Web Design & Digital Agency",
   description:
-    "AI-powered web design. Built fast. Built right. Custom sites, e-commerce, and portfolios. Get your site live in days.",
-  keywords: ["web design", "digital agency", "branding", "e-commerce", "evolution media", "creative agency"],
+    "AI-powered web design. Built fast. Built right. One-page sites from €499. Custom and e-commerce available. Live in days.",
+  keywords: ["web design", "one-page website", "€499", "evolution media", "Ireland", "digital agency"],
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "Evolution Media | AI-Powered Web Design & Digital Agency",
-    description: "AI-powered web design. Custom sites, e-commerce, portfolios. Get live in days.",
+    description: "One-page sites from €499. Custom and e-commerce. Live in days.",
     url: "/",
     siteName: "Evolution Media",
   },
   twitter: {
     card: "summary_large_image",
     title: "Evolution Media | AI-Powered Web Design & Digital Agency",
-    description: "AI-powered web design. Custom sites, e-commerce, portfolios. Get live in days.",
+    description: "One-page sites from €499. Custom and e-commerce. Live in days.",
   },
 };
 
@@ -55,7 +55,7 @@ const jsonLd = {
     "https://instagram.com/evomedia_gram",
   ],
   areaServed: "GB",
-  priceRange: "€€",
+  priceRange: "€",
 };
 
 export default function HomeLayout({

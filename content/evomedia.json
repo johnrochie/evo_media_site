@@ -4,34 +4,34 @@
     "headline2": "Built fast. Built right.",
     "subheadline": "We build websites that evolve with your business—custom design, modern tech, and a process that gets you live in days.",
     "ctaWork": "See Our Work",
-    "ctaQuote": "Get a Quote"
+    "ctaQuote": "Get started"
   },
   "whatWeDo": {
     "label": "What we do",
-    "title": "Services that answer",
-    "titleHighlight": "\"is this for me?\"",
-    "subtitle": "Three core offerings—scannable, clear, and priced so you know where you stand.",
+    "title": "Our standard",
+    "titleHighlight": "package",
+    "subtitle": "One-page scroller sites—clean, modern, and mobile-first. Extra features available at custom pricing.",
     "services": [
       {
         "icon": "user",
-        "title": "Portfolio & Personal Brand",
-        "description": "Stand-out portfolios and personal sites that get you noticed and land the right opportunities.",
-        "price": "from €500",
-        "color": "#ffb800"
-      },
-      {
-        "icon": "briefcase",
-        "title": "Local Business Sites",
-        "description": "Professional, mobile-friendly sites that bring in local customers and work on any device.",
-        "price": "from €800",
+        "title": "Standard one-page site",
+        "description": "A single-page scroller like this site—Hero, Services, About, Contact, and the sections you need. Custom design, mobile responsive, SEO-ready.",
+        "price": "€499",
         "color": "#00d4ff"
       },
       {
-        "icon": "store",
-        "title": "E-commerce",
-        "description": "Online stores that sell. Secure checkout, inventory, and a smooth shopping experience.",
-        "price": "from €1,500",
+        "icon": "briefcase",
+        "title": "Add-ons available",
+        "description": "Contact forms, booking links, galleries, testimonials, and more. We'll quote custom pricing for anything beyond the standard package.",
+        "price": "Custom",
         "color": "#ff00aa"
+      },
+      {
+        "icon": "store",
+        "title": "E-commerce & complex builds",
+        "description": "Online stores, multi-page sites, or custom functionality. Tell us what you need and we'll provide a tailored quote.",
+        "price": "Custom",
+        "color": "#ffb800"
       }
     ]
   },
@@ -59,7 +59,7 @@
       {
         "icon": "trendingup",
         "title": "Built to grow",
-        "description": "Scalable from day one. Add pages, features, and traffic without starting over."
+        "description": "Scalable from day one. Add sections, features, and content without starting over."
       }
     ]
   },
@@ -99,62 +99,28 @@
   },
   "pricing": {
     "label": "Pricing",
-    "title": "Three clean",
-    "titleHighlight": "tiers",
-    "subtitle": "Choose the tier that fits. Each includes 4–5 clear inclusions—no surprises.",
-    "customCta": "Custom project? Let's talk.",
+    "title": "Simple",
+    "titleHighlight": "pricing",
+    "subtitle": "€50 deposit to get started. €449 when your site is completed. Total €499.",
+    "customCta": "Need something custom? Extra features, e-commerce, or multi-page sites—we'll quote it.",
     "customCtaButton": "Get in touch",
     "tiers": [
       {
-        "name": "Starter",
-        "subtitle": "Portfolio / Personal Brand",
-        "price": "€500",
-        "period": "from",
-        "amountCents": 50000,
+        "name": "Standard",
+        "subtitle": "One-page scroller site",
+        "price": "€499",
+        "period": "€50 deposit now, €449 on completion",
+        "amountCents": 5000,
         "features": [
-          "Custom design (no templates)",
-          "Up to 5 pages",
+          "One-page scroller (like this site)",
+          "Custom design, no templates",
           "Mobile responsive",
           "Basic SEO setup",
-          "1 round of revisions"
+          "Hero, Services, About, Contact + your sections"
         ],
-        "cta": "Get started",
-        "highlighted": false,
-        "accent": "#00d4ff"
-      },
-      {
-        "name": "Business",
-        "subtitle": "Local Business Site",
-        "price": "€800",
-        "period": "from",
-        "amountCents": 80000,
-        "features": [
-          "Everything in Starter",
-          "Up to 10 pages",
-          "Contact forms & CTAs",
-          "Google Business integration",
-          "2 rounds of revisions"
-        ],
-        "cta": "Get started",
+        "cta": "Pay deposit — €50",
         "highlighted": true,
-        "accent": "#ff00aa"
-      },
-      {
-        "name": "Store",
-        "subtitle": "E-commerce",
-        "price": "€1,500",
-        "period": "from",
-        "amountCents": 150000,
-        "features": [
-          "Everything in Business",
-          "Product catalog & cart",
-          "Secure checkout",
-          "Inventory basics",
-          "3 rounds of revisions"
-        ],
-        "cta": "Get started",
-        "highlighted": false,
-        "accent": "#ffb800"
+        "accent": "#00d4ff"
       }
     ]
   },
@@ -165,7 +131,7 @@
     "subtitle": "",
     "items": [
       {
-        "quote": "Evolution Media got our site live in under two weeks. Professional, clear communication, and the result looks exactly how we wanted.",
+        "quote": "Evolution Media got our site live in days. Professional, clear communication, and the result looks exactly how we wanted.",
         "author": "Client",
         "role": "Small business owner",
         "avatar": "C1"
@@ -191,7 +157,7 @@
     "items": [
       {
         "question": "How long does a typical project take?",
-        "answer": "Portfolio and local business sites: 1–2 Days. E-commerce: 2–4 Days. We work in sprints and keep you updated throughout."
+        "answer": "Our standard one-page sites: typically 3–7 days from deposit to launch. Custom builds: we'll give you a clear timeline when we quote."
       },
       {
         "question": "What tech do you use?",
@@ -207,7 +173,7 @@
       },
       {
         "question": "What if I need changes after launch?",
-        "answer": "Each tier includes revision rounds. After that, we can do ad-hoc updates or set up a maintenance plan—we'll agree this before we start."
+        "answer": "We include revision rounds in the standard package. After that, we can do ad-hoc updates or set up a maintenance plan—we'll agree this before we start."
       }
     ]
   },
@@ -221,10 +187,10 @@
     "error": "Something went wrong. Please try again."
   },
   "contact": {
-    "label": "Get a quote",
-    "title": "Contact /",
-    "titleHighlight": "Get a Quote",
-    "subtitle": "Tell us what you need and we'll get back to you with a clear quote.",
+    "label": "Get started",
+    "title": "Tell us about your",
+    "titleHighlight": "project",
+    "subtitle": "Fill in the form below and we'll be in touch within 24 hours to discuss next steps.",
     "promise": "We'll get back to you within 24 hours.",
     "submitSuccess": "Message sent",
     "submitMessage": "We'll be in touch within 24 hours. Check your inbox.",
@@ -236,11 +202,10 @@
       "Other"
     ],
     "budgetRanges": [
-      "Under €500",
+      "Standard (€499)",
       "€500 – €1,000",
       "€1,000 – €2,500",
-      "€2,500 – €5,000",
-      "€5,000+"
+      "€2,500+"
     ]
   },
   "footer": {
