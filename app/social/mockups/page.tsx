@@ -36,7 +36,7 @@ function PostCanvas({ format }: { format: FormatKey }) {
       >
         <defs>
           <pattern id={`grid-${format}`} width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#00d4ff" strokeWidth="0.5" />
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#f72585" strokeWidth="0.5" />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill={`url(#grid-${format})`} />
@@ -51,7 +51,7 @@ function PostCanvas({ format }: { format: FormatKey }) {
           width: isStory ? 220 : 180,
           height: isStory ? 220 : 180,
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(0,212,255,0.25) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(247,37,133,0.25) 0%, transparent 70%)",
           animation: "pulse 4s ease-in-out infinite",
         }}
       />
@@ -65,7 +65,7 @@ function PostCanvas({ format }: { format: FormatKey }) {
           width: 200,
           height: 150,
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(0,100,255,0.2) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(247,37,133,0.15) 0%, transparent 70%)",
           animation: "pulse 5s ease-in-out infinite reverse",
         }}
       />
@@ -79,7 +79,7 @@ function PostCanvas({ format }: { format: FormatKey }) {
           width: "100%",
           height: "100%",
           background:
-            "linear-gradient(135deg, transparent 60%, rgba(0,212,255,0.04) 100%)",
+            "linear-gradient(135deg, transparent 60%, rgba(247,37,133,0.04) 100%)",
         }}
       />
 
@@ -91,7 +91,7 @@ function PostCanvas({ format }: { format: FormatKey }) {
           left: 0,
           right: 0,
           height: 3,
-          background: "linear-gradient(90deg, #00d4ff, #0066ff, transparent)",
+          background: "linear-gradient(90deg, #7b2ff7, #f72585, transparent)",
         }}
       />
 
@@ -121,7 +121,7 @@ function PostCanvas({ format }: { format: FormatKey }) {
               width: isStory ? 36 : 28,
               height: isStory ? 36 : 28,
               borderRadius: 6,
-              background: "linear-gradient(135deg, #00d4ff, #0055cc)",
+              background: "linear-gradient(180deg, #7b2ff7 0%, #f72585 50%, #ff6b35 100%)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -170,7 +170,7 @@ function PostCanvas({ format }: { format: FormatKey }) {
             <br />
             <span
               style={{
-                background: "linear-gradient(90deg, #00d4ff, #4db8ff)",
+                background: "linear-gradient(90deg, #7b2ff7, #f72585, #ff6b35)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -183,7 +183,7 @@ function PostCanvas({ format }: { format: FormatKey }) {
             style={{
               width: isStory ? 60 : 40,
               height: 2,
-              background: "linear-gradient(90deg, #00d4ff, transparent)",
+              background: "linear-gradient(90deg, #f72585, transparent)",
               marginTop: 10,
               marginBottom: isStory ? 16 : 10,
             }}
@@ -215,9 +215,9 @@ function PostCanvas({ format }: { format: FormatKey }) {
             <span
               key={tag}
               style={{
-                background: "rgba(0,212,255,0.08)",
-                border: "1px solid rgba(0,212,255,0.25)",
-                color: "#00d4ff",
+                background: "rgba(247,37,133,0.08)",
+                border: "1px solid rgba(247,37,133,0.25)",
+                color: "#f72585",
                 borderRadius: 20,
                 padding: isStory ? "5px 14px" : "4px 10px",
                 fontSize: isStory ? 12 : 10,
@@ -244,7 +244,7 @@ function PostCanvas({ format }: { format: FormatKey }) {
           <Link
             href="/#contact"
             style={{
-              background: "linear-gradient(135deg, #00d4ff, #0055cc)",
+              background: "linear-gradient(135deg, #7b2ff7, #f72585)",
               color: "#fff",
               fontWeight: 700,
               fontSize: isStory ? 14 : 12,
@@ -252,7 +252,7 @@ function PostCanvas({ format }: { format: FormatKey }) {
               borderRadius: 6,
               letterSpacing: "0.05em",
               textTransform: "uppercase",
-              boxShadow: "0 0 20px rgba(0,212,255,0.3)",
+              boxShadow: "0 0 20px rgba(247,37,133,0.3)",
               textDecoration: "none",
             }}
           >
@@ -315,7 +315,7 @@ export default function SocialMockupsPage() {
         body { background: #03050d; }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: #0a0f1e; }
-        ::-webkit-scrollbar-thumb { background: #00d4ff44; border-radius: 2px; }
+        ::-webkit-scrollbar-thumb { background: #f7258544; border-radius: 2px; }
       `}</style>
 
       <div
@@ -336,12 +336,12 @@ export default function SocialMockupsPage() {
           <div
             style={{
               display: "inline-block",
-              background: "rgba(0,212,255,0.08)",
-              border: "1px solid rgba(0,212,255,0.2)",
+              background: "rgba(247,37,133,0.08)",
+              border: "1px solid rgba(247,37,133,0.2)",
               borderRadius: 20,
               padding: "4px 14px",
               fontSize: 11,
-              color: "#00d4ff",
+              color: "#f72585",
               fontWeight: 600,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
@@ -384,9 +384,9 @@ export default function SocialMockupsPage() {
               type="button"
               onClick={() => setActive(key)}
               style={{
-                background: active === key ? "linear-gradient(135deg, #00d4ff22, #0055cc22)" : "transparent",
-                border: active === key ? "1px solid rgba(0,212,255,0.35)" : "1px solid transparent",
-                color: active === key ? "#00d4ff" : "rgba(255,255,255,0.4)",
+                background: active === key ? "linear-gradient(135deg, #7b2ff722, #f7258522)" : "transparent",
+                border: active === key ? "1px solid rgba(247,37,133,0.35)" : "1px solid transparent",
+                color: active === key ? "#f72585" : "rgba(255,255,255,0.4)",
                 borderRadius: 7,
                 padding: "7px 14px",
                 fontSize: 12,
@@ -452,9 +452,9 @@ export default function SocialMockupsPage() {
               type="button"
               onClick={handleCopy}
               style={{
-                background: copied ? "rgba(0,212,255,0.15)" : "rgba(255,255,255,0.05)",
-                border: `1px solid ${copied ? "rgba(0,212,255,0.4)" : "rgba(255,255,255,0.1)"}`,
-                color: copied ? "#00d4ff" : "rgba(255,255,255,0.6)",
+                background: copied ? "rgba(247,37,133,0.15)" : "rgba(255,255,255,0.05)",
+                border: `1px solid ${copied ? "rgba(247,37,133,0.4)" : "rgba(255,255,255,0.1)"}`,
+                color: copied ? "#f72585" : "rgba(255,255,255,0.6)",
                 borderRadius: 6,
                 padding: "5px 12px",
                 fontSize: 11,
