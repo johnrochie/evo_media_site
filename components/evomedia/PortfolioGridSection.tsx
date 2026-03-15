@@ -82,6 +82,11 @@ function PortfolioCard({
               </span>
             ))}
           </div>
+          {project.description && (
+            <p className="text-[11px] text-gray-500 mt-2 line-clamp-1 leading-snug">
+              {project.description}
+            </p>
+          )}
         </div>
       </motion.a>
     </ScrollItem>

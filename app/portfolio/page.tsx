@@ -76,6 +76,11 @@ function PortfolioCard({ project }: { project: PortfolioProject }) {
             </span>
           ))}
         </div>
+        {project.description && (
+          <p className="text-xs text-gray-500 mt-2 line-clamp-2 leading-snug">
+            {project.description}
+          </p>
+        )}
       </div>
     </motion.a>
   );
