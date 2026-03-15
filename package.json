@@ -14,6 +14,7 @@
     "@vercel/analytics": "^1.6.1",
     "crisp-sdk-web": "^1.0.27",
     "framer-motion": "^11.0.0",
+    "html2canvas": "^1.4.1",
     "lucide-react": "^0.300.0",
     "next": "^16.1.6",
     "react": "^18.2.0",

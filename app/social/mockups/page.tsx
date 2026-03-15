@@ -1,23 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, forwardRef } from "react";
 import Link from "next/link";
 
 const formats = {
-  square: { label: "Instagram Square", w: 400, h: 400, ratio: "1:1" },
-  story: { label: "Story / Reel", w: 300, h: 533, ratio: "9:16" },
-  feed: { label: "Facebook Feed", w: 470, h: 352, ratio: "4:3" },
+  square: { label: "Instagram Square", w: 400, h: 400, ratio: "1:1", exportW: 1080, exportH: 1080 },
+  story: { label: "Story / Reel", w: 300, h: 533, ratio: "9:16", exportW: 1080, exportH: 1920 },
+  feed: { label: "Facebook Feed", w: 470, h: 352, ratio: "4:3", exportW: 1080, exportH: 810 },
 } as const;
 
 type FormatKey = keyof typeof formats;
 
-function PostCanvas({ format }: { format: FormatKey }) {
+const PostCanvas = forwardRef<HTMLDivElement, { format: FormatKey }>(function PostCanvas({ format }, ref) {
   const { w, h } = formats[format];
   const isStory = format === "story";
   const isSquare = format === "square";
 
   return (
     <div
+      ref={ref}
       style={{
         width: w,
         height: h,
@@ -271,7 +272,7 @@ function PostCanvas({ format }: { format: FormatKey }) {
       </div>
     </div>
   );
-}
+});
 
 const CAPTION_TEXT = `Is your website doing its job? 💻
 
@@ -292,11 +293,48 @@ Ready to elevate your online presence?
 export default function SocialMockupsPage() {
   const [active, setActive] = useState<FormatKey>("square");
   const [copied, setCopied] = useState(false);
+  const [downloading, setDownloading] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(CAPTION_TEXT);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleDownload = async () => {
+    if (!cardRef.current) return;
+    setDownloading(true);
+    try {
+      const { default: html2canvas } = await import("html2canvas");
+      const { exportW, exportH, w } = formats[active];
+      const scale = exportW / w;
+      const canvas = await html2canvas(cardRef.current, {
+        scale,
+        width: w,
+        height: formats[active].h,
+        backgroundColor: "#050810",
+        useCORS: true,
+        allowTaint: true,
+        logging: false,
+      });
+      const outW = Math.round(w * scale);
+      const outH = Math.round(formats[active].h * scale);
+      const resized = document.createElement("canvas");
+      resized.width = exportW;
+      resized.height = exportH;
+      const ctx = resized.getContext("2d");
+      if (ctx) {
+        ctx.drawImage(canvas, 0, 0, outW, outH, 0, 0, exportW, exportH);
+        const dataUrl = resized.toDataURL("image/png");
+        const link = document.createElement("a");
+        link.download = `evolution-media-mockup-${active}.png`;
+        link.href = dataUrl;
+        link.click();
+      }
+    } finally {
+      setDownloading(false);
+    }
   };
 
   return (
@@ -414,13 +452,35 @@ export default function SocialMockupsPage() {
         <div
           style={{
             display: "flex",
-            justifyContent: "center",
+            flexDirection: "column",
             alignItems: "center",
+            gap: 16,
             animation: "fadeUp 0.5s 0.2s ease both",
             opacity: 0,
           }}
         >
-          <PostCanvas key={active} format={active} />
+          <PostCanvas ref={cardRef} key={active} format={active} />
+          <button
+            type="button"
+            onClick={handleDownload}
+            disabled={downloading}
+            style={{
+              background: "linear-gradient(135deg, #7b2ff7, #f72585)",
+              color: "#fff",
+              border: "none",
+              borderRadius: 8,
+              padding: "10px 20px",
+              fontSize: 13,
+              fontWeight: 600,
+              cursor: downloading ? "wait" : "pointer",
+              opacity: downloading ? 0.8 : 1,
+              letterSpacing: "0.05em",
+              textTransform: "uppercase",
+              boxShadow: "0 0 20px rgba(247,37,133,0.3)",
+            }}
+          >
+            {downloading ? "Preparing…" : `Download ${formats[active].exportW}×${formats[active].exportH} PNG`}
+          </button>
         </div>
 
         {/* Caption section */}
