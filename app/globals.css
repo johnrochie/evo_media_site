@@ -52,6 +52,25 @@ html {
   background-color: rgba(249, 250, 251, 0.95) !important;
 }
 
+/* Light theme – nav (header menu) */
+[data-theme="light"] nav[class*="fixed"] {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+[data-theme="light"] nav[class*="fixed"] .text-white {
+  color: #111827 !important;
+}
+[data-theme="light"] nav[class*="fixed"] .text-gray-400 {
+  color: #6b7280 !important;
+}
+[data-theme="light"] nav[class*="fixed"] a:hover,
+[data-theme="light"] nav[class*="fixed"] button:hover {
+  color: #0e7490 !important; /* cyan-700 for contrast on light */
+}
+[data-theme="light"] nav .bg-\[\#0a0a0f\] {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
 [data-theme="light"] .evomedia-page .bg-\[\#0d0d12\],
 [data-theme="light"] .evomedia-page .bg-\[\#12121a\] {
   background-color: #ffffff !important;
