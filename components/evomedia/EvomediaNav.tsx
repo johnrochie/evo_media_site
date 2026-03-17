@@ -12,7 +12,10 @@ export default function EvomediaNav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0f]/90 backdrop-blur-md border-b border-white/5">
+    <nav
+      className="evomedia-nav fixed top-0 left-0 right-0 z-50 bg-[#0a0a0f]/90 backdrop-blur-md border-b border-white/5"
+      data-theme-aware
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           <a
@@ -20,7 +23,7 @@ export default function EvomediaNav() {
             className="font-bold text-xl md:text-2xl tracking-tight"
           >
             <span className="evomedia-gradient-text">{nav.logoHighlight}</span>
-            <span className="text-white">{nav.logoRest}</span>
+            <span className="text-white evomedia-nav-logo">{nav.logoRest}</span>
           </a>
 
           <div className="hidden md:flex items-center gap-4">
@@ -30,7 +33,7 @@ export default function EvomediaNav() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-gray-400 hover:text-[#00d4ff] transition-colors text-sm font-medium"
+                    className="text-gray-400 hover:text-[#00d4ff] evomedia-nav-link transition-colors text-sm font-medium"
                   >
                     {link.label}
                   </a>
@@ -44,7 +47,7 @@ export default function EvomediaNav() {
             <button
               type="button"
               onClick={() => setOpen(!open)}
-              className="p-2 text-gray-400 hover:text-white"
+              className="p-2 text-gray-400 hover:text-white evomedia-nav-btn"
               aria-label="Toggle menu"
             >
               {open ? <X size={24} /> : <Menu size={24} />}
@@ -59,7 +62,7 @@ export default function EvomediaNav() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-white/5 bg-[#0a0a0f]"
+            className="evomedia-nav-dropdown md:hidden border-t border-white/5 bg-[#0a0a0f]"
           >
             <ul className="px-4 py-4 space-y-2">
               {nav.links.map((link) => (
@@ -67,7 +70,7 @@ export default function EvomediaNav() {
                   <a
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="block py-2 text-gray-400 hover:text-[#00d4ff] transition-colors"
+                    className="evomedia-nav-link block py-2 text-gray-400 hover:text-[#00d4ff] transition-colors"
                   >
                     {link.label}
                   </a>

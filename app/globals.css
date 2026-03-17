@@ -48,27 +48,34 @@ html {
 }
 
 [data-theme="light"] .evomedia-page .bg-\[\#0a0a0f\],
-[data-theme="light"] nav.bg-\[\#0a0a0f\/90\] {
+[data-theme="light"] .evomedia-nav {
   background-color: rgba(249, 250, 251, 0.95) !important;
 }
 
 /* Light theme – nav (header menu) */
-[data-theme="light"] nav[class*="fixed"] {
+[data-theme="light"] .evomedia-nav {
   border-color: rgba(0, 0, 0, 0.08) !important;
 }
-[data-theme="light"] nav[class*="fixed"] .text-white {
+[data-theme="light"] .evomedia-nav .evomedia-nav-logo {
   color: #111827 !important;
 }
-[data-theme="light"] nav[class*="fixed"] .text-gray-400 {
+[data-theme="light"] .evomedia-nav .evomedia-nav-link,
+[data-theme="light"] .evomedia-nav .evomedia-nav-btn {
   color: #6b7280 !important;
 }
-[data-theme="light"] nav[class*="fixed"] a:hover,
-[data-theme="light"] nav[class*="fixed"] button:hover {
-  color: #0e7490 !important; /* cyan-700 for contrast on light */
+[data-theme="light"] .evomedia-nav .evomedia-nav-link:hover,
+[data-theme="light"] .evomedia-nav .evomedia-nav-btn:hover {
+  color: #0e7490 !important;
 }
-[data-theme="light"] nav .bg-\[\#0a0a0f\] {
+[data-theme="light"] .evomedia-nav-dropdown {
   background-color: #ffffff !important;
   border-color: rgba(0, 0, 0, 0.08) !important;
+}
+[data-theme="light"] .evomedia-nav-dropdown .evomedia-nav-link {
+  color: #6b7280 !important;
+}
+[data-theme="light"] .evomedia-nav-dropdown .evomedia-nav-link:hover {
+  color: #0e7490 !important;
 }
 
 [data-theme="light"] .evomedia-page .bg-\[\#0d0d12\],

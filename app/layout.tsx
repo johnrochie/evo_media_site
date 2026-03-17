@@ -37,6 +37,13 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var t=localStorage.getItem("evomedia-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);})();`,
+          }}
+        />
+      </head>
       <body>
         <ThemeProvider>
           {children}
