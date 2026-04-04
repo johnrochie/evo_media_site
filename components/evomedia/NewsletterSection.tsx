@@ -55,14 +55,20 @@ export default function NewsletterSection() {
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <div className="relative flex-1">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                <label htmlFor="newsletter-email" className="sr-only">
+                  Email address for newsletter
+                </label>
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 pointer-events-none" aria-hidden />
                 <input
+                  id="newsletter-email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={c.placeholder}
                   required
                   disabled={status === "loading"}
+                  autoComplete="email"
+                  aria-label="Email address for newsletter"
                   className="w-full pl-12 pr-4 py-3 rounded-lg bg-[#12121a] border border-white/10 text-white placeholder-gray-500 focus:border-[#00d4ff]/50 focus:outline-none disabled:opacity-60"
                 />
               </div>

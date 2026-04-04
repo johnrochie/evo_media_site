@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { blogPosts } from "@/lib/blog-posts";
 
 export const metadata: Metadata = {
   title: "Blog | Evolution Media",
@@ -28,18 +29,32 @@ export default function BlogPage() {
           </Link>
         </div>
       </header>
-      <main className="max-w-4xl mx-auto px-4 py-16">
+      <main id="main-content" tabIndex={-1} className="max-w-4xl mx-auto px-4 py-16">
         <h1 className="text-4xl font-bold mb-4">Blog</h1>
         <p className="text-gray-400 mb-12 max-w-2xl">
-          Tips on web design, project launches, and insights from our team. Posts
-          coming soon.
+          Tips on web design, project launches, and insights from our team.
         </p>
-        <div className="rounded-xl border border-white/10 bg-[#12121a] p-8 text-center">
-          <p className="text-gray-500 mb-2">No posts yet</p>
-          <p className="text-sm text-gray-600">
-            Check back soon—we&apos;re working on our first articles.
-          </p>
-        </div>
+        <ul className="space-y-6">
+          {blogPosts.map((post) => (
+            <li key={post.slug}>
+              <article className="rounded-xl border border-white/10 bg-[#12121a] p-6 hover:border-[#00d4ff]/30 transition-colors">
+                <p className="text-sm text-gray-500 mb-2">{post.date}</p>
+                <h2 className="text-xl font-semibold text-white mb-2">
+                  <Link href={`/blog/${post.slug}`} className="hover:text-[#00d4ff] transition-colors">
+                    {post.title}
+                  </Link>
+                </h2>
+                <p className="text-gray-400 text-sm mb-4">{post.description}</p>
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="text-sm font-medium text-[#00d4ff] hover:underline"
+                >
+                  Read more →
+                </Link>
+              </article>
+            </li>
+          ))}
+        </ul>
       </main>
     </div>
   );

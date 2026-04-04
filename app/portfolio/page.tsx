@@ -81,6 +81,10 @@ function PortfolioCard({ project }: { project: PortfolioProject }) {
             {project.description}
           </p>
         )}
+        <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-[#00d4ff] group-hover:underline">
+          View live site
+          <ExternalLink className="w-3.5 h-3.5 shrink-0" aria-hidden />
+        </span>
       </div>
     </motion.a>
   );
@@ -108,7 +112,7 @@ export default function PortfolioPage() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <main id="main-content" tabIndex={-1} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 outline-none">
         <div className="text-center mb-12">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
             Our <span className="evomedia-gradient-text">portfolio</span>

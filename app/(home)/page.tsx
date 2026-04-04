@@ -17,16 +17,18 @@ export default function HomePage() {
   return (
     <>
       <EvomediaNav />
-      <HeroSection />
-      <ServicesSection />
-      <PortfolioGridSection />
-      <WhyUsSection />
-      <HowItWorksSection />
-      <PricingSection />
-      <TestimonialsSection />
-      <FAQSection />
-      <NewsletterSection />
-      <ContactSection />
+      <main id="main-content" tabIndex={-1} className="outline-none">
+        <HeroSection />
+        <ServicesSection />
+        <PortfolioGridSection />
+        <WhyUsSection />
+        <HowItWorksSection />
+        <PricingSection />
+        <TestimonialsSection />
+        <FAQSection />
+        <NewsletterSection />
+        <ContactSection />
+      </main>
       <FooterSection />
     </>
   );

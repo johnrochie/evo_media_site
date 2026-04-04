@@ -87,6 +87,10 @@ function PortfolioCard({
               {project.description}
             </p>
           )}
+          <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-[#00d4ff] group-hover:underline">
+            View live site
+            <ExternalLink className="w-3.5 h-3.5 shrink-0" aria-hidden />
+          </span>
         </div>
       </motion.a>
     </ScrollItem>

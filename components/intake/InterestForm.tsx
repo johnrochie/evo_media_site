@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
 import { submitIntakeStage1, type Stage1Payload } from "@/app/actions/submit-intake-stage1";
+
+const DRAFT_STORAGE_KEY = "evomedia-interest-form-draft";
 
 const SITE_PURPOSE_OPTIONS = [
   "Get enquiries",
@@ -22,6 +24,62 @@ export default function InterestForm() {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [hasCurrentWebsite, setHasCurrentWebsite] = useState(true);
+  const formRef = useRef<HTMLFormElement>(null);
+  const persistTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const draftRestoredRef = useRef(false);
+
+  const persistDraft = useCallback(() => {
+    if (!draftRestoredRef.current) return;
+    const form = formRef.current;
+    if (!form) return;
+    const fd = new FormData(form);
+    const o: Record<string, string | boolean> = { hasCurrentWebsite };
+    fd.forEach((v, k) => {
+      o[k] = typeof v === "string" ? v : "";
+    });
+    try {
+      localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(o));
+    } catch {
+      /* quota / private mode */
+    }
+  }, [hasCurrentWebsite]);
+
+  const schedulePersist = useCallback(() => {
+    clearTimeout(persistTimer.current);
+    persistTimer.current = setTimeout(persistDraft, 400);
+  }, [persistDraft]);
+
+  useEffect(() => {
+    const form = formRef.current;
+    if (!form) return;
+    try {
+      const raw = localStorage.getItem(DRAFT_STORAGE_KEY);
+      if (!raw) return;
+      const d = JSON.parse(raw) as Record<string, unknown>;
+      if (typeof d.hasCurrentWebsite === "boolean") {
+        setHasCurrentWebsite(d.hasCurrentWebsite);
+      }
+      for (const [key, value] of Object.entries(d)) {
+        if (key === "hasCurrentWebsite" || value == null) continue;
+        const el = form.elements.namedItem(key);
+        if (
+          el instanceof HTMLInputElement ||
+          el instanceof HTMLTextAreaElement ||
+          el instanceof HTMLSelectElement
+        ) {
+          el.value = String(value);
+        }
+      }
+    } catch {
+      /* ignore corrupt draft */
+    }
+    draftRestoredRef.current = true;
+  }, []);
+
+  useEffect(() => {
+    if (!draftRestoredRef.current) return;
+    schedulePersist();
+  }, [hasCurrentWebsite, schedulePersist]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -72,6 +130,11 @@ export default function InterestForm() {
     setLoading(false);
 
     if (result.ok) {
+      try {
+        localStorage.removeItem(DRAFT_STORAGE_KEY);
+      } catch {
+        /* ignore */
+      }
       setSubmitted(true);
       form.reset();
       setHasCurrentWebsite(true);
@@ -97,7 +160,10 @@ export default function InterestForm() {
 
   return (
     <motion.form
+      ref={formRef}
       onSubmit={handleSubmit}
+      onInput={schedulePersist}
+      onChange={schedulePersist}
       className="space-y-6"
       initial="initial"
       animate="animate"

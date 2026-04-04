@@ -31,6 +31,9 @@ export default function FAQSection() {
               >
                 <button
                   type="button"
+                  id={`faq-trigger-${i}`}
+                  aria-expanded={openId === i}
+                  aria-controls={`faq-panel-${i}`}
                   onClick={() => setOpenId(openId === i ? null : i)}
                   className="w-full flex items-center justify-between p-4 md:p-5 text-left hover:bg-white/[0.02] transition-colors"
                 >
@@ -39,11 +42,15 @@ export default function FAQSection() {
                     className={`w-5 h-5 shrink-0 text-gray-400 transition-transform ${
                       openId === i ? "rotate-180" : ""
                     }`}
+                    aria-hidden
                   />
                 </button>
                 <AnimatePresence>
                   {openId === i && (
                     <motion.div
+                      id={`faq-panel-${i}`}
+                      role="region"
+                      aria-labelledby={`faq-trigger-${i}`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}

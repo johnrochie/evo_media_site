@@ -9,7 +9,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0f]">
       <EvomediaNav />
-      <main className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <main id="main-content" tabIndex={-1} className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 outline-none">
         <div className="text-center mb-12">
           <p className="text-[#00d4ff] font-semibold tracking-widest uppercase text-sm mb-2">
             Get started

@@ -29,6 +29,20 @@ export default function ContactSection() {
           <ScrollItem>
             <InterestForm />
           </ScrollItem>
+
+          {process.env.NEXT_PUBLIC_BOOKING_URL ? (
+            <ScrollItem className="mt-10 text-center">
+              <p className="text-gray-500 text-sm mb-3">Prefer to talk first?</p>
+              <a
+                href={process.env.NEXT_PUBLIC_BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border border-[#00d4ff]/40 text-[#00d4ff] hover:bg-[#00d4ff]/10 transition-colors"
+              >
+                Book an intro call
+              </a>
+            </ScrollItem>
+          ) : null}
         </div>
       </div>
     </ScrollSection>
