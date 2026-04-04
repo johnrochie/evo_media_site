@@ -17,7 +17,7 @@ export default function HomePage() {
   return (
     <>
       <EvomediaNav />
-      <main id="main-content" tabIndex={-1} className="outline-none">
+      <main id="main-content" tabIndex={-1} className="evomedia-page outline-none">
         <HeroSection />
         <ServicesSection />
         <PortfolioGridSection />

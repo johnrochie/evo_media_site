@@ -12,6 +12,9 @@
 
 .evomedia-page {
   font-family: var(--font-body);
+  /* Default (dark): solid base so hero/sections aren’t transparent over the browser canvas */
+  background-color: var(--evomedia-bg);
+  color: #f9fafb;
 }
 
 .evomedia-page h1,
