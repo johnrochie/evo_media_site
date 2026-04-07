@@ -1,6 +1,6 @@
 {
   "hero": {
-    "headline1": "AI-powered web design. ",
+    "headline1": "Modern web design. ",
     "headline2": "Built fast. Built right.",
     "subheadline": "We build websites that evolve with your business—custom design, modern tech, and a process that gets you live in days.",
     "ctaWork": "See Our Work",
@@ -48,8 +48,8 @@
       },
       {
         "icon": "bot",
-        "title": "AI-powered workflow",
-        "description": "Cutting-edge tools and automation—efficiency we pass on as savings and speed."
+        "title": "Efficient delivery",
+        "description": "Modern tools and a tight process—efficiency we pass on as savings and speed."
       },
       {
         "icon": "palette",
@@ -165,6 +165,10 @@
         "answer": "We build with Next.js, React, and Tailwind—modern, fast, and easy to maintain. Hosting is typically Vercel or similar for speed and reliability."
       },
       {
+        "question": "Do you use AI?",
+        "answer": "Yes, selectively. We use AI-assisted tools to speed up parts of research, drafting, and production—always with human review so design, copy, and code meet our standards. You get the efficiency, not a generic auto-generated site."
+      },
+      {
         "question": "Do you offer ongoing support?",
         "answer": "Yes. Every project includes handover and basic support. We can arrange ongoing maintenance or retainer packages if you need them."
       },
@@ -212,7 +216,7 @@
   "footer": {
     "logoHighlight": "Evolution",
     "logoRest": " Media",
-    "tagline": "AI-powered web design. Built fast. Built right. evomedia.site",
+    "tagline": "Modern web design. Built fast. Built right. evomedia.site",
     "location": "Worldwide but built in Ireland",
     "quickLinksTitle": "Quick links",
     "followTitle": "Follow us",

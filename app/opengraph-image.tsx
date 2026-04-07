@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Evolution Media | AI-powered web design. Built fast. Built right.";
+export const alt = "Evolution Media | Modern web design. Built fast. Built right.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -32,7 +32,7 @@ export default function OpenGraphImage() {
           Evolution Media
         </span>
         <span style={{ fontSize: 28, color: "#94a3b8" }}>
-          AI-powered web design. Built fast. Built right.
+          Modern web design. Built fast. Built right.
         </span>
       </div>
     ),
