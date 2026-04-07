@@ -7,6 +7,10 @@ import { evomediaContent } from "@/lib/evomedia-content";
 import ThemeToggle from "@/components/ThemeToggle";
 
 const nav = evomediaContent.nav;
+const navLinks =
+  evomediaContent.testimonials.enabled === false
+    ? nav.links.filter((link) => link.href !== "#testimonials")
+    : nav.links;
 
 export default function EvomediaNav() {
   const [open, setOpen] = useState(false);
@@ -32,7 +36,7 @@ export default function EvomediaNav() {
           <div className="hidden md:flex items-center gap-4">
             <ThemeToggle />
             <ul className="flex items-center gap-6 lg:gap-8">
-              {nav.links.map((link) => (
+              {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
@@ -68,7 +72,7 @@ export default function EvomediaNav() {
             className="evomedia-nav-dropdown md:hidden border-t border-white/5 bg-[#0a0a0f]"
           >
             <ul className="px-4 py-4 space-y-2">
-              {nav.links.map((link) => (
+              {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}

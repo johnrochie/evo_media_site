@@ -8,6 +8,10 @@ import { evomediaContent } from "@/lib/evomedia-content";
 const c = evomediaContent.testimonials;
 
 export default function TestimonialsSection() {
+  if (c.enabled === false) {
+    return null;
+  }
+
   return (
     <ScrollSection id="testimonials" className="py-20 md:py-28 bg-[#0d0d12]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

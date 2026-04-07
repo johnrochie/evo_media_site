@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd /tmp)",
+      "Bash(find . -maxdepth 1 -type d -name trend-pulse*)",
+      "Bash(wc -l /tmp/trend-pulse-automation/*.js /tmp/trend-pulse-automation/*.sh)"
+    ]
+  }
+}

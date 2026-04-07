@@ -94,6 +94,7 @@ export type EvomediaContent = {
     error: string;
   };
   testimonials: {
+    enabled?: boolean;
     label: string;
     title: string;
     titleHighlight: string;

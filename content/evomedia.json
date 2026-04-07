@@ -125,6 +125,7 @@
     ]
   },
   "testimonials": {
+    "enabled": false,
     "label": "Testimonials",
     "title": "What clients",
     "titleHighlight": "say",
