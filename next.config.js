@@ -8,6 +8,8 @@ const nextConfig = {
   async redirects() {
     return [
       { source: "/evomedia", destination: "/", permanent: true },
+      { source: "/loopnik", destination: "/apps/loopnik", permanent: true },
+      { source: "/loopnik/privacy", destination: "/apps/loopnik/privacy", permanent: true },
     ];
   },
 };

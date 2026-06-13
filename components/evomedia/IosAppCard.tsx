@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { Apple, ExternalLink } from "lucide-react";
 import type { IosApp } from "@/lib/ios-apps-data";
 
@@ -166,45 +167,36 @@ export function IosAppCard({
           ))}
         </div>
 
-        {hasAppStoreLink ? (
-          <a
-            href={app.appStoreUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 self-start px-4 py-2.5 rounded-xl bg-white text-black text-sm font-semibold hover:bg-gray-100 transition-colors"
+        <div className="flex flex-wrap items-center gap-3">
+          {hasAppStoreLink ? (
+            <a
+              href={app.appStoreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-black text-sm font-semibold hover:bg-gray-100 transition-colors"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Apple className="w-4 h-4" aria-hidden />
+              App Store
+              <ExternalLink className="w-3.5 h-3.5 opacity-60" aria-hidden />
+            </a>
+          ) : (
+            <span className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 text-gray-500 text-sm font-medium border border-white/5">
+              <Apple className="w-4 h-4" aria-hidden />
+              Coming to App Store
+            </span>
+          )}
+          <Link
+            href={`/apps/${app.id}`}
+            className="text-sm text-[#00d4ff] hover:underline"
             onClick={(e) => e.stopPropagation()}
           >
-            <Apple className="w-4 h-4" aria-hidden />
-            App Store
-            <ExternalLink className="w-3.5 h-3.5 opacity-60" aria-hidden />
-          </a>
-        ) : (
-          <span className="inline-flex items-center gap-2 self-start px-4 py-2.5 rounded-xl bg-white/5 text-gray-500 text-sm font-medium border border-white/5">
-            <Apple className="w-4 h-4" aria-hidden />
-            Coming to App Store
-          </span>
-        )}
+            Support &amp; privacy
+          </Link>
+        </div>
       </div>
     </div>
   );
-
-  if (hasAppStoreLink) {
-    return (
-      <motion.a
-        href={app.appStoreUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block"
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay, duration: 0.4 }}
-        whileHover={{ scale: 1.01 }}
-      >
-        {cardContent}
-      </motion.a>
-    );
-  }
 
   return (
     <motion.div
@@ -213,7 +205,9 @@ export function IosAppCard({
       viewport={{ once: true }}
       transition={{ delay, duration: 0.4 }}
     >
-      {cardContent}
+      <Link href={`/apps/${app.id}`} className="block group">
+        {cardContent}
+      </Link>
     </motion.div>
   );
 }
