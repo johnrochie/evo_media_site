@@ -22,7 +22,8 @@ export interface IosApp {
   gradient: string;
   accent: string;
   year?: number;
-  supportEmail: string;
+  /** Base64-encoded support email — avoids plain-text in HTML source */
+  supportEmailEncoded: string;
 }
 
 export const iosAppCategories: IosAppCategory[] = [
@@ -48,7 +49,7 @@ export const iosAppsData: IosApp[] = [
     gradient: "from-orange-500/30 to-rose-600/30",
     accent: "#f97316",
     year: 2026,
-    supportEmail: "johnrochie86@gmail.com",
+    supportEmailEncoded: "am9obnJvY2hpZTg2QGdtYWlsLmNvbQ==",
   },
 ];
 

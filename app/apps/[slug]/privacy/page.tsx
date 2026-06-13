@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { AppPageShell } from "@/components/evomedia/AppPageShell";
+import { AppContentCard, AppPageShell } from "@/components/evomedia/AppPageShell";
+import ObfuscatedEmail from "@/components/evomedia/ObfuscatedEmail";
 import { getIosAppById, iosAppsData } from "@/lib/ios-apps-data";
 import { getIosAppPageContent } from "@/lib/ios-app-pages";
 
@@ -32,68 +33,61 @@ export default async function AppPrivacyPage({ params }: Props) {
 
   return (
     <AppPageShell
-      appName={`${app.name} — Privacy Policy`}
+      appName={`${app.name} Privacy Policy`}
+      appNameHighlight="Privacy Policy"
+      accent={app.accent}
       backHref={`/apps/${app.id}`}
       backLabel={`Back to ${app.name} support`}
     >
-      <p className="text-gray-400 text-sm mb-8">Last updated: {privacy.lastUpdated}</p>
+      <p className="text-gray-500 text-sm -mt-6 mb-2">Last updated: {privacy.lastUpdated}</p>
 
-      <p className="text-gray-300 leading-relaxed mb-8">{privacy.intro}</p>
+      <AppContentCard title="Overview" accent={app.accent}>
+        <p>{privacy.intro}</p>
+      </AppContentCard>
 
-      <div className="space-y-8">
-        {privacy.sections.map((section) => (
-          <section key={section.title}>
-            <h2 className="text-xl font-semibold text-white mb-4">{section.title}</h2>
-            {section.paragraphs.map((paragraph, paragraphIndex) => (
-              <p
-                key={paragraph.slice(0, 40)}
-                className="text-gray-300 leading-relaxed mb-3"
-              >
-                {paragraph}
-                {section.links &&
-                  section.links.length > 0 &&
-                  paragraphIndex === section.paragraphs.length - 1 && (
-                    <>
-                      {" "}
-                      See{" "}
-                      {section.links.map((link, i) => (
-                        <span key={link.href}>
-                          {i > 0 && " and "}
-                          <a
-                            href={link.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-[#00d4ff] hover:underline"
-                          >
-                            {link.label}
-                          </a>
-                        </span>
-                      ))}
-                      .
-                    </>
-                  )}
-              </p>
-            ))}
-          </section>
-        ))}
+      {privacy.sections.map((section) => (
+        <AppContentCard key={section.title} title={section.title}>
+          {section.paragraphs.map((paragraph, paragraphIndex) => (
+            <p key={paragraph.slice(0, 40)}>
+              {paragraph}
+              {section.links &&
+                section.links.length > 0 &&
+                paragraphIndex === section.paragraphs.length - 1 && (
+                  <>
+                    {" "}
+                    See{" "}
+                    {section.links.map((link, i) => (
+                      <span key={link.href}>
+                        {i > 0 && " and "}
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#00d4ff] hover:underline"
+                        >
+                          {link.label}
+                        </a>
+                      </span>
+                    ))}
+                    .
+                  </>
+                )}
+            </p>
+          ))}
+        </AppContentCard>
+      ))}
 
-        <section>
-          <h2 className="text-xl font-semibold text-white mb-4">Contact</h2>
-          <p className="text-gray-300 leading-relaxed">
-            Questions? Email{" "}
-            <a
-              href={`mailto:${app.supportEmail}`}
-              className="text-[#00d4ff] hover:underline"
-            >
-              {app.supportEmail}
-            </a>
-            .
-          </p>
-        </section>
-      </div>
+      <AppContentCard title="Contact">
+        <p>
+          Questions? Email <ObfuscatedEmail encoded={app.supportEmailEncoded} />.
+        </p>
+      </AppContentCard>
 
-      <p className="mt-10 text-gray-400">
-        <Link href={`/apps/${app.id}`} className="text-[#00d4ff] hover:underline">
+      <p className="text-center pt-2">
+        <Link
+          href={`/apps/${app.id}`}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white transition-colors border border-white/5"
+        >
           Back to support
         </Link>
       </p>

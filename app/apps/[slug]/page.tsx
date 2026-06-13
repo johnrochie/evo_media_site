@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { AppPageShell } from "@/components/evomedia/AppPageShell";
+import { AppContentCard, AppPageShell } from "@/components/evomedia/AppPageShell";
+import ObfuscatedEmail from "@/components/evomedia/ObfuscatedEmail";
 import { getIosAppById, iosAppsData } from "@/lib/ios-apps-data";
 import { getIosAppPageContent } from "@/lib/ios-app-pages";
 
@@ -29,33 +30,34 @@ export default async function AppSupportPage({ params }: Props) {
   if (!app || !pageContent) notFound();
 
   return (
-    <AppPageShell appName={app.name} backHref="/apps" backLabel="All iOS apps">
-      <p className="text-lg text-gray-300 mb-10 leading-relaxed">
-        {app.description}{" "}
-        <span className="text-white font-medium">{app.tagline}</span>
-      </p>
+    <AppPageShell
+      appName={app.name}
+      tagline={app.tagline}
+      accent={app.accent}
+      backHref="/apps"
+      backLabel="All iOS apps"
+    >
+      <AppContentCard title="About" accent={app.accent}>
+        <p>{app.description}</p>
+      </AppContentCard>
 
-      <section className="space-y-4 mb-10">
-        <h2 className="text-xl font-semibold text-white">Support</h2>
-        <p className="text-gray-300 leading-relaxed">
+      <AppContentCard title="Support">
+        <p>
           Found a bug, or have a suggestion? Email{" "}
-          <a
-            href={`mailto:${app.supportEmail}`}
-            className="text-[#00d4ff] hover:underline"
-          >
-            {app.supportEmail}
-          </a>{" "}
-          and we&apos;ll get back to you.
+          <ObfuscatedEmail encoded={app.supportEmailEncoded} />
+          {" "}and we&apos;ll get back to you.
         </p>
-      </section>
+      </AppContentCard>
 
-      <section className="space-y-4 mb-10">
-        <h2 className="text-xl font-semibold text-white">Restore purchases</h2>
-        <p className="text-gray-300 leading-relaxed">{pageContent.restorePurchasesNote}</p>
-      </section>
+      <AppContentCard title="Restore purchases">
+        <p>{pageContent.restorePurchasesNote}</p>
+      </AppContentCard>
 
-      <p className="text-gray-400">
-        <Link href={`/apps/${app.id}/privacy`} className="text-[#00d4ff] hover:underline">
+      <p className="text-center pt-2">
+        <Link
+          href={`/apps/${app.id}/privacy`}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold bg-[#00d4ff]/15 text-[#00d4ff] hover:bg-[#00d4ff]/25 transition-colors"
+        >
           Privacy Policy
         </Link>
       </p>
