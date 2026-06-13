@@ -97,6 +97,13 @@
     "sampleSitesLabel": "Sample sites",
     "sampleSitesSubtitle": "Live demos you can visit"
   },
+  "iosApps": {
+    "label": "Side projects",
+    "title": "Hobby",
+    "titleHighlight": "games",
+    "subtitle": "iOS apps we've built for fun—casual games and side projects from the Evolution Media team.",
+    "viewAllLabel": "View all apps"
+  },
   "pricing": {
     "label": "Pricing",
     "title": "Simple",
@@ -235,6 +242,7 @@
       { "href": "#why-evolution-media", "label": "Why Evolution Media" },
       { "href": "#how-it-works", "label": "How It Works" },
       { "href": "#portfolio", "label": "Portfolio" },
+      { "href": "#ios-apps", "label": "iOS Apps" },
       { "href": "#pricing", "label": "Pricing" },
       { "href": "#testimonials", "label": "Testimonials" },
       { "href": "#faq", "label": "FAQ" },

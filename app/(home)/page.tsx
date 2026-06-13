@@ -4,6 +4,7 @@ import EvomediaNav from "@/components/evomedia/EvomediaNav";
 import HeroSection from "@/components/evomedia/HeroSection";
 import ServicesSection from "@/components/evomedia/ServicesSection";
 import PortfolioGridSection from "@/components/evomedia/PortfolioGridSection";
+import IosAppsSection from "@/components/evomedia/IosAppsSection";
 import WhyUsSection from "@/components/evomedia/WhyUsSection";
 import HowItWorksSection from "@/components/evomedia/HowItWorksSection";
 import PricingSection from "@/components/evomedia/PricingSection";
@@ -21,6 +22,7 @@ export default function HomePage() {
         <HeroSection />
         <ServicesSection />
         <PortfolioGridSection />
+        <IosAppsSection />
         <WhyUsSection />
         <HowItWorksSection />
         <PricingSection />

@@ -59,6 +59,13 @@ export type EvomediaContent = {
     sampleSitesLabel?: string;
     sampleSitesSubtitle?: string;
   };
+  iosApps: {
+    label: string;
+    title: string;
+    titleHighlight: string;
+    subtitle: string;
+    viewAllLabel: string;
+  };
   pricing: {
     label: string;
     title: string;
