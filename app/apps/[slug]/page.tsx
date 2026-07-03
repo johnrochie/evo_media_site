@@ -49,9 +49,11 @@ export default async function AppSupportPage({ params }: Props) {
         </p>
       </AppContentCard>
 
-      <AppContentCard title="Restore purchases">
-        <p>{pageContent.restorePurchasesNote}</p>
-      </AppContentCard>
+      {pageContent.restorePurchasesNote && (
+        <AppContentCard title="Restore purchases">
+          <p>{pageContent.restorePurchasesNote}</p>
+        </AppContentCard>
+      )}
 
       <p className="text-center pt-2">
         <Link

@@ -4,7 +4,7 @@
  */
 
 export type IosAppPageContent = {
-  restorePurchasesNote: string;
+  restorePurchasesNote?: string;
   privacy: {
     lastUpdated: string;
     intro: string;
@@ -75,51 +75,27 @@ export const iosAppPageContent: Record<string, IosAppPageContent> = {
     },
   },
   "puff-pop-panic": {
-    restorePurchasesNote:
-      'If you bought "Remove Ads" and ads are still showing (for example, on a new phone), open Puff Pop Panic and tap Restore Purchases on the menu screen.',
     privacy: {
       lastUpdated: "July 2026",
       intro:
-        'Puff Pop Panic is a free casual game developed by John Rochie ("we", "us"). This policy explains what data is handled when you play Puff Pop Panic.',
+        'Puff Pop Panic is a free arcade game developed by John Rochie ("we", "us"). This policy explains what data is handled when you play Puff Pop Panic.',
       sections: [
         {
           title: "Data we collect directly",
           paragraphs: [
-            "None. Puff Pop Panic has no accounts, no sign-in, and we operate no servers. Your best score and settings are stored only on your device.",
+            "None. Puff Pop Panic has no accounts, no sign-in, and we operate no servers. Your local high score and sound settings are stored only on your device.",
           ],
         },
         {
-          title: "Advertising (Google AdMob)",
+          title: "Advertising and tracking",
           paragraphs: [
-            "The free version of Puff Pop Panic shows ads served by Google AdMob. To serve and measure ads, Google may collect device information including device identifiers (such as the advertising identifier), IP address, and ad interaction data. This data is collected and processed by Google, not by us.",
-          ],
-          links: [
-            {
-              href: "https://policies.google.com/privacy",
-              label: "Google's Privacy Policy",
-            },
-            {
-              href: "https://support.google.com/admob/answer/6128543",
-              label: "how Google uses data from AdMob",
-            },
-          ],
-        },
-        {
-          title: "In-app purchase",
-          paragraphs: [
-            'The "Remove Ads" purchase is processed entirely by Apple through your App Store account. We never see your payment details. After purchase, no ads are shown and no advertising data is collected by the app.',
+            "None. Puff Pop Panic shows no ads, includes no in-app purchases, and does not use analytics or tracking SDKs. We do not collect usage data or share information with third parties.",
           ],
         },
         {
           title: "Children",
           paragraphs: [
             "Puff Pop Panic is not directed at children. We do not knowingly collect personal information from children.",
-          ],
-        },
-        {
-          title: "Your choices",
-          paragraphs: [
-            'You can reset your device\'s advertising identifier or limit ad tracking in iOS Settings > Privacy & Security. Purchasing "Remove Ads" disables advertising entirely.',
           ],
         },
         {
