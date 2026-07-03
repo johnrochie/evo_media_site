@@ -51,6 +51,23 @@ export const iosAppsData: IosApp[] = [
     year: 2026,
     supportEmailEncoded: "am9obnJvY2hpZTg2QGdtYWlsLmNvbQ==",
   },
+  {
+    id: "puff-pop-panic",
+    name: "Puff Pop Panic",
+    tagline: "Pop fast. Stay calm. Don't panic.",
+    description:
+      "A fast-paced casual game for iPhone. Pop the puffs before they overwhelm you—quick reflexes and steady nerves win the day.",
+    category: "Casual",
+    developer: "John Rochie",
+    appStoreUrl: "",
+    screenshot: "/ios-apps/puff-pop-panic.jpg",
+    icon: "/ios-apps/icons/puff-pop-panic.png",
+    features: ["Quick sessions", "Offline play", "Remove Ads IAP"],
+    gradient: "from-sky-400/30 to-violet-600/30",
+    accent: "#a855f7",
+    year: 2026,
+    supportEmailEncoded: "am9obnJvY2hpZTg2QGdtYWlsLmNvbQ==",
+  },
 ];
 
 export function getIosAppById(id: string): IosApp | undefined {

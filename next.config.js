@@ -10,6 +10,12 @@ const nextConfig = {
       { source: "/evomedia", destination: "/", permanent: true },
       { source: "/loopnik", destination: "/apps/loopnik", permanent: true },
       { source: "/loopnik/privacy", destination: "/apps/loopnik/privacy", permanent: true },
+      { source: "/puff-pop-panic", destination: "/apps/puff-pop-panic", permanent: true },
+      {
+        source: "/puff-pop-panic/privacy",
+        destination: "/apps/puff-pop-panic/privacy",
+        permanent: true,
+      },
     ];
   },
 };
