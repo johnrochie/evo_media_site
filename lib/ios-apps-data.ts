@@ -68,6 +68,23 @@ export const iosAppsData: IosApp[] = [
     year: 2026,
     supportEmailEncoded: "am9obnJvY2hpZTg2QGdtYWlsLmNvbQ==",
   },
+  {
+    id: "neon-blocks",
+    name: "Neon Blocks",
+    tagline: "Classic blocks. Neon glow.",
+    description:
+      "A polished Tetris-style block-stacking puzzle built for iPhone. All seven tetrominoes with SRS rotation and wall kicks, 7-bag randomizer, ghost piece, hold, and next-piece preview. Clear lines to advance through 16 speed levels, chain combos for bonus points, and climb a persistent top-10 high score board. Auto-save on background—or tap Save & Quit—and pick up where you left off. Sound, haptics, and a modern jewel-tone UI on a board that scales to any iPhone or iPad. Developed by Evo Media.",
+    category: "Puzzle",
+    developer: "Evo Media",
+    appStoreUrl: "",
+    screenshot: "/ios-apps/neon-blocks.jpg",
+    icon: "/ios-apps/icons/neon-blocks.png",
+    features: ["Full Tetris rules", "Save & resume", "Gameplay ad-free"],
+    gradient: "from-fuchsia-500/30 to-cyan-500/30",
+    accent: "#00d4ff",
+    year: 2026,
+    supportEmailEncoded: "am9obnJvY2hpZTg2QGdtYWlsLmNvbQ==",
+  },
 ];
 
 export function getIosAppById(id: string): IosApp | undefined {

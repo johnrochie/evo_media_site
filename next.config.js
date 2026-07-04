@@ -16,6 +16,12 @@ const nextConfig = {
         destination: "/apps/puff-pop-panic/privacy",
         permanent: true,
       },
+      { source: "/neon-blocks", destination: "/apps/neon-blocks", permanent: true },
+      {
+        source: "/neon-blocks/privacy",
+        destination: "/apps/neon-blocks/privacy",
+        permanent: true,
+      },
     ];
   },
 };
