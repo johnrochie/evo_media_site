@@ -127,14 +127,24 @@ export function IosAppCard({
         <div className="flex items-start gap-4 mb-4">
           {!iconError ? (
             <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-md">
-              <Image
-                src={app.icon}
-                alt=""
-                fill
-                sizes="48px"
-                className="object-cover"
-                onError={() => setIconError(true)}
-              />
+              {app.icon.endsWith(".svg") ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={app.icon}
+                  alt=""
+                  className="w-full h-full object-cover"
+                  onError={() => setIconError(true)}
+                />
+              ) : (
+                <Image
+                  src={app.icon}
+                  alt=""
+                  fill
+                  sizes="48px"
+                  className="object-cover"
+                  onError={() => setIconError(true)}
+                />
+              )}
             </div>
           ) : (
             <AppIconFallback app={app} />

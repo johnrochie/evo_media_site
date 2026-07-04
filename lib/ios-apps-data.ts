@@ -78,7 +78,7 @@ export const iosAppsData: IosApp[] = [
     developer: "Evo Media",
     appStoreUrl: "",
     screenshot: "/ios-apps/neon-blocks.jpg",
-    icon: "/ios-apps/icons/neon-blocks.png",
+    icon: "/ios-apps/icons/neon-blocks.svg",
     features: ["Full Tetris rules", "Save & resume", "Gameplay ad-free"],
     gradient: "from-fuchsia-500/30 to-cyan-500/30",
     accent: "#00d4ff",
