@@ -111,18 +111,18 @@ export const iosAppPageContent: Record<string, IosAppPageContent> = {
     privacy: {
       lastUpdated: "July 2026",
       intro:
-        'Neon Blocks is a free puzzle game developed by Evo Media ("we", "us"). This policy explains what data is handled when you play Neon Blocks.',
+        'Neon Blocks — Block Drop is a free puzzle game developed by Evo Media ("we", "us"). This policy explains what data is handled when you play Neon Blocks — Block Drop.',
       sections: [
         {
           title: "Data we collect directly",
           paragraphs: [
-            "None. Neon Blocks has no accounts, no sign-in, and we operate no servers. Your top-10 high scores, game progress, and settings are stored only on your device.",
+            "None. Neon Blocks — Block Drop has no accounts, no sign-in, and we operate no servers. Your top-10 high scores, game progress, and settings are stored only on your device.",
           ],
         },
         {
           title: "Advertising (Google AdMob)",
           paragraphs: [
-            "Neon Blocks shows non-intrusive banner ads on the menu, pause, and game-over screens only—gameplay is always ad-free. To serve and measure ads, Google AdMob may collect device information including device identifiers (such as the advertising identifier), IP address, and ad interaction data. This data is collected and processed by Google, not by us.",
+            "Neon Blocks — Block Drop shows non-intrusive banner ads on the menu, pause, and game-over screens only—gameplay is always ad-free. To serve and measure ads, Google AdMob may collect device information including device identifiers (such as the advertising identifier), IP address, and ad interaction data. This data is collected and processed by Google, not by us.",
           ],
           links: [
             {
@@ -138,7 +138,7 @@ export const iosAppPageContent: Record<string, IosAppPageContent> = {
         {
           title: "Children",
           paragraphs: [
-            "Neon Blocks is not directed at children. We do not knowingly collect personal information from children.",
+            "Neon Blocks — Block Drop is not directed at children. We do not knowingly collect personal information from children.",
           ],
         },
         {
