@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AppContentCard, AppPageShell } from "@/components/evomedia/AppPageShell";
 import ObfuscatedEmail from "@/components/evomedia/ObfuscatedEmail";
+import { AppScreenshotGallery } from "@/components/evomedia/AppScreenshotGallery";
 import { getIosAppById, iosAppsData } from "@/lib/ios-apps-data";
 import { getIosAppPageContent } from "@/lib/ios-app-pages";
 
@@ -40,6 +41,12 @@ export default async function AppSupportPage({ params }: Props) {
       <AppContentCard title="About" accent={app.accent}>
         <p>{app.description}</p>
       </AppContentCard>
+
+      {app.gallery && app.gallery.length > 0 && (
+        <AppContentCard title="Screenshots" accent={app.accent}>
+          <AppScreenshotGallery images={app.gallery} appName={app.name} />
+        </AppContentCard>
+      )}
 
       <AppContentCard title="Support">
         <p>

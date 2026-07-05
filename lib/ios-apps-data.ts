@@ -18,6 +18,8 @@ export interface IosApp {
   appStoreUrl?: string;
   screenshot: string;
   icon: string;
+  /** Extra screenshots for the support page gallery */
+  gallery?: string[];
   features: string[];
   gradient: string;
   accent: string;
@@ -79,6 +81,12 @@ export const iosAppsData: IosApp[] = [
     appStoreUrl: "",
     screenshot: "/ios-apps/neon-blocks.jpg",
     icon: "/ios-apps/icons/neon-blocks.svg",
+    gallery: [
+      "/ios-apps/neon-blocks.jpg",
+      "/ios-apps/neon-blocks-gameplay.jpg",
+      "/ios-apps/neon-blocks-gameplay-2.jpg",
+      "/ios-apps/neon-blocks-high-scores.jpg",
+    ],
     features: ["Full Tetris rules", "Save & resume", "Gameplay ad-free"],
     gradient: "from-fuchsia-500/30 to-cyan-500/30",
     accent: "#00d4ff",
