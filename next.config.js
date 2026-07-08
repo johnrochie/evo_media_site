@@ -5,8 +5,25 @@ const nextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  async headers() {
+    return [
+      {
+        source: "/app-ads.txt",
+        headers: [
+          { key: "Content-Type", value: "text/plain; charset=utf-8" },
+          { key: "Cache-Control", value: "public, max-age=3600" },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "evomedia.site" }],
+        destination: "https://www.evomedia.site/:path*",
+        permanent: true,
+      },
       { source: "/evomedia", destination: "/", permanent: true },
       { source: "/loopnik", destination: "/apps/loopnik", permanent: true },
       { source: "/loopnik/privacy", destination: "/apps/loopnik/privacy", permanent: true },
