@@ -1,4 +1,4 @@
-import Nav from "@/components/loopnik/Nav";
+import LoopnikSiteNav from "@/components/loopnik/LoopnikSiteNav";
 import Hero from "@/components/loopnik/Hero";
 import HowToPlay from "@/components/loopnik/HowToPlay";
 import Features from "@/components/loopnik/Features";
@@ -9,7 +9,7 @@ import Footer from "@/components/loopnik/Footer";
 export default function LoopnikPage() {
   return (
     <>
-      <Nav />
+      <LoopnikSiteNav />
       <main id="main-content" className="outline-none">
         <Hero />
         <HowToPlay />

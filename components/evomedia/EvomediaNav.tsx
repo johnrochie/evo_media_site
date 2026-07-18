@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { evomediaContent } from "@/lib/evomedia-content";
@@ -12,8 +12,24 @@ const navLinks =
     ? nav.links.filter((link) => link.href !== "#testimonials")
     : nav.links;
 
-export default function EvomediaNav() {
+/** Resolve hash links so they work from nested routes (e.g. /loopnik → /#portfolio). */
+function resolveHref(href: string, fromNestedRoute: boolean) {
+  if (!fromNestedRoute) return href;
+  if (href.startsWith("#")) return `/${href}`;
+  return href;
+}
+
+export default function EvomediaNav({
+  fromNestedRoute = false,
+  trailing,
+}: {
+  /** When true, logo and hash links point at the main homepage */
+  fromNestedRoute?: boolean;
+  /** Optional control after the desktop nav links (e.g. App Store CTA) */
+  trailing?: ReactNode;
+}) {
   const [open, setOpen] = useState(false);
+  const logoHref = fromNestedRoute ? "/" : "#hero";
 
   return (
     <nav
@@ -26,7 +42,7 @@ export default function EvomediaNav() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           <a
-            href="#hero"
+            href={logoHref}
             className="font-bold text-xl md:text-2xl tracking-tight"
           >
             <span className="evomedia-gradient-text">{nav.logoHighlight}</span>
@@ -39,7 +55,7 @@ export default function EvomediaNav() {
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
-                    href={link.href}
+                    href={resolveHref(link.href, fromNestedRoute)}
                     className="text-gray-400 hover:text-[#00d4ff] evomedia-nav-link transition-colors text-sm font-medium"
                   >
                     {link.label}
@@ -47,9 +63,11 @@ export default function EvomediaNav() {
                 </li>
               ))}
             </ul>
+            {trailing}
           </div>
 
           <div className="flex md:hidden items-center gap-2">
+            {trailing}
             <ThemeToggle />
             <button
               type="button"
@@ -75,7 +93,7 @@ export default function EvomediaNav() {
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
-                    href={link.href}
+                    href={resolveHref(link.href, fromNestedRoute)}
                     onClick={() => setOpen(false)}
                     className="evomedia-nav-link block py-2 text-gray-400 hover:text-[#00d4ff] transition-colors"
                   >

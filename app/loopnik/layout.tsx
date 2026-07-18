@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Nunito, Outfit } from "next/font/google";
+import "../evomedia/evomedia.css";
 import "./loopnik.css";
 
 const nunito = Nunito({

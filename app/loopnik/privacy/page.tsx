@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import ObfuscatedEmail from "@/components/evomedia/ObfuscatedEmail";
+import LoopnikSiteNav from "@/components/loopnik/LoopnikSiteNav";
 import { site } from "@/lib/loopnik-site";
 
 export const metadata: Metadata = {
@@ -60,25 +60,9 @@ const sections = [
 export default function LoopnikPrivacyPage() {
   return (
     <div className="min-h-screen">
-      <header className="border-b border-white/10">
-        <div className="mx-auto flex h-16 max-w-3xl items-center justify-between px-4 sm:px-6">
-          <Link
-            href="/loopnik"
-            className="font-display text-lg font-black tracking-tight"
-          >
-            <span className="text-white">LOOP</span>
-            <span className="text-[var(--loopnik-accent)]">NIK</span>
-          </Link>
-          <Link
-            href="/loopnik"
-            className="text-sm font-semibold text-[var(--loopnik-muted)] transition-colors hover:text-white"
-          >
-            ← Back
-          </Link>
-        </div>
-      </header>
+      <LoopnikSiteNav />
 
-      <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
+      <main className="mx-auto max-w-3xl px-4 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-32">
         <h1 className="font-display text-3xl font-black tracking-tight sm:text-4xl">
           Privacy Policy
         </h1>
