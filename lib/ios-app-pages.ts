@@ -19,22 +19,22 @@ export type IosAppPageContent = {
 export const iosAppPageContent: Record<string, IosAppPageContent> = {
   loopnik: {
     restorePurchasesNote:
-      'If you bought "Remove Ads" and ads are still showing (for example, on a new phone), open LoopNik! and tap Restore Purchases on the menu screen.',
+      'If you bought "Remove Ads" and ads are still showing (for example, on a new phone), open Loopnik and tap Restore Purchases on the menu screen.',
     privacy: {
       lastUpdated: "June 2026",
       intro:
-        'LoopNik! is a free arcade game developed by John Rochie ("we", "us"). This policy explains what data is handled when you play LoopNik!.',
+        'Loopnik is a free arcade game developed by Evo Media ("we", "us"). This policy explains what data is handled when you play Loopnik.',
       sections: [
         {
           title: "Data we collect directly",
           paragraphs: [
-            "None. LoopNik! has no accounts, no sign-in, and we operate no servers. Your best score and settings are stored only on your device.",
+            "None. Loopnik has no accounts, no sign-in, and we operate no servers. Your best score and settings are stored only on your device.",
           ],
         },
         {
           title: "Advertising (Google AdMob)",
           paragraphs: [
-            "The free version of LoopNik! shows ads served by Google AdMob. To serve and measure ads, Google may collect device information including device identifiers (such as the advertising identifier), IP address, and ad interaction data. This data is collected and processed by Google, not by us.",
+            "The free version of Loopnik shows ads served by Google AdMob. To serve and measure ads, Google may collect device information including device identifiers (such as the advertising identifier), IP address, and ad interaction data. This data is collected and processed by Google, not by us.",
           ],
           links: [
             {
@@ -56,7 +56,7 @@ export const iosAppPageContent: Record<string, IosAppPageContent> = {
         {
           title: "Children",
           paragraphs: [
-            "LoopNik! is not directed at children. We do not knowingly collect personal information from children.",
+            "Loopnik is not directed at children. We do not knowingly collect personal information from children.",
           ],
         },
         {

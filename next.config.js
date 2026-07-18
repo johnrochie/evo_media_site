@@ -25,8 +25,13 @@ const nextConfig = {
         permanent: true,
       },
       { source: "/evomedia", destination: "/", permanent: true },
-      { source: "/loopnik", destination: "/apps/loopnik", permanent: true },
-      { source: "/loopnik/privacy", destination: "/apps/loopnik/privacy", permanent: true },
+      // Loopnik marketing lives at /loopnik — keep old /apps URLs working
+      { source: "/apps/loopnik", destination: "/loopnik", permanent: true },
+      {
+        source: "/apps/loopnik/privacy",
+        destination: "/loopnik/privacy",
+        permanent: true,
+      },
       { source: "/puff-pop-panic", destination: "/apps/puff-pop-panic", permanent: true },
       {
         source: "/puff-pop-panic/privacy",

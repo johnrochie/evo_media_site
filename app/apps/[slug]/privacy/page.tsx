@@ -9,7 +9,9 @@ import { getIosAppPageContent } from "@/lib/ios-app-pages";
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return iosAppsData.map((app) => ({ slug: app.id }));
+  return iosAppsData
+    .filter((app) => app.id !== "loopnik")
+    .map((app) => ({ slug: app.id }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

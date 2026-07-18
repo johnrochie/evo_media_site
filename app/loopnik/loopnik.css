@@ -1,0 +1,97 @@
+/* Loopnik marketing page — scoped so it doesn't override the main site */
+
+.loopnik-page {
+  --loopnik-bg: #0d0f1a;
+  --loopnik-surface: #12151f;
+  --loopnik-accent: #2ec7fa;
+  --loopnik-gold: #ffd140;
+  --loopnik-hazard: #ff4559;
+  --loopnik-shield: #59f28c;
+  --loopnik-nova: #cc73ff;
+  --loopnik-muted: #8b93a7;
+  --loopnik-white: #f4f7fb;
+  --font-display: var(--font-nunito), system-ui, sans-serif;
+  --font-body: var(--font-outfit), system-ui, sans-serif;
+
+  background: var(--loopnik-bg);
+  color: var(--loopnik-white);
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+.loopnik-page h1,
+.loopnik-page h2,
+.loopnik-page h3,
+.loopnik-page .font-display {
+  font-family: var(--font-display);
+}
+
+.loopnik-page ::selection {
+  background: color-mix(in srgb, var(--loopnik-accent) 40%, transparent);
+  color: var(--loopnik-white);
+}
+
+@keyframes loopnik-orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loopnik-core-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes loopnik-star-drift {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-6px);
+  }
+}
+
+.loopnik-page .orbit-spin {
+  animation: loopnik-orbit-spin 14s linear infinite;
+}
+
+.loopnik-page .core-pulse {
+  animation: loopnik-core-pulse 2.4s ease-in-out infinite;
+}
+
+.loopnik-page .star-drift {
+  animation: loopnik-star-drift 5s ease-in-out infinite;
+}
+
+.loopnik-page .glow-accent {
+  box-shadow: 0 0 40px rgba(46, 199, 250, 0.35);
+}
+
+.loopnik-page .glow-gold {
+  box-shadow: 0 0 28px rgba(255, 209, 64, 0.35);
+}
+
+.loopnik-page #hero h1 {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loopnik-page .orbit-spin,
+  .loopnik-page .core-pulse,
+  .loopnik-page .star-drift {
+    animation: none;
+  }
+}

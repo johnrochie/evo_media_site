@@ -17,20 +17,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     { url: `${baseUrl}/portfolio`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/apps`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
-    ...iosAppsData.flatMap((app) => [
-      {
-        url: `${baseUrl}/apps/${app.id}`,
-        lastModified: new Date(),
-        changeFrequency: "monthly" as const,
-        priority: 0.55,
-      },
-      {
-        url: `${baseUrl}/apps/${app.id}/privacy`,
-        lastModified: new Date(),
-        changeFrequency: "monthly" as const,
-        priority: 0.4,
-      },
-    ]),
+    ...iosAppsData.flatMap((app) => {
+      const base = app.id === "loopnik" ? "/loopnik" : `/apps/${app.id}`;
+      return [
+        {
+          url: `${baseUrl}${base}`,
+          lastModified: new Date(),
+          changeFrequency: "monthly" as const,
+          priority: 0.55,
+        },
+        {
+          url: `${baseUrl}${base}/privacy`,
+          lastModified: new Date(),
+          changeFrequency: "monthly" as const,
+          priority: 0.4,
+        },
+      ];
+    }),
     { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/brief`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     ...["nexus", "luna", "apex", "verdant", "frame", "ember"].map((slug) => ({

@@ -106,6 +106,9 @@ export function IosAppCard({
   const [iconError, setIconError] = useState(false);
 
   const hasAppStoreLink = Boolean(app.appStoreUrl);
+  const detailHref = app.id === "loopnik" ? "/loopnik" : `/apps/${app.id}`;
+  const detailLabel =
+    app.id === "loopnik" ? "Game page" : "Support & privacy";
 
   const cardContent = (
     <div
@@ -197,11 +200,11 @@ export function IosAppCard({
             </span>
           )}
           <Link
-            href={`/apps/${app.id}`}
+            href={detailHref}
             className="text-sm text-[#00d4ff] hover:underline"
             onClick={(e) => e.stopPropagation()}
           >
-            Support &amp; privacy
+            {detailLabel}
           </Link>
         </div>
       </div>
@@ -215,7 +218,7 @@ export function IosAppCard({
       viewport={{ once: true }}
       transition={{ delay, duration: 0.4 }}
     >
-      <Link href={`/apps/${app.id}`} className="block group">
+      <Link href={detailHref} className="block group">
         {cardContent}
       </Link>
     </motion.div>
