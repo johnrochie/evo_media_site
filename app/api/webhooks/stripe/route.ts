@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import Stripe from "stripe";
 import { Resend } from "resend";
+import { escapeHtml } from "@/lib/escape-html";
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
@@ -39,10 +40,10 @@ export async function POST(req: NextRequest) {
         subject: `[Evolution Media] Payment received – ${tier}`,
         html: `
           <h2>New payment received</h2>
-          <p><strong>Tier:</strong> ${tier}</p>
+          <p><strong>Tier:</strong> ${escapeHtml(tier)}</p>
           <p><strong>Amount:</strong> €${(amountTotal / 100).toFixed(2)}</p>
-          <p><strong>Customer email:</strong> ${customerEmail ?? "N/A"}</p>
-          <p><strong>Session ID:</strong> ${session.id}</p>
+          <p><strong>Customer email:</strong> ${escapeHtml(customerEmail ?? "N/A")}</p>
+          <p><strong>Session ID:</strong> ${escapeHtml(session.id)}</p>
         `,
       });
     }

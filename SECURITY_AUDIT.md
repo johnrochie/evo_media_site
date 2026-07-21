@@ -17,6 +17,18 @@
 
 The overall attack surface is small: no auth system, no admin panel, and no user-generated content is rendered back to visitors. Several things are done well — see "What's already good" at the end. The critical item should be addressed immediately, before anything else.
 
+### Remediation status (updated 2026-07-21)
+
+| ID | Finding | Status |
+|----|---------|--------|
+| C1 | Live Resend API key in `.env.example` | ⚠️ **Placeholder committed; owner must still rotate the leaked key in Resend** |
+| H1 | Client-controlled checkout price | ✅ Fixed — price resolved server-side from trusted content |
+| M1 | HTML/header injection in emails | ✅ Fixed — shared `escapeHtml` / `sanitizeSubject` applied to all email actions |
+| M2 | No rate limiting on public actions | ⏳ Not yet implemented |
+| M3 | Vulnerable dependencies | ⏳ Not yet implemented (`npm audit fix`) |
+| L1 | No security headers / CSP | ⏳ Not yet implemented |
+| L2 | Raw provider errors surfaced to clients | ✅ Fixed for checkout action (generic message + server-side log) |
+
 ---
 
 ## Critical

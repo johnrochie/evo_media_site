@@ -26,6 +26,7 @@
 
 import { supabase } from "@/lib/supabase";
 import { Resend } from "resend";
+import { escapeHtml, sanitizeSubject } from "@/lib/escape-html";
 
 export type Stage1Payload = {
   fullName: string;
@@ -80,7 +81,7 @@ export async function submitIntakeStage1(
         from,
         to: [to],
         replyTo: payload.email.trim(),
-        subject: `New EvoMedia Enquiry — ${payload.businessName.trim()}`,
+        subject: sanitizeSubject(`New EvoMedia Enquiry — ${payload.businessName.trim()}`),
         html: `
           <h2>New intake enquiry</h2>
           <table style="border-collapse: collapse; max-width: 560px;">
@@ -103,13 +104,4 @@ export async function submitIntakeStage1(
   }
 
   return { ok: true };
-}
-
-function escapeHtml(s: string): string {
-  return s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
 }

@@ -1,6 +1,7 @@
 "use server";
 
 import { Resend } from "resend";
+import { escapeHtml, sanitizeSubject } from "@/lib/escape-html";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -33,15 +34,15 @@ export async function sendContactEmail(formData: FormData) {
       from,
       to: [to],
       replyTo: email,
-      subject: `Quote request: ${websiteType} from ${name}`,
+      subject: sanitizeSubject(`Quote request: ${websiteType} from ${name}`),
       html: `
         <h2>New contact form submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Website type:</strong> ${websiteType}</p>
-        <p><strong>Budget:</strong> ${budget}</p>
+        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Website type:</strong> ${escapeHtml(websiteType)}</p>
+        <p><strong>Budget:</strong> ${escapeHtml(budget)}</p>
         <h3>Message</h3>
-        <p>${message.replace(/\n/g, "<br>")}</p>
+        <p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>
       `,
     });
 

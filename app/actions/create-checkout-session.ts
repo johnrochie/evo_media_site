@@ -1,8 +1,25 @@
 "use server";
 
 import Stripe from "stripe";
+import { evomediaContent } from "@/lib/evomedia-content";
 
-export async function createCheckoutSession(tierName: string, amountCents: number) {
+/**
+ * The price is derived server-side from the trusted content file, keyed by
+ * tier name. The client only chooses *which* tier to buy — never the amount —
+ * so it cannot tamper with what it pays.
+ */
+function resolveTier(tierName: string): { name: string; amountCents: number } | null {
+  const tier = evomediaContent.pricing.tiers.find((t) => t.name === tierName);
+  if (!tier || tier.amountCents == null) return null;
+  return { name: tier.name, amountCents: tier.amountCents };
+}
+
+export async function createCheckoutSession(tierName: string) {
+  const tier = resolveTier(tierName);
+  if (!tier) {
+    return { ok: false, error: "Unknown package.", url: null };
+  }
+
   const secret = process.env.STRIPE_SECRET_KEY;
   if (!secret) {
     return { ok: false, error: "Stripe is not configured.", url: null };
@@ -21,10 +38,10 @@ export async function createCheckoutSession(tierName: string, amountCents: numbe
           price_data: {
             currency: "eur",
             product_data: {
-              name: `${tierName} - Evolution Media`,
-              description: `Web design package: ${tierName}`,
+              name: `${tier.name} - Evolution Media`,
+              description: `Web design package: ${tier.name}`,
             },
-            unit_amount: amountCents,
+            unit_amount: tier.amountCents,
           },
           quantity: 1,
         },
@@ -32,7 +49,7 @@ export async function createCheckoutSession(tierName: string, amountCents: numbe
       success_url: `${baseUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/checkout/cancel`,
       metadata: {
-        tier: tierName,
+        tier: tier.name,
       },
     });
 
@@ -42,7 +59,7 @@ export async function createCheckoutSession(tierName: string, amountCents: numbe
 
     return { ok: true, url: session.url, error: null };
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Checkout failed.";
-    return { ok: false, error: message, url: null };
+    console.error("Stripe checkout session creation failed:", err);
+    return { ok: false, error: "Checkout failed. Please try again.", url: null };
   }
 }

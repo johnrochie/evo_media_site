@@ -12,9 +12,9 @@ const c = evomediaContent.pricing;
 export default function PricingSection() {
   const [loadingTier, setLoadingTier] = useState<string | null>(null);
 
-  async function handleCheckout(tierName: string, amountCents: number) {
+  async function handleCheckout(tierName: string) {
     setLoadingTier(tierName);
-    const { ok, url, error } = await createCheckoutSession(tierName, amountCents);
+    const { ok, url, error } = await createCheckoutSession(tierName);
     setLoadingTier(null);
     if (ok && url) {
       window.location.href = url;
@@ -69,7 +69,7 @@ export default function PricingSection() {
                 {tier.amountCents != null ? (
                   <button
                     type="button"
-                    onClick={() => handleCheckout(tier.name, tier.amountCents!)}
+                    onClick={() => handleCheckout(tier.name)}
                     disabled={loadingTier !== null}
                     className={`mt-6 w-full py-3 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 ${
                       tier.highlighted

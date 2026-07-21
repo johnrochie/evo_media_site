@@ -1,6 +1,7 @@
 "use server";
 
 import { Resend } from "resend";
+import { escapeHtml, sanitizeSubject } from "@/lib/escape-html";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -15,8 +16,8 @@ export async function subscribeNewsletter(email: string) {
   const { error } = await resend.emails.send({
     from,
     to: [to],
-    subject: `Newsletter signup: ${email}`,
-    html: `<p>New newsletter subscriber: <strong>${email}</strong></p>`,
+    subject: sanitizeSubject(`Newsletter signup: ${email}`),
+    html: `<p>New newsletter subscriber: <strong>${escapeHtml(email)}</strong></p>`,
   });
 
   if (error) {
