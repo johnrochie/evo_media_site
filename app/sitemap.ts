@@ -36,6 +36,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
     { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/brief`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    {
+      url: `${baseUrl}/start-your-project`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     ...["nexus", "luna", "apex", "verdant", "frame", "ember"].map((slug) => ({
       url: `${baseUrl}/portfolio/${slug}`,
       lastModified: new Date(),

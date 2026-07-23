@@ -26,25 +26,46 @@ export async function POST(req: NextRequest) {
 
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
+    const isDeposit = session.metadata?.type === "deposit";
     const tier = (session.metadata?.tier as string) ?? "Unknown";
     const amountTotal = session.amount_total ?? 0;
-    const customerEmail = session.customer_email ?? session.customer_details?.email;
+    const currency = (session.currency || "eur").toUpperCase();
+    const customerEmail =
+      session.customer_email ?? session.customer_details?.email;
 
-    const to = process.env.RESEND_TO;
+    const to = process.env.INTAKE_NOTIFY_EMAIL || process.env.RESEND_TO;
     if (to && process.env.RESEND_API_KEY) {
       const resend = new Resend(process.env.RESEND_API_KEY);
-      await resend.emails.send({
-        from: process.env.RESEND_FROM ?? "Evolution Media <onboarding@resend.dev>",
-        to: [to],
-        subject: `[Evolution Media] Payment received – ${tier}`,
-        html: `
-          <h2>New payment received</h2>
-          <p><strong>Tier:</strong> ${tier}</p>
-          <p><strong>Amount:</strong> €${(amountTotal / 100).toFixed(2)}</p>
-          <p><strong>Customer email:</strong> ${customerEmail ?? "N/A"}</p>
-          <p><strong>Session ID:</strong> ${session.id}</p>
-        `,
-      });
+      const from =
+        process.env.RESEND_FROM ?? "Evolution Media <onboarding@resend.dev>";
+
+      if (isDeposit) {
+        // Fallback if the customer never reaches /start-your-project
+        await resend.emails.send({
+          from,
+          to: [to],
+          subject: "Deposit received",
+          html: `
+            <p>A deposit of <strong>${(amountTotal / 100).toFixed(2)} ${currency}</strong>
+            was just paid (session <code>${session.id}</code>).</p>
+            <p>Customer email: ${customerEmail ?? "N/A"}</p>
+            <p>If no project brief follows shortly, it's worth following up directly.</p>
+          `,
+        });
+      } else {
+        await resend.emails.send({
+          from,
+          to: [to],
+          subject: `[Evolution Media] Payment received – ${tier}`,
+          html: `
+            <h2>New payment received</h2>
+            <p><strong>Tier:</strong> ${tier}</p>
+            <p><strong>Amount:</strong> €${(amountTotal / 100).toFixed(2)}</p>
+            <p><strong>Customer email:</strong> ${customerEmail ?? "N/A"}</p>
+            <p><strong>Session ID:</strong> ${session.id}</p>
+          `,
+        });
+      }
     }
   }
 

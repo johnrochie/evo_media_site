@@ -32,6 +32,7 @@ export async function createCheckoutSession(tierName: string, amountCents: numbe
       success_url: `${baseUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/checkout/cancel`,
       metadata: {
+        type: "package",
         tier: tierName,
       },
     });

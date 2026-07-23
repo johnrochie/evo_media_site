@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { evomediaContent } from "@/lib/evomedia-content";
+import StartProjectButton from "@/components/evomedia/StartProjectButton";
 
 const c = evomediaContent.hero;
 
@@ -50,12 +51,7 @@ export default function HeroSection() {
           >
             {c.ctaWork}
           </a>
-          <a
-            href="#contact"
-            className="px-8 py-4 rounded-lg font-semibold bg-gradient-to-r from-[#00d4ff] to-[#00a8cc] text-[#0a0a0f] hover:opacity-90 transition-opacity"
-          >
-            {c.ctaQuote}
-          </a>
+          <StartProjectButton label={c.ctaQuote} />
         </motion.div>
       </div>
     </section>

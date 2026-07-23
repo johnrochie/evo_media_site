@@ -6,6 +6,7 @@ import { Check, Loader2 } from "lucide-react";
 import { ScrollSection, ScrollItem } from "./ScrollSection";
 import { evomediaContent } from "@/lib/evomedia-content";
 import { createCheckoutSession } from "@/app/actions/create-checkout-session";
+import StartProjectButton from "@/components/evomedia/StartProjectButton";
 
 const c = evomediaContent.pricing;
 
@@ -102,12 +103,10 @@ export default function PricingSection() {
 
         <ScrollItem className="text-center mt-10">
           <p className="text-gray-400 mb-4">{c.customCta}</p>
-          <a
-            href="#contact"
-            className="inline-block px-6 py-3 rounded-lg font-semibold border border-[#00d4ff]/50 text-[#00d4ff] hover:bg-[#00d4ff]/10 transition-colors"
-          >
-            {c.customCtaButton}
-          </a>
+          <StartProjectButton
+            label={c.customCtaButton}
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold border border-[#00d4ff]/50 text-[#00d4ff] hover:bg-[#00d4ff]/10 transition-colors disabled:opacity-70"
+          />
         </ScrollItem>
       </div>
     </ScrollSection>
