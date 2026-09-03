@@ -1,0 +1,10 @@
+{
+  "name": "evomedia-pipeline",
+  "version": "1.0.0",
+  "private": true,
+  "description": "One-shot job image bundling the lead-discovery search+filter and CRM-write scripts. See docker/README.md.",
+  "type": "module",
+  "dependencies": {
+    "playwright": "1.58.2"
+  }
+}

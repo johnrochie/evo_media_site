@@ -1,0 +1,25 @@
+# Build context is the repo root. Keep it small — this image only needs
+# scripts/ and docker/pipeline/package.json.
+**/node_modules
+.next
+.git
+.vercel
+public
+components
+app
+lib
+content
+website-upgrade-scanner-export
+*.zip
+*.tar.gz
+*.md
+*.docx
+*.xlsx
+*.tsbuildinfo
+next.config.js
+tailwind.config.js
+postcss.config.js
+tsconfig*.json
+sentry.*.config.ts
+instrumentation.ts
+supabase-schema.sql

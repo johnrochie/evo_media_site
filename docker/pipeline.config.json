@@ -1,0 +1,24 @@
+{
+  "_comment": "Keyword list + areas and per-step options for the scheduled pipeline. Edit freely — the scheduler reads this file live, no rebuild or restart needed. Each entry in `searches` produces its own candidates.<slug>.json → .enriched.json and its own Notion sync.",
+
+  "searches": [
+    { "keyword": "plumber", "location": "Cork, Ireland" },
+    { "keyword": "electrician", "location": "Galway, Ireland" }
+  ],
+
+  "search": {
+    "limit": 20,
+    "provider": "google-playwright"
+  },
+
+  "analyse": {
+    "concurrency": 3,
+    "timeout": 12000
+  },
+
+  "crm": {
+    "bands": "high,medium",
+    "dryRun": false,
+    "noUpdate": false
+  }
+}

@@ -1,0 +1,16 @@
+**/node_modules
+.next
+.git
+.vercel
+public
+components
+app
+lib
+content
+scripts
+website-upgrade-scanner-export
+*.zip
+*.tar.gz
+*.docx
+*.xlsx
+*.tsbuildinfo

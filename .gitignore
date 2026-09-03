@@ -31,3 +31,19 @@ yarn-error.log*
 .DS_Store
 Thumbs.db
 .vercel
+.env*
+!.env.example
+!**/.env.example
+
+# Lead discovery engine — generated run output
+scripts/lead-discovery/candidates.json
+scripts/lead-discovery/*.enriched.json
+scripts/lead-discovery/candidates*.json
+
+# SiteAnalyser (website-upgrade-scanner-export) — runtime files
+website-upgrade-scanner-export/scanner.log
+website-upgrade-scanner-export/*.enriched.json
+website-upgrade-scanner-export/candidates*.json
+
+# Docker pipeline — local env
+docker/.env

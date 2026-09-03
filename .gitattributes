@@ -1,0 +1,10 @@
+# Lead-discovery pipeline: files that run inside Linux containers must stay LF
+# on every checkout, including Windows (repo has core.autocrlf=true).
+*.sh                              text eol=lf
+docker/**/Dockerfile              text eol=lf
+docker/**/*.dockerignore          text eol=lf
+docker/**/*.yml                   text eol=lf
+docker/**/*.json                  text eol=lf
+scripts/lead-discovery/**         text eol=lf
+scripts/lead-crm/**               text eol=lf
+website-upgrade-scanner-export/** text eol=lf

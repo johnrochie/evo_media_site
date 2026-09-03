@@ -1,0 +1,34 @@
+{
+  "_comment": "Large national/international chains to exclude, keyed by search category. The category is the --category flag, or the keyword if that's not given. Keys are matched case-insensitively. '_global' always applies. Keep this small and grow it over time as chains slip through — do not try to be exhaustive.",
+  "_global": [],
+  "plumber": [
+    "pimlicoplumbers.com", "dyno.com", "homeserve.com", "homeserve.ie", "britishgas.co.uk"
+  ],
+  "electrician": [
+    "mrelectric.com", "homeserve.com", "britishgas.co.uk", "nwelectrical.ie"
+  ],
+  "locksmith": [
+    "timpson.co.uk", "keytek.co.uk", "adt.com"
+  ],
+  "estate agent": [
+    "rightmove.co.uk", "zoopla.co.uk", "onthemarket.com", "purplebricks.com",
+    "daft.ie", "myhome.ie", "sherryfitz.ie", "dng.ie", "remax.ie"
+  ],
+  "dentist": [
+    "mydentist.co.uk", "bupa.co.uk", "dentalcareireland.ie", "smiles.co.uk", "portmandentex.co.uk"
+  ],
+  "gym": [
+    "puregym.com", "thegymgroup.com", "davidlloyd.co.uk", "nuffieldhealth.com",
+    "flyefit.ie", "benlifitness.ie", "westwood.ie"
+  ],
+  "hairdresser": [
+    "toniandguy.com", "regis.com", "supercuts.com", "petermarksalons.com"
+  ],
+  "restaurant": [
+    "mcdonalds.com", "burgerking.com", "kfc.com", "kfc.ie", "nandos.com",
+    "dominos.ie", "dominos.co.uk", "subway.com", "supermacs.ie", "eddierockets.ie"
+  ],
+  "cafe": [
+    "starbucks.com", "costa.co.uk", "caffenero.com", "insomniacoffee.ie"
+  ]
+}

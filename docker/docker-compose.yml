@@ -1,0 +1,94 @@
+# EvoMedia Phase 1 lead-discovery pipeline.
+#
+#   docker compose --profile jobs build      # build all three images
+#   docker compose up -d                     # start siteanalyser + scheduler
+#   docker compose logs -f evomedia-scheduler # watch runs
+#   docker compose down                      # stop everything (leaves volumes)
+#
+# Config that changes often (keywords/areas, schedule, Notion creds) lives in
+# ./pipeline.config.json and ./.env — no rebuild needed to change them.
+
+name: evomedia
+
+networks:
+  default:
+    name: evomedia_net
+
+volumes:
+  pipeline_data: # JSON handoff files between steps (candidates*.json)
+  scheduler_state: # consolidated run log
+
+services:
+  # ── always-on: dashboard + /api/*; also the image the batch CLI runs from ──
+  evomedia-siteanalyser:
+    build:
+      context: ..
+      dockerfile: docker/siteanalyser/Dockerfile
+    image: evomedia-siteanalyser:latest
+    container_name: evomedia-siteanalyser
+    restart: unless-stopped
+    environment:
+      PORT: "4005"
+      SSRF_ALLOWED_HOSTS: "${SSRF_ALLOWED_HOSTS:-}"
+    ports:
+      - "${SITEANALYSER_HOST_PORT:-4005}:4005"
+    volumes:
+      - pipeline_data:/data
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:4005/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+  # ── one-shot job image: search+filter and CRM-write scripts ──
+  # Not started by `up` (profile). The scheduler invokes it with
+  # `docker compose run --rm evomedia-pipeline <cmd>`.
+  evomedia-pipeline:
+    build:
+      context: ..
+      dockerfile: docker/pipeline/Dockerfile
+    image: evomedia-pipeline:latest
+    restart: "no"
+    profiles: ["jobs"]
+    environment:
+      NODE_ENV: production
+      NOTION_API_KEY: "${NOTION_API_KEY:-}"
+      NOTION_TOKEN: "${NOTION_TOKEN:-}"
+      NOTION_LEADS_DATABASE_ID: "${NOTION_LEADS_DATABASE_ID:-}"
+      NOTION_DATABASE_ID: "${NOTION_DATABASE_ID:-}"
+      SERPAPI_KEY: "${SERPAPI_KEY:-}"
+      LEAD_SEARCH_PROVIDER: "${LEAD_SEARCH_PROVIDER:-}"
+      LEAD_LOG_LEVEL: "${LEAD_LOG_LEVEL:-info}"
+    volumes:
+      - pipeline_data:/data
+
+  # ── thin cron: triggers the 3-step sequence on $SCHEDULE ──
+  evomedia-scheduler:
+    build:
+      context: ..
+      dockerfile: docker/scheduler/Dockerfile
+    image: evomedia-scheduler:latest
+    container_name: evomedia-scheduler
+    restart: unless-stopped
+    depends_on:
+      evomedia-siteanalyser:
+        condition: service_healthy
+    environment:
+      SCHEDULE: "${SCHEDULE:-0 * * * *}"
+      RUN_ON_START: "${RUN_ON_START:-0}"
+      TZ: "${TZ:-UTC}"
+      COMPOSE_FILE: /compose/docker-compose.yml
+      COMPOSE_PROJECT_NAME: evomedia
+      PIPELINE_CONFIG: /compose/pipeline.config.json
+      RUN_LOG: /state/pipeline-runs.log
+      SITEANALYSER_URL: http://evomedia-siteanalyser:4005
+      DATA_DIR: /data
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./:/compose:ro
+      - scheduler_state:/state
+      # shared with pipeline + siteanalyser. depends_on:service_healthy above
+      # guarantees siteanalyser (uid 1000) initialises this volume first, so
+      # the one-shot pipeline containers (uid 1000) can write to it too.
+      - pipeline_data:/data

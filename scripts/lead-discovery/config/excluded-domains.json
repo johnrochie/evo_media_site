@@ -1,0 +1,42 @@
+{
+  "_comment": "Domains that are never a small business's own website: social networks, review sites, directories, marketplaces, job boards, generic site builders on shared subdomains, and search engines. Matched by hostname suffix, so 'facebook.com' also excludes 'm.facebook.com'. Edit freely — this is the main tuning knob for the filter step.",
+  "domains": [
+    "facebook.com", "fb.com", "fb.me", "facebook.ie",
+    "instagram.com", "linkedin.com", "twitter.com", "x.com", "t.co",
+    "tiktok.com", "youtube.com", "youtu.be", "pinterest.com", "pinterest.ie",
+    "reddit.com", "snapchat.com", "threads.net", "whatsapp.com", "wa.me",
+    "t.me", "telegram.me", "tumblr.com", "flickr.com", "vimeo.com",
+
+    "yelp.com", "yelp.ie", "tripadvisor.com", "tripadvisor.ie", "trustpilot.com",
+    "google.com", "google.ie", "google.co.uk", "goo.gl", "g.co", "g.page",
+    "business.site", "business.google.com", "maps.google.com", "search.google.com",
+    "bing.com", "duckduckgo.com", "yahoo.com",
+
+    "yell.com", "thomsonlocal.com", "goldenpages.ie", "goldenpages.com",
+    "hotfrog.ie", "hotfrog.com", "cylex.ie", "cylex-uk.co.uk", "opendi.ie",
+    "nicelocal.ie", "nicelocal.com", "wheree.com", "brownbook.net", "tuugo.ie",
+    "freeindex.co.uk", "scoot.co.uk", "192.com", "touchlocal.com", "misterwhat.ie",
+
+    "checkatrade.com", "mybuilder.com", "ratedpeople.com", "trustatrader.com",
+    "bark.com", "houzz.com", "houzz.co.uk", "angi.com", "angieslist.com",
+    "thumbtack.com", "which.co.uk", "tradesmen.ie", "onlinetradesmen.ie",
+
+    "amazon.com", "amazon.co.uk", "amazon.ie", "ebay.com", "ebay.ie", "etsy.com",
+    "wikipedia.org", "wikimedia.org", "quora.com",
+
+    "indeed.com", "indeed.ie", "glassdoor.com", "jobs.ie", "irishjobs.ie",
+    "recruitireland.com", "gumtree.com", "gumtree.ie", "donedeal.ie", "adverts.ie",
+    "eventbrite.com", "eventbrite.ie", "meetup.com",
+
+    "wordpress.com", "blogspot.com", "wix.com", "wixsite.com", "weebly.com",
+    "squarespace.com", "godaddysites.com", "webnode.com", "jimdosite.com",
+    "linktr.ee", "carrd.co", "notion.site", "substack.com", "medium.com",
+
+    "apple.com", "apps.apple.com", "play.google.com", "microsoft.com",
+
+    "cro.ie", "vision-net.ie", "solocheck.ie", "companieshouse.gov.uk",
+    "find-and-update.company-information.service.gov.uk",
+    "nextdoor.com", "nextdoor.co.uk", "justdial.com", "foursquare.com",
+    "manta.com", "bbb.org", "dnb.com"
+  ]
+}

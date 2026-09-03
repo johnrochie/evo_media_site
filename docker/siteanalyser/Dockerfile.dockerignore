@@ -1,0 +1,20 @@
+# Build context is the repo root. This image only needs
+# website-upgrade-scanner-export/ (minus its node_modules).
+**/node_modules
+.next
+.git
+.vercel
+public
+components
+app
+lib
+content
+scripts
+docker
+*.zip
+*.tar.gz
+*.docx
+*.xlsx
+*.tsbuildinfo
+sentry.*.config.ts
+instrumentation.ts
