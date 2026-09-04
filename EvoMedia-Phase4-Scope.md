@@ -75,19 +75,22 @@ stage, starting with the one that's missing today: **a payment
 confirmation.** Per the roadmap: "your site is in design, here's a
 preview," and flags John only when a client reply needs a real decision.
 
-### Pipeline stages (v1)
+### Pipeline stages (v1, revised during Prompt 1 — see below)
 
 ```
-deposit_paid → brief_received → in_design → in_build → ready_for_review → live
+paid → brief_received → in_design → in_build → ready_for_review → live
 ```
 
-Derived from the two real intake stages that already exist, plus the
-roadmap's own example. Two of these six already have a real code signal
-to trigger off automatically:
+(First stage renamed from `deposit_paid` to `paid` once Prompt 1's real
+code-reading found a second live payment path that isn't a deposit at
+all — see "Real findings from Prompt 1.") Two of these six already have a
+real code signal to trigger off automatically:
 
-- `deposit_paid` — the existing Stripe webhook, `checkout.session.completed`
-- `brief_received` — the existing `/api/intake` route (Build Brief Form
-  submission)
+- `paid` — the existing Stripe webhook, `checkout.session.completed`
+  (both real payment paths, deposit and full package)
+- `brief_received` — the existing `/api/intake` route (the live,
+  payment-gated Build Brief Form at `/start-your-project` — see below,
+  this is NOT the same as the separate, unlinked `/brief` page)
 
 The other three (`in_design`, `in_build`, `ready_for_review`, plus moving
 to `live`) have **no code signal today** — that work happens in Cursor,
@@ -111,22 +114,27 @@ deployment webhook) — not invented here.
 - **Automatic detection of design/build/review completion** — see above.
 - **Testimonial capture** — that's its own, later roadmap item (Phase 5).
 
-### Data model (sketch)
+### Data model (as built — see supabase-schema.sql for the real thing)
 
 ```sql
 create table client_projects (
   id uuid default gen_random_uuid() primary key,
   created_at timestamptz default now(),
-  stage text not null default 'deposit_paid',
+  stage text not null default 'paid',
   stage_updated_at timestamptz default now(),
-  business_name text not null,
-  contact_email text not null,
-  tier text,                        -- from Stripe session metadata
-  stripe_session_id text,
-  intake_stage2_id uuid references intake_stage2(id),
+  payment_type text not null,       -- 'deposit' | 'package' — see finding below
+  tier text,                        -- only known for the package flow
+  business_name text,               -- unknown at payment time either way
+  contact_email text,
+  amount_total integer,
+  currency text,
+  stripe_session_id text unique,
   live_url text
 );
 ```
+
+No `intake_stage2_id` link after all — see the `/brief` finding below;
+the real brief flow doesn't go through `intake_stage2`.
 
 ### Suggested build breakdown
 
@@ -148,6 +156,77 @@ create table client_projects (
   sends and renders correctly (checked directly, not assumed), plus the
   edge case the current fallback already half-covers: deposit paid but no
   brief ever submitted.
+
+### Prompt 1 — done (2026-09-05)
+
+Built `client_projects` (see `supabase-schema.sql`), `lib/supabaseAdmin.ts`
+(service-role client), `lib/clientEmail.ts` (brand-consistent email
+template + `sendClientEmail`), `lib/clientProjects.ts`
+(`createClientProjectFromPayment`, idempotent on `stripe_session_id` so a
+Stripe webhook redelivery doesn't create a duplicate row or double-send
+the email), and wired all of it into `app/api/webhooks/stripe/route.ts`
+alongside the existing internal-only notifications (kept, not replaced).
+
+**Two real findings changed the plan while building this, not before:**
+
+1. **There are two live payment paths, not one.** Reading
+   `app/api/checkout/route.ts` and `app/actions/create-checkout-session.ts`
+   side by side: a visitor can either pay a flat deposit (unlocks
+   `/start-your-project`) *or* pay a tier's full price directly from the
+   pricing section on the homepage (`app/checkout/success` — a static
+   "we'll be in touch" page, no brief flow triggered at all). The original
+   scope only accounted for the deposit path. Fixed by renaming the first
+   stage from `deposit_paid` to `paid` and adding a `payment_type` column
+   (`'deposit' | 'package'`) — both paths now create a `client_projects`
+   row and both get a client-facing confirmation email, worded
+   appropriately for which one it was.
+2. **There are two separate, inconsistent "brief" flows live in the
+   codebase**, not one: `/start-your-project` → `StartYourProjectForm` →
+   `/api/intake` (email-only, no DB write, gated behind a paid Stripe
+   session — this is the one real clients actually reach) and a second,
+   completely separate `/brief` → `BriefForm` → `submitIntakeStage2`
+   (writes to `intake_stage2` + an optional Notion push, fully wired up,
+   but **linked from nowhere in the app** — confirmed via a repo-wide
+   search for `href="/brief"`). The original scope assumed
+   `/api/intake` writes to `intake_stage2`; it doesn't, and the table that
+   does get written to is orphaned. This directly affects Prompt 2 (which
+   needs to add a DB write to whichever brief flow is real) and is
+   flagged separately as its own housekeeping item — not silently touched
+   here, since fixing or removing it isn't this task's job.
+
+**Security decision made while building, not left to a sketch:**
+`client_projects` holds payment/PII (email, amount, Stripe session id).
+The existing tables' RLS pattern (`anon` insert + `service_role` full
+access) is safe for *write-only* form tables, but this table also needs
+to be *read back* by server code — an anonymous SELECT policy would let
+anyone holding the public anon key enumerate every client's email and
+payment info from the browser. So `client_projects` gets **no anonymous
+policy at all**: service-role only, via a new `lib/supabaseAdmin.ts`
+(requires `SUPABASE_SERVICE_ROLE_KEY`, documented in `.env.example`,
+server-only — never `NEXT_PUBLIC_*`).
+
+**Verified:**
+- `npx tsc --noEmit` — clean.
+- Both email templates (deposit and package) rendered for real via `tsx`
+  and viewed in a real browser at a realistic viewport — brand-consistent,
+  correct copy, working CTA link, no layout bugs. (An initial screenshot
+  at a narrower viewport showed what looked like clipped text; checked the
+  actual computed styles and DOM directly — `overflow: visible`,
+  `scrollWidth === clientWidth === 560`, full text present — confirmed
+  that was a rendering-tool artifact at that viewport size, not a real
+  bug, before trusting the wider-viewport screenshot instead of guessing.)
+- The Stripe webhook route itself, end-to-end: generated two real,
+  correctly-signed `checkout.session.completed` payloads (one deposit,
+  one package) with the Stripe SDK's own test-signature helper, POSTed
+  them to an isolated local dev server, and confirmed both returned
+  `200` with the expected control flow (signature verified, correct
+  branch taken, `createClientProjectFromPayment` failing closed and
+  logging clearly — not crashing — when Supabase isn't configured).
+- **What couldn't be verified here:** a real Supabase insert and a real
+  Resend delivery — this sandbox's `.env.local` has Stripe keys but no
+  `SUPABASE_SERVICE_ROLE_KEY` or `RESEND_API_KEY`. That needs testing
+  wherever those secrets actually live (production/Vercel, or a fully
+  filled-in local `.env.local`) before this ships for real.
 
 ## Item 8 — CMS Panel (deferred build, decisions only)
 

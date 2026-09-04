@@ -1,6 +1,8 @@
 import { NextRequest } from "next/server";
 import Stripe from "stripe";
 import { Resend } from "resend";
+import { createClientProjectFromPayment } from "@/lib/clientProjects";
+import { escapeHtml, renderClientEmail, renderCtaButton, sendClientEmail } from "@/lib/clientEmail";
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
@@ -66,6 +68,52 @@ export async function POST(req: NextRequest) {
           `,
         });
       }
+    }
+
+    // Phase 4, item 7: create the client_projects record and — the gap
+    // this closes — actually tell the client their payment went through.
+    // Every email above goes to John only; until now a paying client got
+    // nothing at all, not even a receipt. Guarded on `created` (not just
+    // "row exists") so a Stripe webhook redelivery — which does happen —
+    // updates/looks up the same row instead of emailing the client twice.
+    const project = await createClientProjectFromPayment({
+      stripeSessionId: session.id,
+      paymentType: isDeposit ? "deposit" : "package",
+      tier: isDeposit ? null : tier,
+      contactEmail: customerEmail ?? null,
+      amountTotal,
+      currency: (session.currency || "eur").toLowerCase(),
+    });
+
+    if (project?.created && customerEmail) {
+      const amountDisplay = `€${(amountTotal / 100).toFixed(2)}`;
+      const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.evomedia.site";
+
+      const html = isDeposit
+        ? renderClientEmail({
+            heading: "Your deposit is confirmed",
+            bodyHtml: `
+              <p>Thanks for securing your build slot with a deposit of ${amountDisplay}. This is a deposit against your final project fee, not an extra charge.</p>
+              <p>Next step: tell us about your project — it takes about ten minutes.</p>
+            `,
+            ctaHtml: renderCtaButton(
+              "Tell us about your project",
+              `${baseUrl}/start-your-project?session_id=${encodeURIComponent(session.id)}`
+            ),
+          })
+        : renderClientEmail({
+            heading: "Payment received — thanks for choosing Evolution Media",
+            bodyHtml: `
+              <p>We've received your payment of ${amountDisplay} for ${escapeHtml(tier)}.</p>
+              <p>We'll be in touch within 24 hours to gather your project details and get started.</p>
+            `,
+          });
+
+      await sendClientEmail({
+        to: customerEmail,
+        subject: isDeposit ? "Your Evolution Media deposit is confirmed" : "Payment received — Evolution Media",
+        html,
+      });
     }
   }
 
