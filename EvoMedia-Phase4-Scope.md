@@ -228,6 +228,56 @@ server-only — never `NEXT_PUBLIC_*`).
   wherever those secrets actually live (production/Vercel, or a fully
   filled-in local `.env.local`) before this ships for real.
 
+### Prompt 2 — done (2026-09-05)
+
+Wired `/api/intake` (the real brief endpoint, reached from
+`/start-your-project`) to call a new `markBriefReceived()` — advances the
+`client_projects` row to `brief_received`, backfilling `business_name`
+and `contact_email` (neither known at payment time), matched by the
+`stripeSessionId` the form already threads through. On success, sends the
+client the "Brief received" confirmation email — mirroring the copy
+already shown on-page after a successful submission, so the client has
+the same message as a written record even if they close the tab. Kept
+strictly best-effort and placed after the existing internal-notification
+email, same as Prompt 1's philosophy: this endpoint's real job (telling
+John) must not regress if the new pipeline logic fails for any reason.
+
+Built the small manual stage-advance action for the three stages with no
+code signal (`in_design`, `in_build`, `ready_for_review`) plus `live` —
+`scripts/advance-project-stage.ts`, a one-command CLI
+(`npx tsx --env-file=.env.local scripts/advance-project-stage.ts
+<stripe_session_id> <stage> [live_url]`), following this repo's existing
+`scripts/capture-portfolio.mjs` precedent rather than inventing a new
+admin-UI pattern. Looks up the project, updates its stage, and sends the
+matching brand-consistent email — all four email templates written to
+the same voice as everything else. Added `tsx` as a devDependency (this
+repo had none yet; needed to reuse `lib/clientEmail.ts`/
+`lib/clientProjects.ts` directly from a script rather than duplicating
+the brand-email logic a second time).
+
+**Verified:**
+- `npx tsc --noEmit` — clean.
+- The stage-advance script's validation paths, run directly: missing
+  args, an unknown stage, `live` without a `live_url`, and "Supabase not
+  configured" — all exit 1 with a clear, specific message.
+- All 5 remaining email templates (brief received, in design, in build,
+  ready for review, live — including the "live" one's working link)
+  rendered for real via `tsx` and viewed in a browser at a correct
+  viewport — brand-consistent, correct copy, no layout bugs.
+- `markBriefReceived()` called directly against an unconfigured Supabase
+  client — logs clearly and returns `null` rather than throwing, same
+  contract as Prompt 1's `createClientProjectFromPayment`.
+- **Still not verified here, same boundary as Prompt 1:** a real
+  Supabase update or a real Resend send for either the brief-received
+  email or any of the four manual-stage emails — this sandbox has neither
+  `SUPABASE_SERVICE_ROLE_KEY` nor `RESEND_API_KEY`. Needs a real run
+  wherever those secrets live before this ships.
+
+Item 7 is now feature-complete for v1 (all 6 stages have a path from
+payment through to live, either automatic or one manual command).
+Prompt 3 (verification pass with real secrets in a real environment) is
+what's left before calling it fully done.
+
 ## Item 8 — CMS Panel (deferred build, decisions only)
 
 Per the pricing table: "Reusable admin template; client edits text/images/

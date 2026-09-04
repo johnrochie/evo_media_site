@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "capture:screenshots": "node scripts/capture-portfolio.mjs"
+    "capture:screenshots": "node scripts/capture-portfolio.mjs",
+    "advance-stage": "tsx --env-file=.env.local scripts/advance-project-stage.ts"
   },
   "dependencies": {
     "@sentry/nextjs": "^10.42.0",
@@ -30,6 +31,7 @@
     "playwright": "^1.58.2",
     "postcss": "^8.4.0",
     "tailwindcss": "^3.4.0",
+    "tsx": "^4.23.13",
     "typescript": "^5.0.0"
   }
 }

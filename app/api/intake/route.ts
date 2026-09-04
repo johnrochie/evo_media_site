@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { markBriefReceived } from "@/lib/clientProjects";
+import { renderClientEmail, sendClientEmail } from "@/lib/clientEmail";
 
 const NOTIFY_EMAIL =
   process.env.INTAKE_NOTIFY_EMAIL || process.env.RESEND_TO || "";
@@ -81,6 +83,31 @@ export async function POST(req: NextRequest) {
       subject: `New brief: ${String(data.businessName).trim()}`,
       html,
     });
+
+    // Phase 4, item 7, Prompt 2: advance the pipeline stage and — the
+    // gap this closes — actually tell the client their brief arrived,
+    // not just John. Best-effort: this must never block the response
+    // above, which already does this endpoint's real job.
+    if (data.sessionId) {
+      const project = await markBriefReceived({
+        stripeSessionId: String(data.sessionId),
+        businessName: String(data.businessName).trim(),
+        contactEmail: String(data.contactEmail).trim(),
+      });
+
+      if (project) {
+        await sendClientEmail({
+          to: String(data.contactEmail).trim(),
+          subject: "Brief received — Evolution Media",
+          html: renderClientEmail({
+            heading: "Brief received",
+            bodyHtml: `
+              <p>Thanks — that's everything we need to get started. We'll follow up shortly to confirm the build and next steps.</p>
+            `,
+          }),
+        });
+      }
+    }
 
     return NextResponse.json({ ok: true });
   } catch (err) {

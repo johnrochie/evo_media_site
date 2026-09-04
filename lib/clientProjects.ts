@@ -68,3 +68,51 @@ export async function createClientProjectFromPayment(
 
   return { id: data.id as string, created: true };
 }
+
+/**
+ * Advances a client_projects row to `brief_received` — called from
+ * /api/intake once the (real, payment-gated) Build Brief Form at
+ * /start-your-project is submitted. Also backfills business_name and
+ * contact_email, since neither is known at payment time (Stripe Checkout
+ * doesn't collect a business name, and the brief's contact email is more
+ * current/reliable than whatever Stripe captured at checkout).
+ *
+ * Matches on stripe_session_id, the join key StartYourProjectForm already
+ * threads through to this endpoint. Returns null (and logs) rather than
+ * throwing on any failure — including "no matching row" — since a brief
+ * submission's real job (notifying John) must not regress if this
+ * best-effort pipeline update fails.
+ */
+export async function markBriefReceived(opts: {
+  stripeSessionId: string;
+  businessName: string;
+  contactEmail: string;
+}): Promise<{ id: string } | null> {
+  if (!supabaseAdmin) {
+    console.error("markBriefReceived: Supabase admin client not configured");
+    return null;
+  }
+
+  const { data, error } = await supabaseAdmin
+    .from("client_projects")
+    .update({
+      stage: "brief_received",
+      stage_updated_at: new Date().toISOString(),
+      business_name: opts.businessName,
+      contact_email: opts.contactEmail,
+    })
+    .eq("stripe_session_id", opts.stripeSessionId)
+    .select("id")
+    .maybeSingle();
+
+  if (error) {
+    console.error("markBriefReceived update failed:", error);
+    return null;
+  }
+  if (!data) {
+    console.error(`markBriefReceived: no client_projects row found for session "${opts.stripeSessionId}"`);
+    return null;
+  }
+
+  return { id: data.id as string };
+}
