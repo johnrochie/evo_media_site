@@ -8,7 +8,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.evomedia.site";
 export const metadata: Metadata = {
   title: "Evolution Media | Modern Web Design",
   description:
-    "Modern web design. Built fast. Built right. One-page sites from €499. Custom and e-commerce available. Live in days.",
+    "Modern web design. Built fast. Built right. One-page sites from €599. Custom and e-commerce available. Live in days.",
   metadataBase: new URL(siteUrl),
   keywords: [
     "web design",
@@ -23,14 +23,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Evolution Media | Modern Web Design",
-    description: "One-page sites from €499. Custom and e-commerce. Live in days.",
+    description: "One-page sites from €599. Custom and e-commerce. Live in days.",
     url: "/",
     siteName: "Evolution Media",
   },
   twitter: {
     card: "summary_large_image",
     title: "Evolution Media | Modern Web Design",
-    description: "One-page sites from €499. Custom and e-commerce. Live in days.",
+    description: "One-page sites from €599. Custom and e-commerce. Live in days.",
   },
   ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && {
     verification: {
