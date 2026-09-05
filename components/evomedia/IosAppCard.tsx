@@ -186,8 +186,7 @@ export function IosAppCard({
               href={app.appStoreUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-black text-sm font-semibold hover:bg-gray-100 transition-colors"
-              onClick={(e) => e.stopPropagation()}
+              className="relative z-20 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-black text-sm font-semibold hover:bg-gray-100 transition-colors"
             >
               <Apple className="w-4 h-4" aria-hidden />
               App Store
@@ -199,10 +198,25 @@ export function IosAppCard({
               Coming to App Store
             </span>
           )}
+          {/* Stretched link: covers the whole card (via the relative
+              motion.div wrapper below) so the card stays fully clickable
+              without nesting an <a> inside another <a> — invalid HTML
+              that server/client parse differently and was throwing a
+              real hydration error (#418) on every page load, since the
+              App Store link above used to be nested inside a card-wide
+              Link. Deliberately NOT `relative` on this <a> itself — that
+              would make the anchor its own containing block, so
+              after:inset-0 would only stretch to the anchor's own small
+              text box instead of reaching up to the card (found by
+              testing click coordinates over the phone mockup after the
+              first attempt at this fix — it silently failed to cover
+              the card). after:z-10 puts the overlay above ordinary card
+              content (phone mockup, text) so the card stays clickable
+              everywhere it used to be; the App Store link's own
+              `relative z-20` keeps it clickable above the overlay. */}
           <Link
             href={detailHref}
-            className="text-sm text-[#00d4ff] hover:underline"
-            onClick={(e) => e.stopPropagation()}
+            className="text-sm text-[#00d4ff] hover:underline after:absolute after:inset-0 after:z-10 after:content-['']"
           >
             {detailLabel}
           </Link>
@@ -217,10 +231,9 @@ export function IosAppCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay, duration: 0.4 }}
+      className="relative group"
     >
-      <Link href={detailHref} className="block group">
-        {cardContent}
-      </Link>
+      {cardContent}
     </motion.div>
   );
 }
