@@ -408,20 +408,22 @@ reasonable head start (business description, desired pages, color/style
 preferences, reference sites, existing copy) — just the wrong table name
 attached to it before.
 
-### A sharper real gap than "no codebase to land in"
+### A sharper real gap than "no codebase to land in" — fixed 2026-09-05
 
-**The real brief content isn't persisted anywhere queryable today —
-only as an email body.** Item 7's Prompts 1-2 only persisted
-`business_name` and `contact_email` onto `client_projects`; every other
-field (`industry`, `description`, `colours`, `inspiration`,
-`pagesNeeded`, `existingContent`, `photos`, `functionality`) exists only
-in the internal notification email John receives, nowhere in the
-database. Whenever Item 9 gets built, it needs a structured brief to
-read — an email body isn't that. **This is small, mechanical, and
-buildable independent of the rest of Item 9's decision below** (store
-the full brief as JSONB on `client_projects` when `/api/intake` runs) —
-flagged here as a concrete recommendation, not built in this scoping
-pass since it wasn't asked for.
+**The real brief content wasn't persisted anywhere queryable — only as
+an email body.** Item 7's Prompts 1-2 only persisted `business_name` and
+`contact_email` onto `client_projects`; every other field (`industry`,
+`description`, `colours`, `inspiration`, `pagesNeeded`,
+`existingContent`, `photos`, `functionality`) existed only in the
+internal notification email John receives, nowhere in the database.
+Whenever Item 9 gets built, it needs a structured brief to read — an
+email body isn't that. This was small and mechanical enough to just fix
+rather than leave as a recommendation: `client_projects` now has a
+`brief jsonb` column, populated by `markBriefReceived()` alongside the
+`business_name`/`contact_email` backfill it already did. Useful
+immediately as an actual record of what a client asked for; also now
+what Item 9 will read from whenever it's built. (Needs the same real-
+secrets verification as everything else in Item 7 — see the checklist.)
 
 **A second, more specific version of Item 8's dependency:** it's not
 just that a first draft needs "somewhere to land" — it's that *what
