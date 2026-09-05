@@ -281,33 +281,111 @@ Prompt 3 (verification pass with real secrets in a real environment) is
 what's left before calling it fully done — see
 [EvoMedia-Phase4-Prompt3-Checklist.md](EvoMedia-Phase4-Prompt3-Checklist.md).
 
-## Item 8 — CMS Panel (deferred build, decisions only)
+## Item 8 — CMS Panel (deepened scope 2026-09-05; still no build — see below)
 
 Per the pricing table: "Reusable admin template; client edits text/images/
 posts without touching WordPress or similar," €350 per client.
 
-**Real gap this scoping pass found:** there is no shared client-site
-codebase to add a CMS panel *to* — every delivered site is its own repo.
-Building a "reusable" admin now means guessing its shape (single
-Supabase project shared across all client sites vs. one per client; what
-content model — free-form blocks vs. fixed fields; how auth works per
-client) with zero real cases to validate against.
+Re-confirmed with the user (2026-09-05) before deepening this: there's no
+real client/site to build the first instance against yet, so this stays
+the same "decisions + open questions, build deferred" shape Item 9 also
+has — just with the decisions worked through further, and one more real
+finding underneath them.
 
-**Decision:** build the first real one directly into the next client site
-that actually needs it, as a normal one-off feature of that build — keep
-it reasonably clean but don't over-engineer for reuse prematurely. Extract
-a shared template/package only once a second client needs the same thing,
-at which point the two real implementations will show what's actually
-common versus what only looked common in the abstract.
+### What it does
 
-**Open questions to answer only when that first real case exists** (not
-now):
-- One Supabase project per client site, or one shared project with
-  per-client schemas/row-level security?
-- Content model: fixed fields per page (simpler, less flexible) vs.
-  generic content blocks (more flexible, more to build)?
-- Auth: Supabase Auth (magic link, matches the stack already in use) is
-  the obvious default whenever this gets built for real.
+Today, a client's finished site is finished — any text or image change
+means asking John (or Cursor) to edit and redeploy. The CMS Panel is a
+small admin area *inside the client's own delivered site* (not part of
+`evo_media_site`) where the client logs in and edits their own text and
+images directly — the €350 module the pricing table already prices,
+reused per client rather than built bespoke each time.
+
+### A second real finding, underneath the first
+
+Phase 4's original scope found there's no shared client-site template.
+Looking at an actual delivered site now (`dental-practice`, checked via
+the GitHub API) surfaces a deeper one: it's a plain Next.js/React/
+Tailwind app with **zero backend** — no Supabase, no database, nothing.
+Its `lib/` folder holds exactly one file, `colors.ts` (brand color
+tokens) — every piece of actual page content (headings, service
+descriptions, copy) is hardcoded directly inside JSX components, not
+pulled from any data layer at all.
+
+That matters for sequencing: a CMS panel isn't just "add an admin route"
+to a site like this — it means retrofitting content out of JSX and into
+a database for every page it should cover, which is real, nontrivial
+work independent of building the admin UI itself. **This makes it far
+cheaper to build a CMS panel into a site from day one of that site's
+build** (writing components to read from Supabase from the start) **than
+to retrofit it into an already-delivered, hardcoded site after the
+fact.** Worth factoring into which real client this gets attached to
+first — a new build is a much smaller lift than a retrofit.
+
+### Decisions (defaults set now, to revisit against the real first case)
+
+These aren't left fully open anymore — each has a reasoned default below
+— but none are built, and the real first case may still reasonably
+override any of them.
+
+1. **One shared Supabase project across all client sites, not one project
+   per client.** A brand-new Supabase project per €350 sale doesn't scale
+   operationally (one more project to provision, monitor, and pay for
+   per client) or financially (most paid tiers price per-project). A
+   single project with every client's content scoped by a `site_id`
+   column and RLS policies keyed to that column is the standard
+   multi-tenant pattern RLS exists for, and it's a *different* Supabase
+   project from `evo_media_site`'s own (that one holds Evolution Media's
+   own intake/pipeline data — a client's site content is a separate
+   concern, not something to mix into that database).
+2. **Fixed fields per page, not a generic content-block system.** Given
+   the retrofit finding above, the realistic v1 scope is "replace the
+   specific hardcoded strings and images a site already has" — a `pages`
+   table keyed by slug with named fields matching that site's actual
+   sections (hero headline, about text, services list, contact details),
+   not a general-purpose page-builder. Same reasoning this whole repo
+   already applies elsewhere (no JS-rendering in `shared/analyzer.mjs`,
+   no brand-color extraction in `site-scraper`): don't build the general
+   version before one specific, real version has proven what's actually
+   needed.
+3. **Auth: Supabase Auth, magic link, to the client's known contact
+   email** — no real ambiguity here, it's already the stack in use
+   everywhere else and needs no separate password to manage. v1 assumes
+   one authorized editor per site, not multi-user roles (see below).
+4. **Images: Supabase Storage**, one bucket, each client's files under
+   their own path prefix (`<site-slug>/...`) — same project as the
+   content table, no separate service to wire up.
+5. **Rendering: plain server-side fetch on each request** (Next.js Server
+   Components already do this by default), not ISR/caching. A small
+   business site's traffic and edit frequency don't justify cache-
+   invalidation complexity before there's a real performance reason to
+   add it.
+
+### Explicitly out of scope for v1
+
+- **Multi-user roles/permissions** — one authorized editor per site is
+  enough until a client asks for more.
+- **Draft/preview before publish** — v1 is "save = live," the simplest
+  correct model; add a draft state only once someone actually needs to
+  stage a change before it goes out.
+- **Version history / undo** — real, useful, and deliberately not v1.
+- **A generic drag-and-drop page builder** — see decision 2 above.
+
+### Suggested build breakdown (whenever a real client triggers this)
+
+- **Prompt 1** — the shared `site_content` table + RLS (scoped to the
+  first real client's `site_id`), retrofit that site's first page (most
+  likely the homepage) to read its content from Supabase instead of
+  hardcoded JSX, and a minimal `/admin` (magic-link login + one edit
+  form for that page's fields). Verify by actually editing content
+  through the form and confirming the live site updates.
+- **Prompt 2** — image upload/replacement via Supabase Storage, extend
+  the same pattern to the rest of that site's pages.
+- **Prompt 3** — verification pass with the actual client using it for
+  real, and — the point of deferring this in the first place — write
+  down what turned out to actually generalize versus what only looked
+  reusable in the abstract, ready for when a second client needs the
+  same thing.
 
 ## Item 9 — Agent-Driven First Draft Generation (deferred build, decisions only)
 
