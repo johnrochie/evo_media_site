@@ -82,8 +82,20 @@ create table if not exists client_projects (
   amount_total integer,             -- cents, from Stripe
   currency text,
   stripe_session_id text unique,
-  live_url text
+  live_url text,
+  -- The full /api/intake submission (industry, description, existing
+  -- domain, colours, inspiration, pages needed, existing content,
+  -- photos, functionality, contact name/phone) — added after Prompt 2
+  -- shipped, when scoping Item 9 (Agent-Driven First Draft Generation)
+  -- found this content wasn't persisted anywhere queryable, only ever
+  -- an email body to John. Useful now as an actual record of what a
+  -- client asked for, and it's what Item 9 will eventually read from.
+  brief jsonb
 );
+
+-- If client_projects already exists without `brief` (created before this
+-- column was added), this backfills it without touching existing rows:
+alter table client_projects add column if not exists brief jsonb;
 
 alter table client_projects enable row level security;
 

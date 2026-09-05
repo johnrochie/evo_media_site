@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-import { markBriefReceived } from "@/lib/clientProjects";
+import { markBriefReceived, type BriefPayload } from "@/lib/clientProjects";
 import { renderClientEmail, sendClientEmail } from "@/lib/clientEmail";
 
 const NOTIFY_EMAIL =
@@ -89,15 +89,30 @@ export async function POST(req: NextRequest) {
     // not just John. Best-effort: this must never block the response
     // above, which already does this endpoint's real job.
     if (data.sessionId) {
-      const project = await markBriefReceived({
-        stripeSessionId: String(data.sessionId),
+      const brief: BriefPayload = {
         businessName: String(data.businessName).trim(),
+        industry: String(data.industry).trim(),
+        description: String(data.description).trim(),
+        existingDomain: String(data.existingDomain || "").trim(),
+        logoNote: String(data.logoNote || "").trim(),
+        colours: String(data.colours || "").trim(),
+        inspiration: String(data.inspiration || "").trim(),
+        pagesNeeded: String(data.pagesNeeded).trim(),
+        existingContent: String(data.existingContent || "").trim(),
+        photos: String(data.photos || "").trim(),
+        functionality: String(data.functionality || "").trim(),
+        contactName: String(data.contactName).trim(),
         contactEmail: String(data.contactEmail).trim(),
+        contactPhone: String(data.contactPhone || "").trim(),
+      };
+
+      const project = await markBriefReceived(brief, {
+        stripeSessionId: String(data.sessionId),
       });
 
       if (project) {
         await sendClientEmail({
-          to: String(data.contactEmail).trim(),
+          to: brief.contactEmail,
           subject: "Brief received — Evolution Media",
           html: renderClientEmail({
             heading: "Brief received",

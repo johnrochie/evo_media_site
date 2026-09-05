@@ -2,6 +2,29 @@ import { supabaseAdmin } from "@/lib/supabaseAdmin";
 
 export type PaymentType = "deposit" | "package";
 
+/**
+ * The actual fields StartYourProjectForm collects (components/intake/
+ * StartYourProjectForm.tsx) — everything except sessionId (already the
+ * row's own stripe_session_id, redundant to store twice) and website_url
+ * (the honeypot; meaningless once a submission's gotten this far).
+ */
+export type BriefPayload = {
+  businessName: string;
+  industry: string;
+  description: string;
+  existingDomain: string;
+  logoNote: string;
+  colours: string;
+  inspiration: string;
+  pagesNeeded: string;
+  existingContent: string;
+  photos: string;
+  functionality: string;
+  contactName: string;
+  contactEmail: string;
+  contactPhone: string;
+};
+
 export type ClientProjectPaymentInfo = {
   stripeSessionId: string;
   paymentType: PaymentType;
@@ -75,7 +98,14 @@ export async function createClientProjectFromPayment(
  * /start-your-project is submitted. Also backfills business_name and
  * contact_email, since neither is known at payment time (Stripe Checkout
  * doesn't collect a business name, and the brief's contact email is more
- * current/reliable than whatever Stripe captured at checkout).
+ * current/reliable than whatever Stripe captured at checkout), and now
+ * the full brief itself — until this, the brief's actual content
+ * (industry, description, colours, inspiration, pages needed, existing
+ * content, photos, functionality) existed nowhere queryable, only ever
+ * as the body of the internal notification email. Found while deepening
+ * Item 9's scope (it needs a structured brief to read from, eventually);
+ * useful today regardless, as an actual record of what a client asked
+ * for.
  *
  * Matches on stripe_session_id, the join key StartYourProjectForm already
  * threads through to this endpoint. Returns null (and logs) rather than
@@ -83,11 +113,10 @@ export async function createClientProjectFromPayment(
  * submission's real job (notifying John) must not regress if this
  * best-effort pipeline update fails.
  */
-export async function markBriefReceived(opts: {
-  stripeSessionId: string;
-  businessName: string;
-  contactEmail: string;
-}): Promise<{ id: string } | null> {
+export async function markBriefReceived(
+  brief: BriefPayload,
+  opts: { stripeSessionId: string }
+): Promise<{ id: string } | null> {
   if (!supabaseAdmin) {
     console.error("markBriefReceived: Supabase admin client not configured");
     return null;
@@ -98,8 +127,9 @@ export async function markBriefReceived(opts: {
     .update({
       stage: "brief_received",
       stage_updated_at: new Date().toISOString(),
-      business_name: opts.businessName,
-      contact_email: opts.contactEmail,
+      business_name: brief.businessName,
+      contact_email: brief.contactEmail,
+      brief,
     })
     .eq("stripe_session_id", opts.stripeSessionId)
     .select("id")

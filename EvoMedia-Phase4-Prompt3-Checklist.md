@@ -65,7 +65,12 @@ not an automatic migration.
       notification (regression check), **and** the new client-facing
       "Brief received" email.
 - [ ] In Supabase, confirm the same row now has `stage = 'brief_received'`,
-      `business_name` filled in from the form, `stage_updated_at` bumped.
+      `business_name` filled in from the form, `stage_updated_at` bumped,
+      and `brief` holding the full submission as JSON (industry,
+      description, colours, inspiration, pages needed, existing content,
+      photos, functionality, contact name/phone) — this column was added
+      after the fact, so it's worth actually looking at, not assuming the
+      column exists just because the migration ran.
 
 ## 3. Package path, end to end
 
