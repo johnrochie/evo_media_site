@@ -387,37 +387,108 @@ override any of them.
   reusable in the abstract, ready for when a second client needs the
   same thing.
 
-## Item 9 — Agent-Driven First Draft Generation (deferred build, decisions only)
+## Item 9 — Agent-Driven First Draft Generation (deepened scope 2026-09-05; still no build)
 
 Per the roadmap: client checks out, answers the structured brief, an agent
 generates a first-pass draft (layout, copy, imagery, brand colors), then
 **pauses for John's approval** before anything moves to deployment — not
 fully autonomous.
 
-**Real head start already in place:** `intake_stage2` already collects
-almost everything this needs — `brand_colours`, three reference-site
-fields, `sections_needed`, `key_competitors`, `what_makes_different`,
-`functionality_needed`. The brief schema likely doesn't need to change for
-this; the gap isn't the input, it's the output.
+### Correction to the earlier scope
 
-**Real gap:** a "first draft" needs a codebase to land in, and (per Item
-8's finding) there isn't a shared one yet. This is also the most
-speculative, longest-horizon item in the entire 12-tool roadmap (marked
-🔵, longest horizon, in the original planning doc) — it depends on Item 7
-being live (so there's a pipeline stage to pause at) and effectively on
-Item 8 existing in some form (so a draft has somewhere consistent to go).
+The original pass here cited `intake_stage2` as the brief this would work
+from. **That's wrong, and Item 7's Prompt 1 is why it's now known to be
+wrong:** `intake_stage2` belongs to the orphaned `/brief` page (flagged
+separately as `task_f576d7c6`), not the real, live brief flow. The real
+one is `StartYourProjectForm` → `/api/intake` — its actual fields are
+`businessName`, `industry`, `description`, `existingDomain`, `logoNote`,
+`colours`, `inspiration`, `pagesNeeded`, `existingContent`, `photos`,
+`functionality`, `contactName`/`contactEmail`/`contactPhone`. Still a
+reasonable head start (business description, desired pages, color/style
+preferences, reference sites, existing copy) — just the wrong table name
+attached to it before.
 
-**Decision:** don't scope this as a standalone automated tool yet. For the
-next real client, the actual "v1 agent" is this exact workflow used
-directly — hand the real brief to Claude Code/Cursor as the input to a
-guided build, the same way every tool in `evomedia-tools` was built this
-session (scope → build → verify against something real). Once that's been
-done for two or more real clients and a repeatable shape is visible,
-*that* is what gets formalized into an actual agent/pipeline step —
-not before.
+### A sharper real gap than "no codebase to land in"
+
+**The real brief content isn't persisted anywhere queryable today —
+only as an email body.** Item 7's Prompts 1-2 only persisted
+`business_name` and `contact_email` onto `client_projects`; every other
+field (`industry`, `description`, `colours`, `inspiration`,
+`pagesNeeded`, `existingContent`, `photos`, `functionality`) exists only
+in the internal notification email John receives, nowhere in the
+database. Whenever Item 9 gets built, it needs a structured brief to
+read — an email body isn't that. **This is small, mechanical, and
+buildable independent of the rest of Item 9's decision below** (store
+the full brief as JSONB on `client_projects` when `/api/intake` runs) —
+flagged here as a concrete recommendation, not built in this scoping
+pass since it wasn't asked for.
+
+**A second, more specific version of Item 8's dependency:** it's not
+just that a first draft needs "somewhere to land" — it's that *what
+shape that landing spot takes* determines whether this is even
+tractable. Generating a full, arbitrary site's worth of React/TSX code
+well is a hard, high-risk automation target. Filling in known fields on
+Item 8's eventual fixed-fields-per-page content model (hero headline,
+about text, services list — decision 2 in Item 8's scope) is a much
+closer match to what an LLM already does reliably. **Item 9 isn't
+just gated on Item 8 existing — it specifically needs Item 8's
+content-model shape to exist first**, because that's what turns "generate
+a website" into the far more tractable "fill in a known schema from a
+brief." This sharpens (not just repeats) the existing Phase 4 build
+order — Item 8 genuinely has to come first in substance, not just in
+the roadmap's listed order.
+
+**A real connection to Phase 2, not yet exploited:** for a client with
+`hasCurrentWebsite = true` and an `existingDomain`, the brief's own text
+description isn't the only real material available — `site-scraper`
+already knows how to pull that domain's actual text/images/structure.
+Feeding that extraction into a first draft (as source material to
+rewrite/modernize, not copy verbatim) is a much richer starting point
+than the brief's free-text fields alone, and the tool to do it already
+exists. Worth designing in whenever this is actually built, not
+something to build now.
+
+### Explicitly out of scope for v1
+
+- **Automatic image sourcing/generation.** Same category of deferred
+  problem as `before-after-generator`'s own "no image-guessing, always
+  the clean placeholder" call — a first draft uses the client's own
+  photos (already asked for via the `photos` brief field) or a
+  placeholder, not AI-generated or scraped imagery.
+- **Automatic full-site code generation.** Only tractable once there's a
+  structured content model to fill in, not before (see above).
+- **Skipping the human approval gate.** The roadmap is explicit this
+  must not be fully autonomous — not something to revisit for
+  convenience later.
+
+### Decision (unchanged in substance, sharpened above)
+
+Don't scope this as a standalone automated tool yet. For the next real
+client, the actual "v1 agent" is this exact workflow used directly — hand
+the real brief to Claude Code/Cursor as the input to a guided build, the
+same way every tool in `evomedia-tools` was built this session (scope →
+build → verify against something real). The unlock condition is now more
+specific than "two real clients": it's **two real clients built on Item
+8's content-model shape** — that's the point a repeatable, fillable
+pattern actually exists to formalize into an agent/pipeline step, not
+before.
+
+### The natural integration point with Item 7, once this is real
+
+Item 7's `ready_for_review` stage is currently a manual CLI command
+(`scripts/advance-project-stage.ts`) because nothing today can tell it a
+build is actually ready. Once Item 9 exists for real, "the agent finished
+a draft" is exactly that signal — the natural end state is Item 9
+finishing a draft, automatically triggering Item 7's existing
+`ready_for_review` email, with John's approval automatically advancing to
+`live`. Not building this connection now; noting it because Item 7 was
+built in a shape that already accommodates it without rework.
 
 ## Build order
 
-Item 7, in full, now (see its Prompt 1-3 breakdown above). Items 8 and 9
+Item 7, in full, now (done, pending Prompt 3 — see above). Items 8 and 9
 wait on a real client to build the first instance against — revisit each
-the moment that client exists, not on a fixed schedule.
+the moment that client exists, not on a fixed schedule. Note the
+sharpened dependency above: build the two in that order (8 before 9) for
+substantive reasons now, not just because the roadmap lists them that
+way.
