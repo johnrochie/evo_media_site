@@ -160,10 +160,10 @@ export const blogPosts: BlogPost[] = [
         text: "If you're being quoted more than that for a basic site, make sure you understand specifically what extra value you're getting. More pages? Stronger strategy? A dedicated account manager? These can all justify a higher price—just make sure the extra spend is deliberate, not accidental.",
       },
       { type: "h2", text: "Frequently asked questions" },
-      { type: "h3", text: "Can I get a decent website for under €500?" },
+      { type: "h3", text: "Can I get a decent website for under €600?" },
       {
         type: "p",
-        text: "Yes. A well-built one-page site at €499 can outperform a bloated five-page site at €3,000 if it's designed with a clear goal. For most early-stage businesses, one page done well is the right starting point.",
+        text: "Yes. A well-built one-page site at €599 can outperform a bloated five-page site at €3,000 if it's designed with a clear goal. For most early-stage businesses, one page done well is the right starting point.",
       },
       { type: "h3", text: "How long should a website take to build?" },
       {

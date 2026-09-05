@@ -206,7 +206,7 @@
 
 \- \[ ] Add \*\*location/market\*\* specifics to service copy — e.g., mention cities or regions served
 
-\- \[ ] Add a \*\*FAQ about pricing\*\* — e.g., "What's included in the €499 package?", "Do you offer payment plans?"
+\- \[ ] Add a \*\*FAQ about pricing\*\* — e.g., "What's included in the €599 package?", "Do you offer payment plans?"
 
 \- \[ ] Clarify the difference between the `/contact` form and the `/brief` form in the UI — users may be confused about which to use
 

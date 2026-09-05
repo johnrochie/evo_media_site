@@ -15,8 +15,8 @@
       {
         "icon": "user",
         "title": "Standard one-page site",
-        "description": "A single-page scroller like this site—Hero, Services, About, Contact, and the sections you need. Custom design, mobile responsive, SEO-ready.",
-        "price": "€499",
+        "description": "A single-page scroller like this site—Hero, Services, About, Contact, and the sections you need. Custom design, mobile responsive, SEO-ready, with your own CMS to edit it yourself.",
+        "price": "€599",
         "color": "#00d4ff"
       },
       {
@@ -108,21 +108,22 @@
     "label": "Pricing",
     "title": "Simple",
     "titleHighlight": "pricing",
-    "subtitle": "€50 deposit to get started. €449 when your site is completed. Total €499.",
+    "subtitle": "€50 deposit to get started. €549 when your site is completed. Total €599.",
     "customCta": "Need something custom? Extra features, e-commerce, or multi-page sites—we'll quote it.",
     "customCtaButton": "Get in touch",
     "tiers": [
       {
         "name": "Standard",
         "subtitle": "One-page scroller site",
-        "price": "€499",
-        "period": "€50 deposit now, €449 on completion",
+        "price": "€599",
+        "period": "€50 deposit now, €549 on completion",
         "amountCents": 5000,
         "features": [
           "One-page scroller (like this site)",
           "Custom design, no templates",
           "Mobile responsive",
           "Basic SEO setup",
+          "Your own content editor (CMS) — update text and images yourself",
           "Hero, Services, About, Contact + your sections"
         ],
         "cta": "Pay deposit — €50",
@@ -214,7 +215,7 @@
       "Other"
     ],
     "budgetRanges": [
-      "Standard (€499)",
+      "Standard (€599)",
       "€500 – €1,000",
       "€1,000 – €2,500",
       "€2,500+"
