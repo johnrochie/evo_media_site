@@ -155,7 +155,9 @@ the real brief flow doesn't go through `intake_stage2`.
   through to a real brief submission, confirming every email actually
   sends and renders correctly (checked directly, not assumed), plus the
   edge case the current fallback already half-covers: deposit paid but no
-  brief ever submitted.
+  brief ever submitted. Needs real secrets this build's sandbox didn't
+  have — see [EvoMedia-Phase4-Prompt3-Checklist.md](EvoMedia-Phase4-Prompt3-Checklist.md),
+  a step-by-step checklist to run wherever those secrets actually live.
 
 ### Prompt 1 — done (2026-09-05)
 
@@ -276,7 +278,8 @@ the brand-email logic a second time).
 Item 7 is now feature-complete for v1 (all 6 stages have a path from
 payment through to live, either automatic or one manual command).
 Prompt 3 (verification pass with real secrets in a real environment) is
-what's left before calling it fully done.
+what's left before calling it fully done — see
+[EvoMedia-Phase4-Prompt3-Checklist.md](EvoMedia-Phase4-Prompt3-Checklist.md).
 
 ## Item 8 — CMS Panel (deferred build, decisions only)
 
